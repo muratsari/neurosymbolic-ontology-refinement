@@ -1,0 +1,321 @@
+{
+  "root": "results/primary_extractor",
+  "fig3": {
+    "domain": "securities",
+    "metrics": [
+      "Coherence",
+      "CQ accuracy",
+      "F1"
+    ],
+    "values": {
+      "LLM-only": [
+        0.2,
+        0.4206,
+        0.343
+      ],
+      "LLM + single-pass repair": [
+        0.5667,
+        0.4349,
+        0.3434
+      ],
+      "Proposed (Hybrid)": [
+        0.8,
+        0.4381,
+        0.3434
+      ]
+    },
+    "n": 30
+  },
+  "fig4": {
+    "n_ontologies": 90,
+    "categories": [
+      "unsatisfiable_class",
+      "inconsistency",
+      "missing_domain",
+      "missing_range"
+    ],
+    "totals": {
+      "unsatisfiable_class": 349,
+      "inconsistency": 2,
+      "missing_domain": 21,
+      "missing_range": 17
+    },
+    "runs_with": {
+      "unsatisfiable_class": 50,
+      "inconsistency": 2,
+      "missing_domain": 8,
+      "missing_range": 6
+    },
+    "per_run": {
+      "securities/run01": {
+        "inconsistency": 1
+      },
+      "securities/run02": {
+        "unsatisfiable_class": 8
+      },
+      "securities/run03": {
+        "unsatisfiable_class": 5
+      },
+      "securities/run04": {
+        "unsatisfiable_class": 7
+      },
+      "securities/run05": {
+        "unsatisfiable_class": 1
+      },
+      "securities/run06": {
+        "unsatisfiable_class": 6
+      },
+      "securities/run07": {
+        "inconsistency": 1
+      },
+      "securities/run08": {
+        "unsatisfiable_class": 14
+      },
+      "securities/run09": {
+        "unsatisfiable_class": 8
+      },
+      "securities/run10": {
+        "unsatisfiable_class": 6
+      },
+      "securities/run11": {
+        "unsatisfiable_class": 5
+      },
+      "securities/run12": {
+        "unsatisfiable_class": 1
+      },
+      "securities/run13": {
+        "unsatisfiable_class": 2
+      },
+      "securities/run14": {
+        "unsatisfiable_class": 2,
+        "missing_domain": 4,
+        "missing_range": 4
+      },
+      "securities/run15": {
+        "unsatisfiable_class": 11,
+        "missing_domain": 1,
+        "missing_range": 1
+      },
+      "securities/run16": {
+        "unsatisfiable_class": 11
+      },
+      "securities/run17": {
+        "unsatisfiable_class": 4,
+        "missing_domain": 1,
+        "missing_range": 1
+      },
+      "securities/run18": {
+        "unsatisfiable_class": 1
+      },
+      "securities/run19": {
+        "unsatisfiable_class": 3
+      },
+      "securities/run20": {},
+      "securities/run21": {
+        "unsatisfiable_class": 6
+      },
+      "securities/run22": {},
+      "securities/run23": {},
+      "securities/run24": {
+        "unsatisfiable_class": 1
+      },
+      "securities/run25": {
+        "unsatisfiable_class": 14
+      },
+      "securities/run26": {},
+      "securities/run27": {},
+      "securities/run28": {
+        "unsatisfiable_class": 1
+      },
+      "securities/run29": {},
+      "securities/run30": {
+        "unsatisfiable_class": 1
+      },
+      "hypertension/run01": {},
+      "hypertension/run02": {},
+      "hypertension/run03": {},
+      "hypertension/run04": {},
+      "hypertension/run05": {},
+      "hypertension/run06": {},
+      "hypertension/run07": {},
+      "hypertension/run08": {},
+      "hypertension/run09": {},
+      "hypertension/run10": {},
+      "hypertension/run11": {},
+      "hypertension/run12": {},
+      "hypertension/run13": {},
+      "hypertension/run14": {},
+      "hypertension/run15": {},
+      "hypertension/run16": {},
+      "hypertension/run17": {},
+      "hypertension/run18": {},
+      "hypertension/run19": {},
+      "hypertension/run20": {},
+      "hypertension/run21": {},
+      "hypertension/run22": {},
+      "hypertension/run23": {},
+      "hypertension/run24": {},
+      "hypertension/run25": {},
+      "hypertension/run26": {},
+      "hypertension/run27": {},
+      "hypertension/run28": {},
+      "hypertension/run29": {},
+      "hypertension/run30": {},
+      "assessment/run01": {
+        "unsatisfiable_class": 7,
+        "missing_domain": 2
+      },
+      "assessment/run02": {
+        "unsatisfiable_class": 7
+      },
+      "assessment/run03": {
+        "unsatisfiable_class": 8
+      },
+      "assessment/run04": {
+        "unsatisfiable_class": 10,
+        "missing_domain": 3,
+        "missing_range": 3
+      },
+      "assessment/run05": {
+        "unsatisfiable_class": 8
+      },
+      "assessment/run06": {
+        "unsatisfiable_class": 8
+      },
+      "assessment/run07": {
+        "unsatisfiable_class": 8
+      },
+      "assessment/run08": {
+        "unsatisfiable_class": 11
+      },
+      "assessment/run09": {
+        "unsatisfiable_class": 11
+      },
+      "assessment/run10": {
+        "unsatisfiable_class": 11
+      },
+      "assessment/run11": {
+        "unsatisfiable_class": 7
+      },
+      "assessment/run12": {
+        "unsatisfiable_class": 8
+      },
+      "assessment/run13": {
+        "unsatisfiable_class": 11
+      },
+      "assessment/run14": {
+        "unsatisfiable_class": 7
+      },
+      "assessment/run15": {
+        "unsatisfiable_class": 7
+      },
+      "assessment/run16": {
+        "unsatisfiable_class": 8,
+        "missing_domain": 2
+      },
+      "assessment/run17": {},
+      "assessment/run18": {
+        "unsatisfiable_class": 10
+      },
+      "assessment/run19": {
+        "unsatisfiable_class": 13
+      },
+      "assessment/run20": {
+        "unsatisfiable_class": 2
+      },
+      "assessment/run21": {
+        "unsatisfiable_class": 8
+      },
+      "assessment/run22": {
+        "unsatisfiable_class": 8
+      },
+      "assessment/run23": {
+        "unsatisfiable_class": 7
+      },
+      "assessment/run24": {
+        "unsatisfiable_class": 9
+      },
+      "assessment/run25": {
+        "unsatisfiable_class": 9,
+        "missing_domain": 1,
+        "missing_range": 1
+      },
+      "assessment/run26": {
+        "unsatisfiable_class": 7
+      },
+      "assessment/run27": {
+        "unsatisfiable_class": 8,
+        "missing_domain": 7,
+        "missing_range": 7
+      },
+      "assessment/run28": {
+        "unsatisfiable_class": 7
+      },
+      "assessment/run29": {},
+      "assessment/run30": {
+        "unsatisfiable_class": 6
+      }
+    }
+  },
+  "fig5": {
+    "primary": {
+      "domain": "securities",
+      "n": 30,
+      "iterations": [
+        0,
+        1,
+        2
+      ],
+      "counts": [
+        12,
+        11,
+        7
+      ],
+      "median": 1.0,
+      "cap": 5
+    },
+    "by_domain": {
+      "securities": {
+        "n": 30,
+        "iterations": [
+          0,
+          1,
+          2
+        ],
+        "counts": [
+          12,
+          11,
+          7
+        ],
+        "median": 1.0,
+        "cap": 5
+      },
+      "hypertension": {
+        "n": 30,
+        "iterations": [
+          0
+        ],
+        "counts": [
+          30
+        ],
+        "median": 0.0,
+        "cap": 5
+      },
+      "assessment": {
+        "n": 30,
+        "iterations": [
+          0,
+          1,
+          2
+        ],
+        "counts": [
+          2,
+          27,
+          1
+        ],
+        "median": 1.0,
+        "cap": 5
+      }
+    }
+  }
+}

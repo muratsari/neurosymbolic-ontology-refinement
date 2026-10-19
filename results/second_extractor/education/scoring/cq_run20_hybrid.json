@@ -1,0 +1,287 @@
+{
+ "passed": 17,
+ "total": 24,
+ "failed": 7,
+ "by_category": {
+  "defined-class-realization": {
+   "passed": 3,
+   "total": 4
+  },
+  "chained-realization": {
+   "passed": 0,
+   "total": 2
+  },
+  "subsumption-transitive": {
+   "passed": 5,
+   "total": 5
+  },
+  "disjointness-violation": {
+   "passed": 4,
+   "total": 5
+  },
+  "cardinality-violation": {
+   "passed": 0,
+   "total": 3
+  },
+  "orthogonality-control": {
+   "passed": 5,
+   "total": 5
+  }
+ },
+ "results": [
+  {
+   "id": "CQ-EA1",
+   "kind": "membership",
+   "category": "defined-class-realization",
+   "pass": true,
+   "observed": "entailed",
+   "missing": [],
+   "err": null,
+   "nl": "An assessment whose purpose value is Diagnostic is inferred to be a Diagnostic Assessment (purpose-axis sufficient condition; the prompt-v2 worked example is this very bridge pattern)."
+  },
+  {
+   "id": "CQ-EA2",
+   "kind": "membership",
+   "category": "defined-class-realization",
+   "pass": false,
+   "observed": "unanswerable",
+   "missing": [
+    "class:CriterionReferencedInterpretation",
+    "class:CriterionReferencedTest",
+    "prop:hasScoreInterpretation"
+   ],
+   "err": null,
+   "nl": "An assessment whose scores are interpreted against fixed criteria is inferred to be a Criterion-Referenced Test (score-interpretation-axis sufficient condition)."
+  },
+  {
+   "id": "CQ-EA3",
+   "kind": "membership",
+   "category": "defined-class-realization",
+   "pass": true,
+   "observed": "entailed",
+   "missing": [],
+   "err": null,
+   "nl": "An assessment whose purpose value is Diagnostic is inferred to be a Formative Assessment, two steps: DiagnosticPurpose is subsumed by FormativePurpose (corpus-dominant reading), so the purpose-bridge realizes the individual into the formative defined class."
+  },
+  {
+   "id": "CQ-EA7",
+   "kind": "membership",
+   "category": "defined-class-realization",
+   "pass": true,
+   "observed": "entailed",
+   "missing": [],
+   "err": null,
+   "nl": "A self-assessment is inferred to be a Formative Assessment (SelfAssessment < DiagnosticAssessment < FormativeAssessment; each step is a verbatim corpus sentence). Deliberate A<C ceiling probe: SelfAssessment is low-production (4/20) but corpus-quoted, so the C configuration can evidence-gate it in."
+  },
+  {
+   "id": "CQ-EA5",
+   "kind": "membership",
+   "category": "chained-realization",
+   "pass": false,
+   "observed": "unanswerable",
+   "missing": [
+    "class:NormReferencedInterpretation",
+    "class:NormReferencedTest",
+    "prop:hasScoreInterpretation"
+   ],
+   "err": null,
+   "nl": "An individual that has a learning outcome and a norm-referenced score interpretation is inferred to be a Norm-Referenced Test via domain(hasLearningOutcome)=Assessment then Assessment + norm-referenced = Norm-Referenced Test (two-step realization without an asserted Assessment type)."
+  },
+  {
+   "id": "CQ-EA6",
+   "kind": "membership",
+   "category": "chained-realization",
+   "pass": false,
+   "observed": "unanswerable",
+   "missing": [
+    "prop:hasItem"
+   ],
+   "err": null,
+   "nl": "A formal assessment necessarily has some assessment item: an individual asserted to be a Formal Assessment inherits the existential obligation hasItem some AssessmentItem (corpus: 'Formal assessment usually implies a written document, such as a test, quiz, or paper')."
+  },
+  {
+   "id": "CQ-EA8",
+   "kind": "subsumption",
+   "category": "subsumption-transitive",
+   "pass": true,
+   "observed": "entailed",
+   "missing": [],
+   "err": null,
+   "nl": "Concurrent Validity is a form of Validity (ConcurrentValidity < CriterionValidity < Validity; two-level asserted chain over the corpus-natural root)."
+  },
+  {
+   "id": "CQ-EA9",
+   "kind": "subsumption",
+   "category": "subsumption-transitive",
+   "pass": true,
+   "observed": "entailed",
+   "missing": [],
+   "err": null,
+   "nl": "A Diagnostic Assessment is a Formative Assessment (inferred through the purpose axis: DiagnosticPurpose < FormativePurpose plus the two equivalentClass bridges; the corpus-dominant reading 'A common form of formative assessment is diagnostic assessment')."
+  },
+  {
+   "id": "CQ-EA10",
+   "kind": "subsumption",
+   "category": "subsumption-transitive",
+   "pass": true,
+   "observed": "entailed",
+   "missing": [],
+   "err": null,
+   "nl": "Test-Retest Reliability is a form of Reliability (direct corpus-natural subsumption; replaces the dead MeasurementProperty superclass probe)."
+  },
+  {
+   "id": "CQ-EA26",
+   "kind": "subsumption",
+   "category": "subsumption-transitive",
+   "pass": true,
+   "observed": "entailed",
+   "missing": [],
+   "err": null,
+   "nl": "A Multiple-Choice Item is an Assessment Item (MultipleChoiceItem < SelectedResponseItem < AssessmentItem)."
+  },
+  {
+   "id": "CQ-EA27",
+   "kind": "subsumption",
+   "category": "subsumption-transitive",
+   "pass": true,
+   "observed": "entailed",
+   "missing": [],
+   "err": null,
+   "nl": "An Essay Item is an Assessment Item (EssayItem < ConstructedResponseItem < AssessmentItem)."
+  },
+  {
+   "id": "CQ-EA11",
+   "kind": "inconsistency",
+   "category": "disjointness-violation",
+   "pass": true,
+   "observed": "inconsistent",
+   "missing": [],
+   "err": null,
+   "nl": "A reliability estimate cannot be both Test-Retest Reliability and Inter-Rater Reliability (reliability subtypes are pairwise disjoint)."
+  },
+  {
+   "id": "CQ-EA13",
+   "kind": "inconsistency",
+   "category": "disjointness-violation",
+   "pass": true,
+   "observed": "inconsistent",
+   "missing": [],
+   "err": null,
+   "nl": "A rubric cannot be both an Analytic Rubric and a Holistic Rubric (rubric kinds are disjoint)."
+  },
+  {
+   "id": "CQ-EA28",
+   "kind": "inconsistency",
+   "category": "disjointness-violation",
+   "pass": true,
+   "observed": "inconsistent",
+   "missing": [],
+   "err": null,
+   "nl": "An item cannot be both a Multiple-Choice Item and an Essay Item (selected-response and constructed-response families are disjoint)."
+  },
+  {
+   "id": "CQ-EA22",
+   "kind": "inconsistency",
+   "category": "disjointness-violation",
+   "pass": true,
+   "observed": "inconsistent",
+   "missing": [],
+   "err": null,
+   "nl": "A test cannot be both a High-Stakes Test and a Low-Stakes Test (the corpus contrasts the pair as exclusive alternatives; both names are 17/20 system-natural)."
+  },
+  {
+   "id": "CQ-EA25",
+   "kind": "inconsistency",
+   "category": "disjointness-violation",
+   "pass": false,
+   "observed": "consistent",
+   "missing": [],
+   "err": null,
+   "nl": "An assessment cannot be both a Formative Assessment and a Summative Assessment (disjointness INFERRED from the functional purpose axis plus the disjoint union of purpose values \u2014 the coherence-critical partition probed directly on bridge names)."
+  },
+  {
+   "id": "CQ-EA15",
+   "kind": "inconsistency",
+   "category": "cardinality-violation",
+   "pass": false,
+   "observed": "consistent",
+   "missing": [],
+   "err": null,
+   "nl": "An assessment cannot have two distinct purpose values (hasPurpose is functional / exactly one)."
+  },
+  {
+   "id": "CQ-EA16",
+   "kind": "inconsistency",
+   "category": "cardinality-violation",
+   "pass": false,
+   "observed": "unanswerable",
+   "missing": [
+    "class:CriterionReferencedInterpretation",
+    "class:NormReferencedInterpretation",
+    "prop:hasScoreInterpretation"
+   ],
+   "err": null,
+   "nl": "An assessment cannot have two distinct score-interpretation values (hasScoreInterpretation is functional)."
+  },
+  {
+   "id": "CQ-EA17",
+   "kind": "inconsistency",
+   "category": "cardinality-violation",
+   "pass": false,
+   "observed": "consistent",
+   "missing": [],
+   "err": null,
+   "nl": "A reliability estimate cannot report two different coefficient values (hasReliabilityCoefficient is a functional datatype property: one estimate, one coefficient)."
+  },
+  {
+   "id": "CQ-EA23",
+   "kind": "consistency",
+   "category": "orthogonality-control",
+   "pass": true,
+   "observed": "consistent",
+   "missing": [],
+   "err": null,
+   "nl": "Declaring an individual Diagnostic Assessment is consistent (trap-1 sensitivity probe: encoding the corpus's coordinate 4-way disjoint list TOGETHER WITH 'diagnostic is a common form of formative assessment' makes DiagnosticAssessment unsatisfiable; the gold resolves the tension by subordination, so the individual must be admissible)."
+  },
+  {
+   "id": "CQ-EA24",
+   "kind": "consistency",
+   "category": "orthogonality-control",
+   "pass": true,
+   "observed": "consistent",
+   "missing": [],
+   "err": null,
+   "nl": "Declaring an individual Interim Assessment is consistent (trap-2 sensitivity probe: encoding both sides of the corpus's open debate \u2014 interim as formative AND as summative \u2014 under the formative/summative partition makes InterimAssessment unsatisfiable; the gold keeps it neutral and satisfiable)."
+  },
+  {
+   "id": "CQ-EA29",
+   "kind": "consistency",
+   "category": "orthogonality-control",
+   "pass": true,
+   "observed": "consistent",
+   "missing": [],
+   "err": null,
+   "nl": "Being a Standardized Test AND a Formative Assessment simultaneously is consistent (trap-3 sensitivity probe; corpus: 'Formative assessments can take the form of diagnostic, standardized tests, quizzes, oral questions, or draft work' \u2014 a standardized-formative individual must be admissible, so any formative<informal / standardized<formal over-encoding is penalized)."
+  },
+  {
+   "id": "CQ-EA30",
+   "kind": "consistency",
+   "category": "orthogonality-control",
+   "pass": true,
+   "observed": "consistent",
+   "missing": [],
+   "err": null,
+   "nl": "Declaring an individual Multiple-Response Item is consistent (trap-4 sensitivity probe: defining objective assessment by a single-correct-answer cardinality while listing multiple-response among objective types makes MultipleResponseItem unsatisfiable; the gold documents the tension without the cardinality definition)."
+  },
+  {
+   "id": "CQ-EA19",
+   "kind": "consistency",
+   "category": "orthogonality-control",
+   "pass": true,
+   "observed": "consistent",
+   "missing": [],
+   "err": null,
+   "nl": "Being standardized AND high-stakes simultaneously is a legitimate (consistent) combination \u2014 the corpus states it verbatim: 'a test can be both standardized and also a high-stakes test' (also penalizes over-generalizing 'Most standardized tests ... are low-stakes tests' into an axiom)."
+  }
+ ]
+}

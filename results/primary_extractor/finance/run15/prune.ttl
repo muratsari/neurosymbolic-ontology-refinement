@@ -1,0 +1,1299 @@
+@prefix fis: <http://example.org/onto/securities#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+<http://example.org/onto/securities> a owl:Ontology ;
+    rdfs:label "Securities and Financial Instruments Ontology" ;
+    rdfs:comment "An ontology of securities, debt, equity, hybrid and derivative financial instruments, built from corpus text describing market practice (Wikipedia-style sources), accounting standards (IAS 32 / IFRS 9), regulatory glossaries (ECB, SEC, FINRA, BIS) and textbook material (OpenStax, CFI)." .
+
+fis:AsianOption a owl:Class ;
+    rdfs:comment "Payoff determined by the average underlying price over a preset time period." ;
+    rdfs:subClassOf fis:Option .
+
+fis:AssessmentBond a owl:Class ;
+    rdfs:label "assessment bond" ;
+    rdfs:comment "Repayment based on property tax assessments; a form of general obligation bond." ;
+    rdfs:subClassOf fis:GeneralObligationBond .
+
+fis:BankersAcceptance a owl:Class ;
+    rdfs:comment "A bill of exchange drawn on and accepted by a bank." ;
+    rdfs:subClassOf fis:MoneyMarketInstrument .
+
+fis:BarrierOption a owl:Class ;
+    rdfs:comment "The underlying's price must pass a certain barrier level before the option can be exercised." ;
+    rdfs:subClassOf fis:Option .
+
+fis:BinaryOption a owl:Class ;
+    rdfs:comment "An all-or-nothing option paying the full amount if a defined condition is met at expiration, otherwise nothing." ;
+    rdfs:subClassOf fis:Option .
+
+fis:Bondholder a owl:Class ;
+    rdfs:label "bondholder" ;
+    rdfs:comment "The creditor to whom a bond issuer owes a debt." ;
+    rdfs:subClassOf fis:Holder .
+
+fis:BulletBond a owl:Class ;
+    rdfs:label "bullet bond" ;
+    rdfs:comment "A straight bond that is neither callable nor putable." ;
+    rdfs:subClassOf fis:Bond ;
+    owl:equivalentClass [ a owl:Class ;
+            owl:intersectionOf ( fis:Bond [ a owl:Class ;
+                        owl:complementOf [ a owl:Restriction ;
+                                owl:onProperty fis:hasEmbeddedOption ;
+                                owl:someValuesFrom fis:EmbeddedOptionFeature ] ] ) ] .
+
+fis:CallableBond a owl:Class ;
+    rdfs:label "callable bond" ;
+    rdfs:subClassOf fis:Bond ;
+    owl:equivalentClass [ a owl:Class ;
+            owl:intersectionOf ( fis:Bond [ a owl:Restriction ;
+                        owl:onProperty fis:hasEmbeddedOption ;
+                        owl:someValuesFrom fis:CallProvision ] ) ] .
+
+fis:ClimateBond a owl:Class ;
+    rdfs:comment "Issued to raise finance for climate change mitigation or adaptation projects." ;
+    rdfs:subClassOf fis:Bond .
+
+fis:CollateralizedDebtObligation a owl:Class ;
+    rdfs:label "collateralized debt obligation" ;
+    rdfs:comment "Structured asset-backed security backed by a pool of bonds or other debt obligations, sliced into tranches by seniority." ;
+    rdfs:subClassOf fis:AssetBackedSecurity ;
+    owl:equivalentClass [ a owl:Class ;
+            owl:intersectionOf ( fis:AssetBackedSecurity [ a owl:Restriction ;
+                        owl:onProperty fis:hasCollateral ;
+                        owl:someValuesFrom fis:DebtSecurity ] ) ] .
+
+fis:CollateralizedMortgageObligation a owl:Class ;
+    rdfs:label "collateralized mortgage obligation",
+        "pay-through bond" ;
+    rdfs:comment "A debt obligation collateralized by the mortgage assets it owns, divided into tranches with different maturities and payment priorities." ;
+    rdfs:subClassOf fis:MortgageBackedSecurity .
+
+fis:Commodity a owl:Class ;
+    rdfs:label "commodity" ;
+    rdfs:subClassOf fis:Underlier .
+
+fis:CoveredBond a owl:Class ;
+    rdfs:comment "Backed by cash flows from mortgages or public-sector assets which remain on the issuer's balance sheet (unlike asset-backed securities)." ;
+    rdfs:subClassOf fis:Bond .
+
+fis:Currency a owl:Class ;
+    rdfs:label "currency" ;
+    rdfs:subClassOf fis:Underlier .
+
+fis:EmployeeStockOption a owl:Class ;
+    rdfs:comment "A call option granted by a company to its employees as incentive compensation." ;
+    rdfs:subClassOf fis:StockOption .
+
+fis:EuroCertificateOfDeposit a owl:Class ;
+    rdfs:subClassOf fis:CertificateOfDeposit,
+        fis:Euronote .
+
+fis:EuroCommercialPaper a owl:Class ;
+    rdfs:subClassOf fis:CommercialPaper,
+        fis:Euronote .
+
+fis:Eurobond a owl:Class ;
+    rdfs:comment "A Euro debt security issued internationally outside the issuer's domestic market, in a different denomination; characteristically underwritten, unsecured, interest paid gross." ;
+    rdfs:subClassOf fis:Bond .
+
+fis:ExoticOption a owl:Class ;
+    rdfs:comment "Any of a broad category of options with complex financial structures." ;
+    rdfs:subClassOf fis:Option .
+
+fis:Forward a owl:Class ;
+    rdfs:label "forward",
+        "forward contract" ;
+    rdfs:comment "A non-standardized contract between two parties to buy or sell an asset at a specified future time at a price agreed today." ;
+    rdfs:subClassOf fis:LockProduct,
+        fis:OverTheCounterDerivative .
+
+fis:FungibleSecurity a owl:Class ;
+    rdfs:label "fungible security" ;
+    rdfs:comment "A security of which all holdings are treated identically and are interchangeable." ;
+    rdfs:subClassOf fis:Security ;
+    owl:equivalentClass [ a owl:Class ;
+            owl:intersectionOf ( fis:Security [ a owl:Restriction ;
+                        owl:hasValue true ;
+                        owl:onProperty fis:hasFungibility ] ) ] .
+
+fis:HedgeFund a owl:Class ;
+    rdfs:label "hedge fund" ;
+    rdfs:comment "A pooled investment vehicle, generally available only to high-net-worth/accredited investors, subject to fewer regulatory protections and using more flexible, often leveraged or short-selling, strategies than mutual funds." ;
+    rdfs:subClassOf fis:InvestmentFund .
+
+fis:Index a owl:Class ;
+    rdfs:label "index" ;
+    rdfs:subClassOf fis:Underlier .
+
+fis:IndexFund a owl:Class ;
+    rdfs:comment "A passively managed fund designed to track the performance of a particular market index." ;
+    rdfs:subClassOf fis:InvestmentFund .
+
+fis:InterestRateBenchmark a owl:Class ;
+    rdfs:label "interest rate benchmark" ;
+    rdfs:subClassOf fis:Underlier .
+
+fis:LotteryBond a owl:Class ;
+    rdfs:comment "Issuer redeems randomly selected individual bonds within the issue according to a schedule, sometimes above face value." ;
+    rdfs:subClassOf fis:Bond .
+
+fis:Methuselah a owl:Class ;
+    rdfs:comment "A bond with a maturity of 50 years or longer." ;
+    rdfs:subClassOf fis:Bond .
+
+fis:MunicipalNote a owl:Class ;
+    rdfs:comment "Short-term note issued by a municipality in anticipation of tax receipts or other revenues." ;
+    rdfs:subClassOf fis:MoneyMarketInstrument .
+
+fis:PassThroughSecurity a owl:Class ;
+    rdfs:comment "Interest and principal payments pass through from borrower to holder on a pro rata basis." ;
+    rdfs:subClassOf fis:MortgageBackedSecurity .
+
+fis:PerpetualBond a owl:Class ;
+    rdfs:label "perpetual bond",
+        "perpetuity" ;
+    rdfs:comment "A bond with no maturity date; principal is repaid only at the discretion of the borrower, if ever." ;
+    rdfs:subClassOf fis:Bond .
+
+fis:PutableBond a owl:Class ;
+    rdfs:label "putable bond",
+        "retractable bond" ;
+    rdfs:subClassOf fis:Bond ;
+    owl:equivalentClass [ a owl:Class ;
+            owl:intersectionOf ( fis:Bond [ a owl:Restriction ;
+                        owl:onProperty fis:hasEmbeddedOption ;
+                        owl:someValuesFrom fis:PutProvision ] ) ] .
+
+fis:RepurchaseAgreement a owl:Class ;
+    rdfs:label "repurchase agreement" ;
+    rdfs:comment "Short-term loan arranged by selling securities with an agreement to repurchase them at a fixed price on a fixed date." ;
+    rdfs:subClassOf fis:MoneyMarketInstrument .
+
+fis:RestrictedStock a owl:Class ;
+    rdfs:label "Rule 144 stock",
+        "restricted stock" ;
+    rdfs:comment "Stock acquired in unregistered form, subject to SEC Rule 144 restrictions on resale." ;
+    rdfs:subClassOf fis:Stock .
+
+fis:SerialBond a owl:Class ;
+    rdfs:comment "A bond that matures in installments over a period of time." ;
+    rdfs:subClassOf fis:Bond .
+
+fis:SocialImpactBond a owl:Class ;
+    rdfs:comment "Public sector entities pay back private investors after meeting verified social outcome goals." ;
+    rdfs:subClassOf fis:Bond .
+
+fis:TreasuryBill a owl:Class ;
+    rdfs:label "treasury bill" ;
+    rdfs:comment "Short-term debt obligation of a national government, maturing in three to twelve months, sold at a discount." ;
+    rdfs:subClassOf fis:MoneyMarketInstrument ;
+    owl:equivalentClass [ a owl:Class ;
+            owl:intersectionOf ( fis:MoneyMarketInstrument [ a owl:Restriction ;
+                        owl:onProperty fis:hasIssuer ;
+                        owl:someValuesFrom fis:SovereignGovernment ] ) ] .
+
+fis:WarBond a owl:Class ;
+    rdfs:comment "Issued by a government to fund military operations during wartime." ;
+    rdfs:subClassOf fis:GovernmentBond .
+
+fis:hasCouponRate a owl:DatatypeProperty ;
+    rdfs:label "has coupon rate" ;
+    rdfs:comment "The interest rate the issuer pays to the holder." ;
+    rdfs:domain fis:Bond ;
+    rdfs:range xsd:decimal .
+
+fis:hasCreditRating a owl:ObjectProperty ;
+    rdfs:label "has credit rating" ;
+    rdfs:comment "Relates a bond to a credit-rating assessment by a rating agency." .
+
+fis:hasDividendAccumulation a owl:DatatypeProperty,
+        owl:FunctionalProperty ;
+    rdfs:label "has dividend accumulation" ;
+    rdfs:comment "Takes value 'cumulative' or 'noncumulative'." ;
+    rdfs:range xsd:string .
+
+fis:hasDividendPolicy a owl:DatatypeProperty ;
+    rdfs:label "has dividend policy" ;
+    rdfs:domain fis:Stock ;
+    rdfs:range xsd:string .
+
+fis:hasDividendRate a owl:DatatypeProperty ;
+    rdfs:label "has dividend rate" ;
+    rdfs:range xsd:decimal .
+
+fis:hasEquityComponent a owl:ObjectProperty ;
+    rdfs:label "has equity component" ;
+    rdfs:domain fis:CompoundFinancialInstrument ;
+    rdfs:range fis:EquityInstrument .
+
+fis:hasExpirationDate a owl:DatatypeProperty,
+        owl:FunctionalProperty ;
+    rdfs:label "has expiration date" ;
+    rdfs:domain [ a owl:Class ;
+            owl:unionOf ( fis:Option fis:Warrant ) ] ;
+    rdfs:range xsd:dateTime .
+
+fis:hasFaceValue a owl:DatatypeProperty,
+        owl:FunctionalProperty ;
+    rdfs:label "has face value" ;
+    rdfs:comment "The nominal, principal, par or face amount on which the issuer pays interest and which is repaid at maturity." ;
+    rdfs:domain fis:Bond ;
+    rdfs:range xsd:decimal .
+
+fis:hasLiabilityComponent a owl:ObjectProperty ;
+    rdfs:label "has liability component" ;
+    rdfs:domain fis:CompoundFinancialInstrument ;
+    rdfs:range fis:FinancialLiability .
+
+fis:hasMaturityDate a owl:DatatypeProperty,
+        owl:FunctionalProperty ;
+    rdfs:label "has maturity date" ;
+    rdfs:comment "The date on which the issuer is obligated to repay the nominal (face) amount." ;
+    rdfs:domain fis:Bond ;
+    rdfs:range xsd:dateTime .
+
+fis:hasNotionalAmount a owl:DatatypeProperty,
+        owl:FunctionalProperty ;
+    rdfs:label "has notional amount" ;
+    rdfs:comment "The notional principal amount over which swap cash flows are calculated; usually not itself exchanged." ;
+    rdfs:domain fis:Swap ;
+    rdfs:range xsd:decimal .
+
+fis:hasParValue a owl:DatatypeProperty ;
+    rdfs:label "has par value" ;
+    rdfs:comment "A nominal accounting value used to represent equity on the balance sheet; shares may also be issued without par value." ;
+    rdfs:domain fis:Stock ;
+    rdfs:range xsd:decimal .
+
+fis:hasRedemptionAmount a owl:DatatypeProperty ;
+    rdfs:label "has redemption amount" ;
+    rdfs:comment "For some structured bonds, a redemption amount that differs from the face amount, linked to the performance of particular assets." ;
+    rdfs:domain fis:Bond ;
+    rdfs:range xsd:decimal .
+
+fis:hasStrikePrice a owl:DatatypeProperty,
+        owl:FunctionalProperty ;
+    rdfs:label "has strike price" ;
+    rdfs:comment "The fixed price at which the option or warrant holder may buy or sell the underlying." ;
+    rdfs:domain [ a owl:Class ;
+            owl:unionOf ( fis:Option fis:Warrant ) ] ;
+    rdfs:range xsd:decimal .
+
+fis:hasTradingVenue a owl:ObjectProperty ;
+    rdfs:label "has trading venue" ;
+    rdfs:domain fis:Security ;
+    rdfs:range fis:Market .
+
+fis:isDistributedBy a owl:ObjectProperty ;
+    rdfs:label "is distributed by" ;
+    rdfs:domain fis:Dividend ;
+    rdfs:range fis:Corporation .
+
+fis:isHolderOf a owl:ObjectProperty ;
+    rdfs:label "is holder of" ;
+    rdfs:domain fis:Holder ;
+    rdfs:range fis:Security ;
+    owl:inverseOf fis:hasHolder .
+
+fis:isIssuerOf a owl:ObjectProperty ;
+    rdfs:label "is issuer of" ;
+    rdfs:domain fis:Issuer ;
+    rdfs:range fis:Security ;
+    owl:inverseOf fis:hasIssuer .
+
+fis:isPaidTo a owl:ObjectProperty ;
+    rdfs:label "is paid to" ;
+    rdfs:domain fis:Dividend ;
+    rdfs:range fis:Shareholder .
+
+fis:isUnderlyingOf a owl:ObjectProperty ;
+    rdfs:label "is underlying of" ;
+    rdfs:domain fis:Underlier ;
+    rdfs:range fis:Derivative ;
+    owl:inverseOf fis:hasUnderlying .
+
+fis:AmericanDepositaryReceipt a owl:Class ;
+    rdfs:label "American depositary receipt" ;
+    rdfs:comment "Listed and traded in the United States." ;
+    rdfs:subClassOf fis:DepositaryReceipt .
+
+fis:AmericanOption a owl:Class ;
+    rdfs:comment "May be exercised on any trading day on or before expiration." ;
+    rdfs:subClassOf fis:Option ;
+    owl:equivalentClass [ a owl:Class ;
+            owl:intersectionOf ( fis:Option [ a owl:Restriction ;
+                        owl:hasValue "american" ;
+                        owl:onProperty fis:hasExerciseStyle ] ) ] .
+
+fis:AmortisedCostFinancialAsset a owl:Class ;
+    rdfs:comment "Held to collect contractual cash flows; cash flows are solely payments of principal and interest." ;
+    rdfs:subClassOf fis:FinancialAsset ;
+    owl:equivalentClass [ a owl:Class ;
+            owl:intersectionOf ( fis:FinancialAsset [ a owl:Restriction ;
+                        owl:hasValue "amortisedCost" ;
+                        owl:onProperty fis:hasMeasurementCategory ] ) ] .
+
+fis:BalancedFund a owl:Class ;
+    rdfs:label "balanced fund",
+        "hybrid fund" ;
+    rdfs:comment "Blends equity and fixed-income investments." ;
+    rdfs:subClassOf fis:InvestmentFund .
+
+fis:BearerSecurity a owl:Class ;
+    rdfs:label "bearer security" ;
+    rdfs:comment "Certificate entitling the holder to rights merely by holding it; completely negotiable, transferred by delivery (and sometimes endorsement)." ;
+    rdfs:subClassOf fis:Security ;
+    owl:equivalentClass [ a owl:Class ;
+            owl:intersectionOf ( fis:Security [ a owl:Restriction ;
+                        owl:hasValue "bearer" ;
+                        owl:onProperty fis:hasOwnershipForm ] ) ] .
+
+fis:BermudanOption a owl:Class ;
+    rdfs:comment "May be exercised only on specified dates on or before expiration." ;
+    rdfs:subClassOf fis:Option ;
+    owl:equivalentClass [ a owl:Class ;
+            owl:intersectionOf ( fis:Option [ a owl:Restriction ;
+                        owl:hasValue "bermudan" ;
+                        owl:onProperty fis:hasExerciseStyle ] ) ] .
+
+fis:BondFund a owl:Class ;
+    rdfs:label "bond fund",
+        "income fund" ;
+    rdfs:comment "Invests primarily in bonds or other debt securities." ;
+    rdfs:subClassOf fis:InvestmentFund .
+
+fis:BookEntrySecurity a owl:Class ;
+    rdfs:label "book-entry security" ;
+    rdfs:comment "A security with no paper certificate, existing only as an electronic record." ;
+    rdfs:subClassOf fis:Security ;
+    owl:equivalentClass [ a owl:Class ;
+            owl:intersectionOf ( fis:Security [ a owl:Restriction ;
+                        owl:hasValue "book-entry" ;
+                        owl:onProperty fis:hasOwnershipForm ] ) ] .
+
+fis:CallOption a owl:Class ;
+    rdfs:label "call option" ;
+    rdfs:comment "The right, not the obligation, to buy the underlying at the strike price." ;
+    rdfs:subClassOf fis:Option ;
+    owl:equivalentClass [ a owl:Class ;
+            owl:intersectionOf ( fis:Option [ a owl:Restriction ;
+                        owl:hasValue "call" ;
+                        owl:onProperty fis:hasRightType ] ) ] .
+
+fis:CertificateOfDeposit a owl:Class ;
+    rdfs:label "certificate of deposit" ;
+    rdfs:comment "A time deposit sold by banks, thrift institutions and credit unions, with a fixed term before withdrawal without penalty." ;
+    rdfs:subClassOf fis:MoneyMarketInstrument .
+
+fis:ClosedEndFund a owl:Class ;
+    rdfs:subClassOf fis:MutualFund .
+
+fis:CommercialMortgageBackedSecurity a owl:Class ;
+    rdfs:label "commercial mortgage-backed security" ;
+    rdfs:comment "Secured by commercial and multi-family properties." ;
+    rdfs:subClassOf fis:MortgageBackedSecurity .
+
+fis:CommercialPaper a owl:Class ;
+    rdfs:label "commercial paper" ;
+    rdfs:comment "Unsecured promissory note with fixed maturity usually less than 270 days, sold at a discount and backed only by the issuer's promise to pay." ;
+    rdfs:subClassOf fis:MoneyMarketInstrument ;
+    owl:equivalentClass [ a owl:Class ;
+            owl:intersectionOf ( fis:MoneyMarketInstrument [ a owl:Restriction ;
+                        owl:onProperty fis:hasOriginalTermInDays ;
+                        owl:someValuesFrom [ a rdfs:Datatype ;
+                                owl:onDatatype xsd:integer ;
+                                owl:withRestrictions ( [ xsd:maxInclusive 270 ] ) ] ] ) ] .
+
+fis:CommoditySwap a owl:Class ;
+    rdfs:subClassOf fis:CommodityDerivative,
+        fis:Swap .
+
+fis:CommonStock a owl:Class ;
+    rdfs:label "common stock",
+        "ordinary share",
+        "voting share" ;
+    rdfs:comment "Carries voting rights and the right to residual profits/liquidation proceeds after preferred stockholders and creditors are paid." ;
+    rdfs:subClassOf fis:Stock ;
+    owl:equivalentClass [ a owl:Class ;
+            owl:intersectionOf ( fis:Stock [ a owl:Restriction ;
+                        owl:hasValue "common" ;
+                        owl:onProperty fis:hasStockCategory ] ) ] .
+
+fis:CorporateBond a owl:Class ;
+    rdfs:label "corporate bond" ;
+    rdfs:comment "Represents the debt of commercial or industrial entities; issued to fund operations, M&A, or expansion." ;
+    rdfs:subClassOf fis:Bond ;
+    owl:equivalentClass [ a owl:Class ;
+            owl:intersectionOf ( fis:Bond [ a owl:Restriction ;
+                        owl:onProperty fis:hasIssuer ;
+                        owl:someValuesFrom fis:Corporation ] ) ] .
+
+fis:CurrencySwap a owl:Class ;
+    rdfs:comment "Exchange of streams of periodic interest payments in two different currencies." ;
+    rdfs:subClassOf fis:CurrencyDerivative,
+        fis:Swap .
+
+fis:Debenture a owl:Class ;
+    rdfs:label "debenture",
+        "unsecured bond" ;
+    rdfs:comment "An unsecured bond, having only a general claim on the issuer's assets and cash flows." ;
+    rdfs:subClassOf fis:DebtSecurity ;
+    owl:equivalentClass [ a owl:Class ;
+            owl:intersectionOf ( fis:DebtSecurity [ a owl:Restriction ;
+                        owl:hasValue "unsecured" ;
+                        owl:onProperty fis:hasCollateralStatus ] ) ] .
+
+fis:DividedSecurity a owl:Class ;
+    rdfs:label "divided security" ;
+    rdfs:comment "Each instrument constitutes a separate asset and a separate covenant/debt of the issuer, legally distinct from other securities in the same issue." ;
+    rdfs:subClassOf fis:Security ;
+    owl:equivalentClass [ a owl:Class ;
+            owl:intersectionOf ( fis:Security [ a owl:Restriction ;
+                        owl:hasValue "divided" ;
+                        owl:onProperty fis:hasDivisibility ] ) ] .
+
+fis:EquitySwap a owl:Class ;
+    rdfs:subClassOf fis:EquityDerivative,
+        fis:Swap .
+
+fis:EuropeanDepositaryReceipt a owl:Class ;
+    rdfs:label "European depositary receipt" ;
+    rdfs:subClassOf fis:DepositaryReceipt .
+
+fis:EuropeanOption a owl:Class ;
+    rdfs:comment "May only be exercised on the expiry date." ;
+    rdfs:subClassOf fis:Option ;
+    owl:equivalentClass [ a owl:Class ;
+            owl:intersectionOf ( fis:Option [ a owl:Restriction ;
+                        owl:hasValue "european" ;
+                        owl:onProperty fis:hasExerciseStyle ] ) ] .
+
+fis:Exchange a owl:Class ;
+    rdfs:label "exchange" ;
+    rdfs:comment "An organized and officially recognized market, e.g. a stock exchange or derivatives exchange." ;
+    rdfs:subClassOf fis:Market .
+
+fis:ExchangeTradedDerivative a owl:Class ;
+    rdfs:comment "Traded via specialized derivatives exchanges that guarantee performance and take initial margin." ;
+    rdfs:subClassOf fis:Derivative,
+        fis:OptionProduct ;
+    owl:equivalentClass [ a owl:Class ;
+            owl:intersectionOf ( fis:Derivative [ a owl:Restriction ;
+                        owl:hasValue "exchangeTraded" ;
+                        owl:onProperty fis:hasOfferingVenueType ] ) ] .
+
+fis:FVOCIFinancialAsset a owl:Class ;
+    rdfs:label "fair-value-through-OCI financial asset" ;
+    rdfs:comment "Held both to collect contractual cash flows and to sell; passes the SPPI test." ;
+    rdfs:subClassOf fis:FinancialAsset ;
+    owl:equivalentClass [ a owl:Class ;
+            owl:intersectionOf ( fis:FinancialAsset [ a owl:Restriction ;
+                        owl:hasValue "FVOCI" ;
+                        owl:onProperty fis:hasMeasurementCategory ] ) ] .
+
+fis:FVTPLFinancialAsset a owl:Class ;
+    rdfs:label "fair-value-through-profit-or-loss financial asset" ;
+    rdfs:comment "All other financial assets, including derivatives and equity investments without the FVOCI election." ;
+    rdfs:subClassOf fis:FinancialAsset ;
+    owl:equivalentClass [ a owl:Class ;
+            owl:intersectionOf ( fis:FinancialAsset [ a owl:Restriction ;
+                        owl:hasValue "FVTPL" ;
+                        owl:onProperty fis:hasMeasurementCategory ] ) ] .
+
+fis:FinancialLiability a owl:Class ;
+    rdfs:label "financial liability" ;
+    rdfs:comment "IAS 32: a contractual obligation to deliver cash or another financial asset to another entity, or to exchange financial instruments under potentially unfavourable conditions. The substance-over-form test (not the instrument's legal name) determines whether an instrument is a financial liability or equity; e.g. a mandatorily redeemable preference share is a financial liability under IAS 32 even though commonly called preferred equity." .
+
+fis:FixedRateBond a owl:Class ;
+    rdfs:label "fixed rate bond" ;
+    rdfs:comment "Coupon remains constant throughout the life of the bond." ;
+    rdfs:subClassOf fis:Bond ;
+    owl:equivalentClass [ a owl:Class ;
+            owl:intersectionOf ( fis:Bond [ a owl:Restriction ;
+                        owl:hasValue "fixed" ;
+                        owl:onProperty fis:hasCouponType ] ) ] .
+
+fis:FloatingRateNote a owl:Class ;
+    rdfs:label "floating rate note" ;
+    rdfs:comment "Coupon varies, linked to a reference rate of interest such as LIBOR/SOFR or Euribor." ;
+    rdfs:subClassOf fis:Bond ;
+    owl:equivalentClass [ a owl:Class ;
+            owl:intersectionOf ( fis:Bond [ a owl:Restriction ;
+                        owl:hasValue "floating" ;
+                        owl:onProperty fis:hasCouponType ] ) ] .
+
+fis:GlobalDepositaryReceipt a owl:Class ;
+    rdfs:label "global depositary receipt" ;
+    rdfs:subClassOf fis:DepositaryReceipt .
+
+fis:HighYieldBond a owl:Class ;
+    rdfs:label "high yield bond",
+        "junk bond" ;
+    rdfs:comment "Rated below investment grade; investors expect much higher yield to compensate for default risk." ;
+    rdfs:subClassOf fis:Bond ;
+    owl:equivalentClass [ a owl:Class ;
+            owl:intersectionOf ( fis:Bond [ a owl:Restriction ;
+                        owl:hasValue "highYield" ;
+                        owl:onProperty fis:hasCreditRatingCategory ] ) ] .
+
+fis:InflationIndexedBond a owl:Class ;
+    rdfs:label "index-linked bond",
+        "inflation-indexed bond",
+        "linker" ;
+    rdfs:comment "Principal amount and interest payments are indexed to the level of consumer prices." ;
+    rdfs:subClassOf fis:Bond ;
+    owl:equivalentClass [ a owl:Class ;
+            owl:intersectionOf ( fis:Bond [ a owl:Restriction ;
+                        owl:hasValue "inflationIndexed" ;
+                        owl:onProperty fis:hasCouponType ] ) ] .
+
+fis:InstitutionalInvestor a owl:Class ;
+    rdfs:label "institutional investor",
+        "wholesale investor" ;
+    rdfs:comment "A financial institution acting on its own account or on behalf of clients, e.g. investment banks, insurance companies, pension funds." ;
+    rdfs:subClassOf fis:Investor ;
+    owl:equivalentClass [ a owl:Class ;
+            owl:intersectionOf ( fis:Investor [ a owl:Restriction ;
+                        owl:hasValue "wholesale" ;
+                        owl:onProperty fis:hasInvestorType ] ) ] .
+
+fis:InterestOnlyStrip a owl:Class ;
+    rdfs:comment "A bond with cash flows backed by the interest component of mortgage payments." ;
+    rdfs:subClassOf fis:StrippedMortgageBackedSecurity .
+
+fis:InterestRateSwap a owl:Class ;
+    rdfs:comment "Exchange of streams of periodic interest payments, typically fixed for floating, in one currency." ;
+    rdfs:subClassOf fis:InterestRateDerivative,
+        fis:Swap .
+
+fis:InvestmentGradeBond a owl:Class ;
+    rdfs:label "high grade bond",
+        "investment grade bond" ;
+    rdfs:subClassOf fis:Bond ;
+    owl:equivalentClass [ a owl:Class ;
+            owl:intersectionOf ( fis:Bond [ a owl:Restriction ;
+                        owl:hasValue "investmentGrade" ;
+                        owl:onProperty fis:hasCreditRatingCategory ] ) ] .
+
+fis:MoneyMarketFund a owl:Class ;
+    rdfs:comment "Invests in liquid, short-term debt securities, cash and cash equivalents." ;
+    rdfs:subClassOf fis:InvestmentFund .
+
+fis:Mortgage a owl:Class ;
+    rdfs:label "mortgage" ;
+    rdfs:subClassOf fis:Asset .
+
+fis:OpenEndFund a owl:Class ;
+    rdfs:comment "Shares are purchased from, or sold/redeemed to, the issuer at net asset value." ;
+    rdfs:subClassOf fis:MutualFund .
+
+fis:OverTheCounterMarket a owl:Class ;
+    rdfs:label "over-the-counter market" ;
+    rdfs:comment "A market in which buyers and sellers deal directly with each other, by telephone or electronically, without a centralized exchange." ;
+    rdfs:subClassOf fis:Market .
+
+fis:PrimaryMarket a owl:Class ;
+    rdfs:label "primary market" ;
+    rdfs:comment "Market in which new securities are offered to the public or placed privately." ;
+    rdfs:subClassOf fis:Market .
+
+fis:PrincipalOnlyStrip a owl:Class ;
+    rdfs:comment "A bond with cash flows backed by the principal repayment component of mortgage payments." ;
+    rdfs:subClassOf fis:StrippedMortgageBackedSecurity .
+
+fis:PrivatelyPlacedSecurity a owl:Class ;
+    rdfs:label "privately placed security" ;
+    rdfs:comment "Offered privately to a limited number of qualified persons; not publicly tradable, secondary market far less liquid." ;
+    rdfs:subClassOf fis:Security ;
+    owl:equivalentClass [ a owl:Class ;
+            owl:intersectionOf ( fis:Security [ a owl:Restriction ;
+                        owl:hasValue "private" ;
+                        owl:onProperty fis:hasOfferingType ] ) ] .
+
+fis:PubliclyOfferedSecurity a owl:Class ;
+    rdfs:label "publicly offered security" ;
+    rdfs:subClassOf fis:Security ;
+    owl:equivalentClass [ a owl:Class ;
+            owl:intersectionOf ( fis:Security [ a owl:Restriction ;
+                        owl:hasValue "public" ;
+                        owl:onProperty fis:hasOfferingType ] ) ] .
+
+fis:PutOption a owl:Class ;
+    rdfs:label "put option" ;
+    rdfs:comment "The right, not the obligation, to sell the underlying at the strike price." ;
+    rdfs:subClassOf fis:Option ;
+    owl:equivalentClass [ a owl:Class ;
+            owl:intersectionOf ( fis:Option [ a owl:Restriction ;
+                        owl:hasValue "put" ;
+                        owl:onProperty fis:hasRightType ] ) ] .
+
+fis:RegisteredSecurity a owl:Class ;
+    rdfs:label "registered security" ;
+    rdfs:comment "Entitles the holder to rights only if registered on a security register maintained by the issuer or an intermediary." ;
+    rdfs:subClassOf fis:Security ;
+    owl:equivalentClass [ a owl:Class ;
+            owl:intersectionOf ( fis:Security [ a owl:Restriction ;
+                        owl:hasValue "registered" ;
+                        owl:onProperty fis:hasOwnershipForm ] ) ] .
+
+fis:ResidentialMortgageBackedSecurity a owl:Class ;
+    rdfs:label "residential mortgage-backed security" ;
+    rdfs:comment "Secured by single-family, one- to four-unit real estate." ;
+    rdfs:subClassOf fis:MortgageBackedSecurity .
+
+fis:RetailInvestor a owl:Class ;
+    rdfs:label "retail investor" ;
+    rdfs:comment "A member of the public investing personally, other than by way of business." ;
+    rdfs:subClassOf fis:Investor ;
+    owl:equivalentClass [ a owl:Class ;
+            owl:intersectionOf ( fis:Investor [ a owl:Restriction ;
+                        owl:hasValue "retail" ;
+                        owl:onProperty fis:hasInvestorType ] ) ] .
+
+fis:RevenueBond a owl:Class ;
+    rdfs:label "revenue bond" ;
+    rdfs:comment "Guaranteed by repayment solely from revenues generated by a specified revenue-generating entity; typically non-recourse." ;
+    rdfs:subClassOf fis:MunicipalBond .
+
+fis:SecondaryMarket a owl:Class ;
+    rdfs:label "secondary market" ;
+    rdfs:comment "Market for already-issued securities." ;
+    rdfs:subClassOf fis:Market .
+
+fis:SecuredDebtSecurity a owl:Class ;
+    rdfs:label "secured debt security" ;
+    rdfs:subClassOf fis:DebtSecurity ;
+    owl:equivalentClass [ a owl:Class ;
+            owl:intersectionOf ( fis:DebtSecurity [ a owl:Restriction ;
+                        owl:hasValue "secured" ;
+                        owl:onProperty fis:hasCollateralStatus ] ) ] .
+
+fis:SeniorDebtSecurity a owl:Class ;
+    rdfs:label "senior debt security" ;
+    rdfs:comment "Contractually senior to other unsecured debt; priority in bankruptcy." ;
+    rdfs:subClassOf fis:DebtSecurity ;
+    owl:equivalentClass [ a owl:Class ;
+            owl:intersectionOf ( fis:DebtSecurity [ a owl:Restriction ;
+                        owl:hasValue "senior" ;
+                        owl:onProperty fis:hasSeniority ] ) ] .
+
+fis:Shareholder a owl:Class ;
+    rdfs:label "shareholder",
+        "stockholder" ;
+    rdfs:comment "An individual or company that legally owns one or more shares of stock in a joint stock company." ;
+    rdfs:subClassOf fis:Holder .
+
+fis:SpecialtyFund a owl:Class ;
+    rdfs:comment "Targets a narrow sector, region, or theme." ;
+    rdfs:subClassOf fis:InvestmentFund .
+
+fis:StockDerivative a owl:Class ;
+    rdfs:label "stock derivative" ;
+    rdfs:comment "Any financial instrument for which the underlying asset is the price of an equity." ;
+    rdfs:subClassOf fis:EquityDerivative ;
+    owl:equivalentClass [ a owl:Class ;
+            owl:intersectionOf ( fis:Derivative [ a owl:Restriction ;
+                        owl:onProperty fis:hasUnderlying ;
+                        owl:someValuesFrom fis:EquitySecurity ] ) ] .
+
+fis:StockFund a owl:Class ;
+    rdfs:label "equity fund",
+        "stock fund" ;
+    rdfs:comment "Invests primarily in stocks or equities." ;
+    rdfs:subClassOf fis:InvestmentFund .
+
+fis:StockOption a owl:Class ;
+    rdfs:comment "A class of option whose underlying is a stock." ;
+    rdfs:subClassOf fis:Option,
+        fis:StockDerivative .
+
+fis:SubordinatedDebtSecurity a owl:Class ;
+    rdfs:label "subordinated debt security" ;
+    rdfs:comment "Debt that is not senior; lower priority than senior bonds in case of liquidation." ;
+    rdfs:subClassOf fis:DebtSecurity ;
+    owl:equivalentClass [ a owl:Class ;
+            owl:intersectionOf ( fis:DebtSecurity [ a owl:Restriction ;
+                        owl:hasValue "subordinated" ;
+                        owl:onProperty fis:hasSeniority ] ) ] .
+
+fis:SupranationalBond a owl:Class ;
+    rdfs:label "supranational bond" ;
+    rdfs:subClassOf fis:Bond ;
+    owl:equivalentClass [ a owl:Class ;
+            owl:intersectionOf ( fis:Bond [ a owl:Restriction ;
+                        owl:onProperty fis:hasIssuer ;
+                        owl:someValuesFrom fis:SupranationalOrganization ] ) ] .
+
+fis:UndividedSecurity a owl:Class ;
+    rdfs:label "undivided security" ;
+    rdfs:comment "The entire issue makes up one single asset, each security being a fractional part of this undivided whole; shares in secondary markets and registered debt securities are always undivided." ;
+    rdfs:subClassOf fis:Security ;
+    owl:equivalentClass [ a owl:Class ;
+            owl:intersectionOf ( fis:Security [ a owl:Restriction ;
+                        owl:hasValue "undivided" ;
+                        owl:onProperty fis:hasDivisibility ] ) ] .
+
+fis:UnitInvestmentTrust a owl:Class ;
+    rdfs:subClassOf fis:MutualFund .
+
+fis:ZeroCouponBond a owl:Class ;
+    rdfs:label "discount bond",
+        "zero-coupon bond" ;
+    rdfs:comment "Pays no regular interest; issued at a substantial discount to par, with the holder receiving full face value at maturity." ;
+    rdfs:subClassOf fis:Bond ;
+    owl:equivalentClass [ a owl:Class ;
+            owl:intersectionOf ( fis:Bond [ a owl:Restriction ;
+                        owl:hasValue "zero" ;
+                        owl:onProperty fis:hasCouponType ] ) ] .
+
+fis:hasConversionTarget a owl:ObjectProperty ;
+    rdfs:label "has conversion target" ;
+    rdfs:comment "The equity security into which a convertible security may be converted, or which a warrant holder may purchase." ;
+    rdfs:domain fis:ConvertibleSecurity ;
+    rdfs:range fis:EquitySecurity .
+
+fis:hasFungibility a owl:DatatypeProperty,
+        owl:FunctionalProperty ;
+    rdfs:label "has fungibility" ;
+    rdfs:domain fis:Security ;
+    rdfs:range xsd:boolean .
+
+fis:hasHolder a owl:ObjectProperty ;
+    rdfs:label "has holder" ;
+    rdfs:domain fis:Security ;
+    rdfs:range fis:Holder .
+
+fis:hasReferenceEntity a owl:ObjectProperty ;
+    rdfs:label "has reference entity" ;
+    rdfs:comment "The debt issuer whose creditworthiness underlies a credit default swap." ;
+    rdfs:domain fis:CreditDefaultSwap ;
+    rdfs:range fis:Issuer .
+
+fis:hasStockCategory a owl:DatatypeProperty,
+        owl:FunctionalProperty ;
+    rdfs:label "has stock category" ;
+    rdfs:comment "Takes value 'common' or 'preferred'." ;
+    rdfs:domain fis:Stock ;
+    rdfs:range xsd:string .
+
+fis:CallProvision a owl:Class ;
+    rdfs:label "call provision" ;
+    rdfs:comment "Gives the issuer the right to repay the bond before maturity on call dates." ;
+    rdfs:subClassOf fis:EmbeddedOptionFeature .
+
+fis:CashInstrument a owl:Class ;
+    rdfs:label "cash instrument" ;
+    rdfs:comment "An instrument whose value is determined directly by the markets; includes securities (readily transferable) and instruments such as loans and deposits (requiring agreement to transfer)." ;
+    rdfs:subClassOf fis:FinancialInstrument ;
+    owl:equivalentClass [ a owl:Class ;
+            owl:intersectionOf ( fis:FinancialInstrument [ a owl:Restriction ;
+                        owl:hasValue "cash" ;
+                        owl:onProperty fis:hasInstrumentCategory ] ) ] .
+
+fis:CommodityDerivative a owl:Class ;
+    rdfs:label "commodity derivative" ;
+    rdfs:subClassOf fis:Derivative .
+
+fis:CompoundFinancialInstrument a owl:Class ;
+    rdfs:label "compound financial instrument" ;
+    rdfs:comment "An instrument with both a financial-liability component and an equity component, which IAS 32 requires to be presented separately; e.g. a convertible bond." ;
+    rdfs:subClassOf fis:FinancialInstrument .
+
+fis:ConvertibleSecurity a owl:Class ;
+    rdfs:label "convertible security" ;
+    rdfs:comment "A security that can be converted, at the election of the holder (or, for mandatory convertibles, compulsorily), into the ordinary shares of the issuer or another company." ;
+    rdfs:subClassOf fis:Security .
+
+fis:CreditDefaultSwap a owl:Class ;
+    rdfs:label "CDS",
+        "credit default swap" ;
+    rdfs:comment "A swap under which the seller compensates the buyer if a loan default or other credit event occurs on a reference entity's debt, in exchange for periodic fee payments." ;
+    rdfs:subClassOf fis:CreditDerivative,
+        fis:Swap ;
+    owl:equivalentClass [ a owl:Class ;
+            owl:intersectionOf ( fis:Swap [ a owl:Restriction ;
+                        owl:onProperty fis:hasReferenceEntity ;
+                        owl:someValuesFrom fis:Issuer ] ) ] .
+
+fis:CreditDerivative a owl:Class ;
+    rdfs:label "credit derivative" ;
+    rdfs:comment "A contract that transfers credit risk from a protection buyer to a protection seller." ;
+    rdfs:subClassOf fis:Derivative .
+
+fis:CurrencyDerivative a owl:Class ;
+    rdfs:label "currency derivative",
+        "foreign exchange derivative" ;
+    rdfs:subClassOf fis:Derivative .
+
+fis:Dividend a owl:Class ;
+    rdfs:label "dividend" ;
+    rdfs:comment "A portion of a company's profit, declared at the board's discretion, paid to shareholders; unlike a bond coupon, a dividend is not a contractually guaranteed payment." .
+
+fis:EquityInstrument a owl:Class ;
+    rdfs:label "equity instrument" ;
+    rdfs:comment "IAS 32: any contract that evidences a residual interest in the assets of an entity after deducting all of its liabilities. A contract settled in the issuer's own shares is equity only if it will be settled by delivering a fixed number of shares for a fixed amount of cash (the 'fixed-for-fixed' condition); otherwise it is a financial liability." .
+
+fis:Euronote a owl:Class ;
+    rdfs:comment "A Euro debt security issued internationally outside the issuer's domestic market, taking the form of euro-commercial paper or euro-certificates of deposit." ;
+    rdfs:subClassOf fis:DebtSecurity .
+
+fis:GeneralObligationBond a owl:Class ;
+    rdfs:label "general obligation bond" ;
+    rdfs:comment "Principal and interest secured by the full faith and credit of the issuer, usually supported by its taxing power." ;
+    rdfs:subClassOf fis:MunicipalBond .
+
+fis:GovernmentBond a owl:Class ;
+    rdfs:label "government bond",
+        "sovereign bond",
+        "treasury bond" ;
+    rdfs:comment "Issued by a sovereign national government or its agencies." ;
+    rdfs:subClassOf fis:Bond ;
+    owl:equivalentClass [ a owl:Class ;
+            owl:intersectionOf ( fis:Bond [ a owl:Restriction ;
+                        owl:onProperty fis:hasIssuer ;
+                        owl:someValuesFrom fis:SovereignGovernment ] ) ] .
+
+fis:InterestRateDerivative a owl:Class ;
+    rdfs:label "interest rate derivative" ;
+    rdfs:subClassOf fis:Derivative .
+
+fis:Municipality a owl:Class ;
+    rdfs:label "municipality" ;
+    rdfs:comment "A local authority, state, provincial, territorial or other governmental unit other than a sovereign government." ;
+    rdfs:subClassOf fis:Issuer .
+
+fis:PutProvision a owl:Class ;
+    rdfs:label "put provision" ;
+    rdfs:comment "Gives the holder the right to force the issuer to repay the bond before maturity on put dates." ;
+    rdfs:subClassOf fis:EmbeddedOptionFeature .
+
+fis:StrippedMortgageBackedSecurity a owl:Class ;
+    rdfs:comment "Each mortgage payment's interest and principal components are separated into distinct securities." ;
+    rdfs:subClassOf fis:MortgageBackedSecurity .
+
+fis:SupranationalOrganization a owl:Class ;
+    rdfs:label "supranational organization" ;
+    rdfs:comment "An international organization such as the World Bank, IMF or a regional multilateral development bank." ;
+    rdfs:subClassOf fis:Issuer .
+
+fis:Warrant a owl:Class ;
+    rdfs:label "equity warrant",
+        "warrant" ;
+    rdfs:comment "An option issued by a company allowing the holder to purchase a specified number of shares at a specified price within a specified time; often issued with bonds or existing equities and may be separately tradeable." ;
+    rdfs:subClassOf fis:ConvertibleSecurity,
+        fis:HybridSecurity ;
+    owl:equivalentClass [ a owl:Class ;
+            owl:intersectionOf ( fis:HybridSecurity [ a owl:Restriction ;
+                        owl:onProperty fis:hasConversionTarget ;
+                        owl:someValuesFrom fis:CommonStock ] ) ] .
+
+fis:hasCollateralStatus a owl:DatatypeProperty,
+        owl:FunctionalProperty ;
+    rdfs:label "has collateral status" ;
+    rdfs:comment "Takes value 'secured' or 'unsecured'." ;
+    rdfs:domain fis:DebtSecurity ;
+    rdfs:range xsd:string .
+
+fis:hasCreditRatingCategory a owl:DatatypeProperty,
+        owl:FunctionalProperty ;
+    rdfs:label "has credit rating category" ;
+    rdfs:comment "Takes value 'investmentGrade' or 'highYield'." ;
+    rdfs:domain fis:Bond ;
+    rdfs:range xsd:string .
+
+fis:hasDivisibility a owl:DatatypeProperty,
+        owl:FunctionalProperty ;
+    rdfs:label "has divisibility" ;
+    rdfs:comment "Takes value 'divided' or 'undivided'." ;
+    rdfs:domain fis:Security ;
+    rdfs:range xsd:string .
+
+fis:hasInstrumentCategory a owl:DatatypeProperty,
+        owl:FunctionalProperty ;
+    rdfs:label "has instrument category" ;
+    rdfs:comment "Takes value 'cash' or 'derivative', per the corpus split of financial instruments into cash instruments and derivative instruments." ;
+    rdfs:domain fis:FinancialInstrument ;
+    rdfs:range xsd:string .
+
+fis:hasInvestorType a owl:DatatypeProperty,
+        owl:FunctionalProperty ;
+    rdfs:label "has investor type" ;
+    rdfs:comment "Takes value 'retail' or 'wholesale'." ;
+    rdfs:domain fis:Investor ;
+    rdfs:range xsd:string .
+
+fis:hasOfferingType a owl:DatatypeProperty,
+        owl:FunctionalProperty ;
+    rdfs:label "has offering type" ;
+    rdfs:comment "Takes value 'public' or 'private', per primary-market offering method." ;
+    rdfs:domain fis:Security ;
+    rdfs:range xsd:string .
+
+fis:hasOfferingVenueType a owl:DatatypeProperty,
+        owl:FunctionalProperty ;
+    rdfs:label "has offering venue type" ;
+    rdfs:comment "Takes value 'exchangeTraded' or 'overTheCounter'." ;
+    rdfs:domain fis:Derivative ;
+    rdfs:range xsd:string .
+
+fis:hasOriginalTermInDays a owl:DatatypeProperty ;
+    rdfs:label "has original term in days" ;
+    rdfs:domain fis:DebtSecurity ;
+    rdfs:range xsd:integer .
+
+fis:hasProductType a owl:DatatypeProperty,
+        owl:FunctionalProperty ;
+    rdfs:label "has product type" ;
+    rdfs:comment "Takes value 'lock' (obligates both parties for the contract term) or 'option' (gives the buyer a right but not an obligation)." ;
+    rdfs:domain fis:Derivative ;
+    rdfs:range xsd:string .
+
+fis:hasRightType a owl:DatatypeProperty,
+        owl:FunctionalProperty ;
+    rdfs:label "has right type" ;
+    rdfs:comment "Takes value 'call' or 'put'." ;
+    rdfs:domain fis:Option ;
+    rdfs:range xsd:string .
+
+fis:hasSeniority a owl:DatatypeProperty,
+        owl:FunctionalProperty ;
+    rdfs:label "has seniority" ;
+    rdfs:comment "Takes value 'senior' or 'subordinated'." ;
+    rdfs:domain fis:DebtSecurity ;
+    rdfs:range xsd:string .
+
+fis:hasUnderlying a owl:ObjectProperty ;
+    rdfs:label "has underlying" ;
+    rdfs:domain fis:Derivative ;
+    rdfs:range fis:Underlier .
+
+fis:Asset a owl:Class ;
+    rdfs:label "asset" ;
+    rdfs:comment "A generic asset (e.g. mortgage, loan, receivable) used as collateral backing a debt security." .
+
+fis:Corporation a owl:Class ;
+    rdfs:label "corporation" ;
+    rdfs:subClassOf fis:Issuer .
+
+fis:DepositaryReceipt a owl:Class ;
+    rdfs:label "depositary receipt" ;
+    rdfs:comment "A negotiable financial instrument issued by a bank to represent a foreign company's publicly traded securities, trading on a local exchange." ;
+    rdfs:subClassOf fis:EquitySecurity .
+
+fis:EquityDerivative a owl:Class ;
+    rdfs:label "equity derivative" ;
+    rdfs:subClassOf fis:Derivative .
+
+fis:HybridSecurity a owl:Class ;
+    rdfs:label "hybrid security" ;
+    rdfs:comment "A security combining characteristics of both debt and equity securities, e.g. preference shares, convertibles and warrants." ;
+    rdfs:subClassOf fis:Security ;
+    owl:equivalentClass [ a owl:Class ;
+            owl:intersectionOf ( fis:Security [ a owl:Restriction ;
+                        owl:hasValue "hybrid" ;
+                        owl:onProperty fis:hasSecurityCategory ] ) ] .
+
+fis:LockProduct a owl:Class ;
+    rdfs:label "lock product" ;
+    rdfs:subClassOf fis:Derivative ;
+    owl:equivalentClass [ a owl:Class ;
+            owl:intersectionOf ( fis:Derivative [ a owl:Restriction ;
+                        owl:hasValue "lock" ;
+                        owl:onProperty fis:hasProductType ] ) ] .
+
+fis:MunicipalBond a owl:Class ;
+    rdfs:label "municipal bond" ;
+    rdfs:comment "Issued by a local authority or subdivision within a country, e.g. a city or federal state." ;
+    rdfs:subClassOf fis:Bond ;
+    owl:equivalentClass [ a owl:Class ;
+            owl:intersectionOf ( fis:Bond [ a owl:Restriction ;
+                        owl:onProperty fis:hasIssuer ;
+                        owl:someValuesFrom fis:Municipality ] ) ] .
+
+fis:MutualFund a owl:Class ;
+    rdfs:label "mutual fund" ;
+    rdfs:comment "An SEC-registered open-end investment company pooling investor money into a managed portfolio of stocks, bonds or other securities; shares transact at the fund's next calculated net asset value." ;
+    rdfs:subClassOf fis:InvestmentFund .
+
+fis:OptionProduct a owl:Class ;
+    rdfs:label "option product" ;
+    rdfs:subClassOf fis:Derivative ;
+    owl:equivalentClass [ a owl:Class ;
+            owl:intersectionOf ( fis:Derivative [ a owl:Restriction ;
+                        owl:hasValue "option" ;
+                        owl:onProperty fis:hasProductType ] ) ] .
+
+fis:OverTheCounterDerivative a owl:Class ;
+    rdfs:comment "Privately traded and negotiated directly between two parties without an exchange or intermediary." ;
+    rdfs:subClassOf fis:Derivative ;
+    owl:equivalentClass [ a owl:Class ;
+            owl:intersectionOf ( fis:Derivative [ a owl:Restriction ;
+                        owl:hasValue "overTheCounter" ;
+                        owl:onProperty fis:hasOfferingVenueType ] ) ] .
+
+fis:SovereignGovernment a owl:Class ;
+    rdfs:label "sovereign government" ;
+    rdfs:subClassOf fis:Issuer .
+
+fis:hasCollateral a owl:ObjectProperty ;
+    rdfs:label "has collateral" ;
+    rdfs:domain fis:DebtSecurity ;
+    rdfs:range fis:Asset .
+
+fis:hasEmbeddedOption a owl:ObjectProperty ;
+    rdfs:label "has embedded option" ;
+    rdfs:domain fis:Bond ;
+    rdfs:range fis:EmbeddedOptionFeature .
+
+fis:hasExerciseStyle a owl:DatatypeProperty,
+        owl:FunctionalProperty ;
+    rdfs:label "has exercise style" ;
+    rdfs:comment "Takes value 'american', 'european' or 'bermudan'." ;
+    rdfs:domain fis:Option ;
+    rdfs:range xsd:string .
+
+fis:hasMeasurementCategory a owl:DatatypeProperty,
+        owl:FunctionalProperty ;
+    rdfs:label "has measurement category" ;
+    rdfs:comment "IFRS 9 measurement bucket: 'amortisedCost', 'FVOCI' or 'FVTPL', determined by the business model and the solely-payments-of-principal-and-interest (SPPI) contractual cash flow test." ;
+    rdfs:domain fis:FinancialAsset ;
+    rdfs:range xsd:string .
+
+fis:hasOwnershipForm a owl:DatatypeProperty,
+        owl:FunctionalProperty ;
+    rdfs:label "has ownership form" ;
+    rdfs:comment "Takes value 'bearer', 'registered' or 'book-entry'." ;
+    rdfs:domain fis:Security ;
+    rdfs:range xsd:string .
+
+fis:hasSecurityCategory a owl:DatatypeProperty,
+        owl:FunctionalProperty ;
+    rdfs:label "has security category" ;
+    rdfs:comment "Takes value 'debt', 'equity' or 'hybrid'." ;
+    rdfs:domain fis:Security ;
+    rdfs:range xsd:string .
+
+fis:AssetBackedSecurity a owl:Class ;
+    rdfs:label "asset-backed security" ;
+    rdfs:comment "A bond whose interest and principal payments are backed by underlying cash flows from a pool of other assets (loans, leases, receivables)." ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:onProperty fis:hasCollateral ;
+            owl:someValuesFrom fis:Asset ],
+        fis:Bond .
+
+fis:EmbeddedOptionFeature a owl:Class ;
+    rdfs:label "embedded option feature" ;
+    rdfs:comment "An option-like feature granted to the holder or issuer of a bond." .
+
+fis:hasCouponType a owl:DatatypeProperty,
+        owl:FunctionalProperty ;
+    rdfs:label "has coupon type" ;
+    rdfs:comment "Takes value 'fixed', 'floating', 'zero' or 'inflationIndexed'." ;
+    rdfs:domain fis:Bond ;
+    rdfs:range xsd:string .
+
+fis:EquitySecurity a owl:Class ;
+    rdfs:label "equity security" ;
+    rdfs:comment "A share of equity interest in an entity such as the capital stock of a company, trust or partnership; holders share only the residual interest after creditors are paid but generally receive pro-rata control and profit upside." ;
+    rdfs:subClassOf fis:EquityInstrument,
+        fis:Security ;
+    owl:equivalentClass [ a owl:Class ;
+            owl:intersectionOf ( fis:Security [ a owl:Restriction ;
+                        owl:hasValue "equity" ;
+                        owl:onProperty fis:hasSecurityCategory ] ) ] .
+
+fis:Holder a owl:Class ;
+    rdfs:label "holder" ;
+    rdfs:comment "An entity entitled to rights under a security." .
+
+fis:Investor a owl:Class ;
+    rdfs:label "investor" ;
+    rdfs:subClassOf fis:Holder .
+
+fis:Market a owl:Class ;
+    rdfs:label "market" .
+
+fis:MortgageBackedSecurity a owl:Class ;
+    rdfs:label "mortgage-backed security" ;
+    rdfs:comment "An asset-backed security secured by a mortgage or collection of mortgages." ;
+    rdfs:subClassOf fis:AssetBackedSecurity ;
+    owl:equivalentClass [ a owl:Class ;
+            owl:intersectionOf ( fis:AssetBackedSecurity [ a owl:Restriction ;
+                        owl:onProperty fis:hasCollateral ;
+                        owl:someValuesFrom fis:Mortgage ] ) ] .
+
+fis:FinancialInstrument a owl:Class ;
+    rdfs:label "financial instrument" ;
+    rdfs:comment "A monetary contract between parties that can be created, traded, modified and settled; cash, evidence of ownership, or a contractual right/obligation to deliver or receive value. IAS 32/39 define it as any contract that gives rise to a financial asset of one entity and a financial liability or equity instrument of another entity." ;
+    rdfs:subClassOf fis:Underlier .
+
+fis:Stock a owl:Class ;
+    rdfs:label "equity",
+        "share",
+        "stock" ;
+    rdfs:comment "A unit by which ownership of a corporation or company is divided; a fractional part of ownership of the issuer." ;
+    rdfs:subClassOf fis:EquitySecurity .
+
+fis:hasIssuer a owl:FunctionalProperty,
+        owl:ObjectProperty ;
+    rdfs:label "has issuer" ;
+    rdfs:comment "Relates a security to the single entity issuing it." ;
+    rdfs:domain fis:Security ;
+    rdfs:range fis:Issuer .
+
+fis:FinancialAsset a owl:Class ;
+    rdfs:label "financial asset" ;
+    rdfs:comment "IAS 32: cash; an equity instrument of another entity; a contractual right to receive cash or another financial asset; or a contractual right to exchange financial instruments under potentially favourable conditions." .
+
+fis:Swap a owl:Class ;
+    rdfs:label "swap" ;
+    rdfs:comment "A derivative in which two counterparties exchange cash flows of one party's financial instrument for those of the other's, over a notional principal amount." ;
+    rdfs:subClassOf fis:LockProduct,
+        fis:OverTheCounterDerivative .
+
+fis:Underlier a owl:Class ;
+    rdfs:label "underlier" ;
+    rdfs:comment "The item (financial instrument, commodity, index, currency, interest rate, or factual event/measure of economic value) on which a derivative's value depends." .
+
+fis:InvestmentFund a owl:Class ;
+    rdfs:label "fund",
+        "investment fund" ;
+    rdfs:comment "An investment vehicle that pools money from many investors to purchase a portfolio of securities; shares in the fund represent a proportional interest in the whole portfolio." ;
+    rdfs:subClassOf fis:Security .
+
+fis:Issuer a owl:Class ;
+    rdfs:label "issuer" ;
+    rdfs:comment "The entity obligated on a security; the company or other entity issuing the security." .
+
+fis:MoneyMarketInstrument a owl:Class ;
+    rdfs:label "money market instrument" ;
+    rdfs:comment "Short-term debt instrument with an original maturity of one year or less, highly liquid, sometimes called 'near cash'." ;
+    rdfs:subClassOf fis:DebtSecurity ;
+    owl:equivalentClass [ a owl:Class ;
+            owl:intersectionOf ( fis:DebtSecurity [ a owl:Restriction ;
+                        owl:onProperty fis:hasOriginalTermInDays ;
+                        owl:someValuesFrom [ a rdfs:Datatype ;
+                                owl:onDatatype xsd:integer ;
+                                owl:withRestrictions ( [ xsd:maxInclusive 365 ] ) ] ] ) ] .
+
+fis:DebtSecurity a owl:Class ;
+    rdfs:label "debt security" ;
+    rdfs:comment "A security under which the holder is entitled to payment of principal and interest and other contractual rights; may be called debentures, bonds, deposits, notes or commercial paper depending on maturity, collateral and other characteristics." ;
+    rdfs:subClassOf fis:Security ;
+    owl:equivalentClass [ a owl:Class ;
+            owl:intersectionOf ( fis:Security [ a owl:Restriction ;
+                        owl:hasValue "debt" ;
+                        owl:onProperty fis:hasSecurityCategory ] ) ] .
+
+fis:Derivative a owl:Class ;
+    rdfs:label "derivative",
+        "derivative instrument" ;
+    rdfs:comment "A contract between a buyer and seller whose value is derived from the performance of an underlier (commodity, financial instrument, price index, currency or interest rate). IFRS 9 additionally characterises a derivative as requiring little or no initial net investment and settling at a future date. NOTE: the U.S. legal definition of 'security' treats derivatives as one of three security categories (debt, equity, derivatives), which conflicts with the cash/derivative-instrument split modelled here; the latter, more common framing is adopted and the conflict is noted." ;
+    rdfs:subClassOf fis:FinancialInstrument ;
+    owl:equivalentClass [ a owl:Class ;
+            owl:intersectionOf ( fis:FinancialInstrument [ a owl:Restriction ;
+                        owl:hasValue "derivative" ;
+                        owl:onProperty fis:hasInstrumentCategory ] ) ] .
+
+fis:Option a owl:Class ;
+    rdfs:label "option" ;
+    rdfs:comment "A contract giving the buyer the right, but not the obligation, to buy or sell an underlying asset at a specified strike price on or before a specified expiration date; the seller has the corresponding obligation if exercised." ;
+    rdfs:subClassOf fis:OptionProduct .
+
+fis:Security a owl:Class ;
+    rdfs:label "security" ;
+    rdfs:comment "A tradable financial asset; a negotiable and fungible instrument representing a claim on an issuer, enforceable by law. May be represented by a certificate or exist in non-certificated (electronic/book-entry) form. A simpler conflicting corpus definition states 'a security is a financial contract which entitles the holder to investment returns'; both are reflected here, with the tradable-asset view treated as primary." ;
+    rdfs:subClassOf fis:CashInstrument .
+
+fis:Bond a owl:Class ;
+    rdfs:label "bond" ;
+    rdfs:comment "A security under which the issuer owes the holder a debt and is obliged to repay principal at maturity plus interest (coupon) over a specified time; a form of loan or IOU." ;
+    rdfs:subClassOf fis:DebtSecurity .
+
+[] a owl:AllDisjointClasses ;
+    owl:members ( fis:GovernmentBond fis:MunicipalBond fis:SupranationalBond fis:CorporateBond ) .
+
+[] a owl:AllDisjointClasses ;
+    owl:members ( fis:GeneralObligationBond fis:RevenueBond ) .
+
+[] a owl:AllDisjointClasses ;
+    owl:members ( fis:SeniorDebtSecurity fis:SubordinatedDebtSecurity ) .
+
+[] a owl:AllDisjointClasses ;
+    owl:members ( fis:SecuredDebtSecurity fis:Debenture ) .
+
+[] a owl:AllDisjointClasses ;
+    owl:members ( fis:InvestmentGradeBond fis:HighYieldBond ) .
+
+[] a owl:AllDisjointClasses ;
+    owl:members ( fis:FixedRateBond fis:FloatingRateNote fis:ZeroCouponBond fis:InflationIndexedBond ) .
+
+[] a owl:AllDisjointClasses ;
+    owl:members ( fis:ResidentialMortgageBackedSecurity fis:CommercialMortgageBackedSecurity ) .
+
+[] a owl:AllDisjointClasses ;
+    owl:members ( fis:InterestOnlyStrip fis:PrincipalOnlyStrip ) .
+
+[] a owl:AllDisjointClasses ;
+    owl:members ( fis:DebtSecurity fis:EquitySecurity fis:HybridSecurity ) .
+
+[] a owl:AllDisjointClasses ;
+    owl:members ( fis:AmericanDepositaryReceipt fis:EuropeanDepositaryReceipt fis:GlobalDepositaryReceipt ) .
+
+[] a owl:AllDisjointClasses ;
+    owl:members ( fis:AmortisedCostFinancialAsset fis:FVOCIFinancialAsset fis:FVTPLFinancialAsset ) .
+
+[] a owl:AllDisjointClasses ;
+    owl:members ( fis:LockProduct fis:OptionProduct ) .
+
+[] a owl:AllDisjointClasses ;
+    owl:members ( fis:ExchangeTradedDerivative fis:OverTheCounterDerivative ) .
+
+[] a owl:AllDisjointClasses ;
+    owl:members ( fis:EquityDerivative fis:InterestRateDerivative fis:CurrencyDerivative fis:CommodityDerivative fis:CreditDerivative ) .
+
+[] a owl:AllDisjointClasses ;
+    owl:members ( fis:CallOption fis:PutOption ) .
+
+[] a owl:AllDisjointClasses ;
+    owl:members ( fis:AmericanOption fis:EuropeanOption fis:BermudanOption ) .
+
+[] a owl:AllDisjointClasses ;
+    owl:members ( fis:InterestRateSwap fis:CurrencySwap fis:CommoditySwap fis:EquitySwap fis:CreditDefaultSwap ) .
+
+[] a owl:AllDisjointClasses ;
+    owl:members ( fis:OpenEndFund fis:ClosedEndFund fis:UnitInvestmentTrust ) .
+
+[] a owl:AllDisjointClasses ;
+    owl:members ( fis:StockFund fis:BondFund fis:MoneyMarketFund fis:BalancedFund fis:SpecialtyFund ) .
+
+[] a owl:AllDisjointClasses ;
+    owl:members ( fis:BearerSecurity fis:RegisteredSecurity fis:BookEntrySecurity ) .
+
+[] a owl:AllDisjointClasses ;
+    owl:members ( fis:DividedSecurity fis:UndividedSecurity ) .
+
+[] a owl:AllDisjointClasses ;
+    owl:members ( fis:PubliclyOfferedSecurity fis:PrivatelyPlacedSecurity ) .
+
+[] a owl:AllDisjointClasses ;
+    owl:members ( fis:Corporation fis:SovereignGovernment fis:Municipality fis:SupranationalOrganization ) .
+
+[] a owl:AllDisjointClasses ;
+    owl:members ( fis:RetailInvestor fis:InstitutionalInvestor ) .
+
+[] a owl:AllDisjointClasses ;
+    owl:members ( fis:Exchange fis:OverTheCounterMarket ) .
+
+[] a owl:AllDisjointClasses ;
+    owl:members ( fis:PrimaryMarket fis:SecondaryMarket ) .
+
+[] a owl:AllDisjointClasses ;
+    owl:members ( fis:CashInstrument fis:Derivative ) .
+
+[] a owl:AllDisjointClasses ;
+    owl:members ( fis:CallProvision fis:PutProvision ) .
+

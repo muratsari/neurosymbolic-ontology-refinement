@@ -1,0 +1,4 @@
+domain,domain_key,coherence_A,coherence_C,cq_accuracy_A_mean,cq_accuracy_A_sd,cq_accuracy_C_mean,cq_accuracy_C_sd,f1_A_mean,f1_A_sd,f1_C_mean,f1_C_sd
+Education,assessment,0.0667,1.0,0.4181,0.1302,0.5181,0.1596,0.3259,0.0487,0.3287,0.0499
+Healthcare,hypertension,1.0,1.0,0.7462,0.0559,0.7462,0.0559,0.6849,0.0362,0.6849,0.0362
+Finance,securities,0.2,0.8,0.4206,0.1934,0.4381,0.1919,0.343,0.0752,0.3434,0.0755

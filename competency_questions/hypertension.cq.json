@@ -1,0 +1,340 @@
+{
+  "domain": "hypertension",
+  "design_notes": "26 questions, balanced over categories: cardinality-violation 3, chained-realization 4, defined-class-realization 5, disjointness-violation 7, orthogonality-control 4, subsumption-transitive 3. Each question is derived mechanically from an axiom pattern of the reference ontology (paper Section 4.3); terms follow reference_ontologies/naming_contract.md. Frozen before the runs.",
+  "prefixes": {
+    "ht": "http://example.org/onto/hypertension#"
+  },
+  "cqs": [
+    {
+      "id": "CQ-HT1",
+      "category": "defined-class-realization",
+      "nl": "A reading with systolic 110 and diastolic 70 is inferred to be Normal Blood Pressure (systolic <120 defined band - the 'father' case on the datatype axis).",
+      "setup": [
+        "ht:n1 a ht:BloodPressureReading ; ht:hasSystolicValue 110 ; ht:hasDiastolicValue 70 ."
+      ],
+      "probe": {
+        "kind": "membership",
+        "ind": "ht:n1",
+        "cls": "ht:NormalBloodPressure"
+      },
+      "expect": "entailed"
+    },
+    {
+      "id": "CQ-HT2",
+      "category": "defined-class-realization",
+      "nl": "A reading with systolic 135 is inferred to be Stage 1 Hypertension (130-139 defined band).",
+      "setup": [
+        "ht:n2 a ht:BloodPressureReading ; ht:hasSystolicValue 135 ; ht:hasDiastolicValue 85 ."
+      ],
+      "probe": {
+        "kind": "membership",
+        "ind": "ht:n2",
+        "cls": "ht:Stage1Hypertension"
+      },
+      "expect": "entailed"
+    },
+    {
+      "id": "CQ-HT3",
+      "category": "defined-class-realization",
+      "nl": "A reading with systolic 150 is inferred to be Stage 2 Hypertension (140-179 defined band).",
+      "setup": [
+        "ht:n3 a ht:BloodPressureReading ; ht:hasSystolicValue 150 ; ht:hasDiastolicValue 95 ."
+      ],
+      "probe": {
+        "kind": "membership",
+        "ind": "ht:n3",
+        "cls": "ht:Stage2Hypertension"
+      },
+      "expect": "entailed"
+    },
+    {
+      "id": "CQ-HT4",
+      "category": "defined-class-realization",
+      "nl": "A reading with systolic 145 and diastolic 85 is inferred to be Isolated Systolic Hypertension (two-axis defined class: systolic >=140 AND diastolic <90).",
+      "setup": [
+        "ht:n4 a ht:BloodPressureReading ; ht:hasSystolicValue 145 ; ht:hasDiastolicValue 85 ."
+      ],
+      "probe": {
+        "kind": "membership",
+        "ind": "ht:n4",
+        "cls": "ht:IsolatedSystolicHypertension"
+      },
+      "expect": "entailed"
+    },
+    {
+      "id": "CQ-HT5",
+      "category": "defined-class-realization",
+      "nl": "A reading with systolic 130 and diastolic 95 is inferred to be Isolated Diastolic Hypertension (two-axis defined class: systolic <140 AND diastolic >=90).",
+      "setup": [
+        "ht:n5 a ht:BloodPressureReading ; ht:hasSystolicValue 130 ; ht:hasDiastolicValue 95 ."
+      ],
+      "probe": {
+        "kind": "membership",
+        "ind": "ht:n5",
+        "cls": "ht:IsolatedDiastolicHypertension"
+      },
+      "expect": "entailed"
+    },
+    {
+      "id": "CQ-HT6",
+      "category": "chained-realization",
+      "nl": "An individual asserted only as a Renal Artery Stenosis is inferred to be a Secondary Cause (3-hop asserted taxonomy: individual -> RenalArteryStenosis -> RenovascularDisease -> RenalCause -> SecondaryCause).",
+      "setup": [
+        "ht:sc6 a ht:RenalArteryStenosis ."
+      ],
+      "probe": {
+        "kind": "membership",
+        "ind": "ht:sc6",
+        "cls": "ht:SecondaryCause"
+      },
+      "expect": "entailed"
+    },
+    {
+      "id": "CQ-HT7",
+      "category": "chained-realization",
+      "nl": "An individual asserted only as a Primary Aldosteronism is inferred to be a Secondary Cause (asserted taxonomy: PrimaryAldosteronism -> EndocrineCause -> SecondaryCause).",
+      "setup": [
+        "ht:sc7 a ht:PrimaryAldosteronism ."
+      ],
+      "probe": {
+        "kind": "membership",
+        "ind": "ht:sc7",
+        "cls": "ht:SecondaryCause"
+      },
+      "expect": "entailed"
+    },
+    {
+      "id": "CQ-HT8",
+      "category": "chained-realization",
+      "nl": "An individual asserted only as Hyperthyroidism is inferred to be a Secondary Cause (deep asserted taxonomy: Hyperthyroidism -> ThyroidDisease -> EndocrineCause -> SecondaryCause).",
+      "setup": [
+        "ht:sc8 a ht:Hyperthyroidism ."
+      ],
+      "probe": {
+        "kind": "membership",
+        "ind": "ht:sc8",
+        "cls": "ht:SecondaryCause"
+      },
+      "expect": "entailed"
+    },
+    {
+      "id": "CQ-HT9",
+      "category": "chained-realization",
+      "nl": "An individual asserted only as a Cotton-Wool Spot is inferred to be Target-Organ Damage (deep asserted taxonomy: CottonWoolSpot -> RetinalFinding -> HypertensiveRetinopathy -> TargetOrganDamage).",
+      "setup": [
+        "ht:tod9 a ht:CottonWoolSpot ."
+      ],
+      "probe": {
+        "kind": "membership",
+        "ind": "ht:tod9",
+        "cls": "ht:TargetOrganDamage"
+      },
+      "expect": "entailed"
+    },
+    {
+      "id": "CQ-HT10",
+      "category": "subsumption-transitive",
+      "nl": "Left Ventricular Hypertrophy is a Target-Organ Damage (2-hop asserted chain: LeftVentricularHypertrophy < HypertensiveHeartDisease < TargetOrganDamage).",
+      "probe": {
+        "kind": "subsumption",
+        "sub": "ht:LeftVentricularHypertrophy",
+        "sup": "ht:TargetOrganDamage"
+      },
+      "expect": "entailed"
+    },
+    {
+      "id": "CQ-HT11",
+      "category": "subsumption-transitive",
+      "nl": "Renal Artery Stenosis is a Secondary Cause (3-hop asserted chain: RenalArteryStenosis < RenovascularDisease < RenalCause < SecondaryCause).",
+      "probe": {
+        "kind": "subsumption",
+        "sub": "ht:RenalArteryStenosis",
+        "sup": "ht:SecondaryCause"
+      },
+      "expect": "entailed"
+    },
+    {
+      "id": "CQ-HT12",
+      "category": "subsumption-transitive",
+      "nl": "A Dihydropyridine is an Antihypertensive (2-hop asserted chain: Dihydropyridine < CalciumChannelBlocker < Antihypertensive).",
+      "probe": {
+        "kind": "subsumption",
+        "sub": "ht:Dihydropyridine",
+        "sup": "ht:Antihypertensive"
+      },
+      "expect": "entailed"
+    },
+    {
+      "id": "CQ-HT13",
+      "category": "disjointness-violation",
+      "nl": "A reading cannot be both Normal Blood Pressure and Stage 1 Hypertension (categories are a disjoint partition of BloodPressureCategory).",
+      "setup": [
+        "ht:x13 a ht:NormalBloodPressure , ht:Stage1Hypertension ."
+      ],
+      "probe": {
+        "kind": "inconsistency"
+      },
+      "expect": "inconsistent"
+    },
+    {
+      "id": "CQ-HT14",
+      "category": "disjointness-violation",
+      "nl": "Hypertension cannot be both Primary and Secondary (disjoint union of Hypertension).",
+      "setup": [
+        "ht:x14 a ht:PrimaryHypertension , ht:SecondaryHypertension ."
+      ],
+      "probe": {
+        "kind": "inconsistency"
+      },
+      "expect": "inconsistent"
+    },
+    {
+      "id": "CQ-HT15",
+      "category": "disjointness-violation",
+      "nl": "A drug cannot be both an ACE inhibitor and an Angiotensin Receptor Blocker (antihypertensive classes are pairwise disjoint).",
+      "setup": [
+        "ht:x15 a ht:AngiotensinConvertingEnzymeInhibitor , ht:AngiotensinReceptorBlocker ."
+      ],
+      "probe": {
+        "kind": "inconsistency"
+      },
+      "expect": "inconsistent"
+    },
+    {
+      "id": "CQ-HT16",
+      "category": "disjointness-violation",
+      "nl": "A secondary cause cannot be both a Renal Cause and an Endocrine Cause (secondary-cause kinds are pairwise disjoint).",
+      "setup": [
+        "ht:x16 a ht:RenalCause , ht:EndocrineCause ."
+      ],
+      "probe": {
+        "kind": "inconsistency"
+      },
+      "expect": "inconsistent"
+    },
+    {
+      "id": "CQ-HT17",
+      "category": "disjointness-violation",
+      "nl": "A hypertensive crisis cannot be both a Hypertensive Emergency and a Hypertensive Urgency (organ-damage vs no-organ-damage; disjoint severity states).",
+      "setup": [
+        "ht:x17 a ht:HypertensiveEmergency , ht:HypertensiveUrgency ."
+      ],
+      "probe": {
+        "kind": "inconsistency"
+      },
+      "expect": "inconsistent"
+    },
+    {
+      "id": "CQ-HT18",
+      "category": "disjointness-violation",
+      "nl": "A reading cannot be both Isolated Systolic Hypertension and Isolated Diastolic Hypertension (dual-axis bridge phenotypes are disjoint on the systolic axis: >=140 vs <140).",
+      "setup": [
+        "ht:x18 a ht:IsolatedSystolicHypertension , ht:IsolatedDiastolicHypertension ."
+      ],
+      "probe": {
+        "kind": "inconsistency"
+      },
+      "expect": "inconsistent"
+    },
+    {
+      "id": "CQ-HT19",
+      "category": "disjointness-violation",
+      "nl": "A single individual cannot be both a Blood Pressure Reading (a measurement) and a Hypertension (a disease) - top-level kinds are disjoint.",
+      "setup": [
+        "ht:x19 a ht:BloodPressureReading , ht:Hypertension ."
+      ],
+      "probe": {
+        "kind": "inconsistency"
+      },
+      "expect": "inconsistent"
+    },
+    {
+      "id": "CQ-HT20",
+      "category": "cardinality-violation",
+      "nl": "A reading cannot have two different systolic values (hasSystolicValue is functional / exactly-one).",
+      "setup": [
+        "ht:y20 a ht:BloodPressureReading ; ht:hasSystolicValue 120 ; ht:hasSystolicValue 140 ."
+      ],
+      "probe": {
+        "kind": "inconsistency"
+      },
+      "expect": "inconsistent"
+    },
+    {
+      "id": "CQ-HT21",
+      "category": "cardinality-violation",
+      "nl": "A reading cannot be classified into two distinct categories (hasBloodPressureCategory is functional).",
+      "setup": [
+        "ht:y21 a ht:BloodPressureReading ; ht:hasBloodPressureCategory ht:cat1 , ht:cat2 .",
+        "ht:cat1 owl:differentFrom ht:cat2 ."
+      ],
+      "probe": {
+        "kind": "inconsistency"
+      },
+      "expect": "inconsistent"
+    },
+    {
+      "id": "CQ-HT22",
+      "category": "cardinality-violation",
+      "nl": "A single hypertension diagnosis cannot carry two competing guideline systolic thresholds (hasDiagnosticSystolicThreshold is functional; ACC/AHA 130 vs ESC/JNC 140 clash) - the corpus's central threshold controversy.",
+      "setup": [
+        "ht:y22 a ht:Hypertension ; ht:hasDiagnosticSystolicThreshold 130 ; ht:hasDiagnosticSystolicThreshold 140 ."
+      ],
+      "probe": {
+        "kind": "inconsistency"
+      },
+      "expect": "inconsistent"
+    },
+    {
+      "id": "CQ-HT23",
+      "category": "orthogonality-control",
+      "nl": "A reading with systolic 145 and diastolic 85 that qualifies as both Stage 2 Hypertension and Isolated Systolic Hypertension is a legitimate, satisfiable model - Stage2 and ISH are orthogonal, not disjoint.",
+      "setup": [
+        "ht:o23 a ht:BloodPressureReading ; ht:hasSystolicValue 145 ; ht:hasDiastolicValue 85 ."
+      ],
+      "probe": {
+        "kind": "consistency"
+      },
+      "expect": "consistent"
+    },
+    {
+      "id": "CQ-HT24",
+      "category": "orthogonality-control",
+      "nl": "A primary hypertension treated with an ACE inhibitor is a legitimate model (the treatment relation between Hypertension and Antihypertensive must be satisfiable).",
+      "setup": [
+        "ht:o24 a ht:PrimaryHypertension ; ht:hasAntihypertensive ht:d24 .",
+        "ht:d24 a ht:AngiotensinConvertingEnzymeInhibitor ."
+      ],
+      "probe": {
+        "kind": "consistency"
+      },
+      "expect": "consistent"
+    },
+    {
+      "id": "CQ-HT25",
+      "category": "orthogonality-control",
+      "nl": "A secondary hypertension with a renal secondary cause and hypertensive nephropathy as target-organ damage is a legitimate multi-axis model (hasSecondaryCause + hasTargetOrganDamage co-occur without clash).",
+      "setup": [
+        "ht:o25 a ht:SecondaryHypertension ; ht:hasSecondaryCause ht:rc25 ; ht:hasTargetOrganDamage ht:tod25 .",
+        "ht:rc25 a ht:RenalCause .",
+        "ht:tod25 a ht:HypertensiveNephropathy ."
+      ],
+      "probe": {
+        "kind": "consistency"
+      },
+      "expect": "consistent"
+    },
+    {
+      "id": "CQ-HT26",
+      "category": "orthogonality-control",
+      "nl": "An individual asserted as a Hypertensive Emergency yields a consistent model - the cross-cutting severity class is satisfiable (consistency-sensitive control: flips to inconsistent iff a configuration makes HypertensiveEmergency unsatisfiable).",
+      "setup": [
+        "ht:o26 a ht:HypertensiveEmergency ."
+      ],
+      "probe": {
+        "kind": "consistency"
+      },
+      "expect": "consistent"
+    }
+  ]
+}

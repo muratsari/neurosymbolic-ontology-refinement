@@ -1,0 +1,878 @@
+@prefix fis:     <http://example.org/onto/securities#> .
+@prefix owl:     <http://www.w3.org/2002/07/owl#> .
+@prefix rdf:     <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs:    <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd:     <http://www.w3.org/2001/XMLSchema#> .
+@prefix skos:    <http://www.w3.org/2004/02/skos/core#> .
+@prefix dcterms: <http://purl.org/dc/terms/> .
+
+#################################################################
+#  Ontology header
+#################################################################
+
+<http://example.org/onto/securities> a owl:Ontology ;
+    owl:versionInfo "1.5" ;
+    owl:versionIRI <http://example.org/onto/securities/1.5> ;
+    dcterms:creator "annotator-A" ;
+    dcterms:title "Financial Instruments & Securities Reference Ontology" ;
+    rdfs:comment "Reference TBox covering the taxonomy of securities (equity, debt, derivatives, funds), their issuers, underlying assets and defining attributes; trading mechanics, accounting/tax treatment and real instances are out of scope." .
+
+#################################################################
+#  Object properties
+#################################################################
+
+fis:hasIssuer a owl:ObjectProperty ;
+    rdfs:label "has issuer" ;
+    skos:definition "Relates a security to the single legal entity that created, registered and offered it (SEC; Wikipedia: Issuer)." ;
+    rdfs:domain fis:Security ;
+    rdfs:range  fis:Issuer .
+
+fis:isIssuerOf a owl:ObjectProperty ;
+    rdfs:label "issues" ;
+    skos:definition "Relates an issuer to a security that it has brought to market; the inverse of hasIssuer (SEC)." ;
+    owl:inverseOf fis:hasIssuer ;
+    rdfs:domain fis:Issuer ;
+    rdfs:range  fis:Security .
+
+fis:hasUnderlying a owl:ObjectProperty ;
+    rdfs:label "has underlying" ;
+    skos:definition "Relates a derivative to an underlying asset, rate or index from which the derivative draws its value (BIS Glossary; CFA Level 1 Derivatives)." ;
+    rdfs:domain fis:Derivative ;
+    rdfs:range  fis:Asset .
+
+fis:isUnderlyingOf a owl:ObjectProperty ;
+    rdfs:label "is underlying of" ;
+    skos:definition "Relates an asset to a derivative that references it as an underlying; the inverse of hasUnderlying (BIS Glossary)." ;
+    owl:inverseOf fis:hasUnderlying ;
+    rdfs:domain fis:Asset ;
+    rdfs:range  fis:Derivative .
+
+fis:hasTrackedIndex a owl:ObjectProperty ;
+    rdfs:label "tracks index" ;
+    skos:definition "Relates a fund to the market index it is designed to replicate (CFA Level 1 Alternative Investments)." ;
+    rdfs:domain fis:Fund ;
+    rdfs:range  fis:MarketIndex .
+
+fis:hasConversionTarget a owl:ObjectProperty ;
+    rdfs:label "convertible into" ;
+    skos:definition "Relates a convertible security (a bond or preferred stock) to the equity security - typically the issuer's own equity - into which it may be converted (CFA Level 1 Fixed Income; Wikipedia: Convertible bond)." ;
+    rdfs:domain fis:Security ;
+    rdfs:range  fis:Equity .
+
+#################################################################
+#  Data properties
+#################################################################
+
+fis:hasMaturityDate a owl:DatatypeProperty ;
+    rdfs:label "has maturity date" ;
+    skos:definition "The date on which a debt instrument's principal becomes due and is repaid to the holder (CFA Level 1 Fixed Income)." ;
+    rdfs:domain fis:DebtInstrument ;
+    rdfs:range  xsd:dateTime .
+
+fis:hasCouponRate a owl:DatatypeProperty ;
+    rdfs:label "has coupon rate" ;
+    skos:definition "The stated annual interest rate that a bond pays on its face value, expressed as a decimal fraction (CFA Level 1 Fixed Income)." ;
+    rdfs:domain fis:Bond ;
+    rdfs:range  xsd:decimal .
+
+fis:hasFaceValue a owl:DatatypeProperty ;
+    rdfs:label "has face value" ;
+    skos:definition "The nominal or par value of a security, such as the principal of a debt instrument or the par value of a preferred stock (CFA Level 1 Fixed Income; Wikipedia: Face value)." ;
+    rdfs:domain fis:Security ;
+    rdfs:range  xsd:decimal .
+
+fis:hasDividendYield a owl:DatatypeProperty ;
+    rdfs:label "has dividend yield" ;
+    skos:definition "The annual dividend paid by an equity expressed as a decimal fraction of its market price (CFA Level 1 Equity)." ;
+    rdfs:domain fis:Equity ;
+    rdfs:range  xsd:decimal .
+
+fis:hasStrikePrice a owl:DatatypeProperty ;
+    rdfs:label "has strike price" ;
+    skos:definition "The fixed price at which the underlying asset of an option or warrant may be bought or sold upon exercise (CFA; Wikipedia: Strike price)." ;
+    rdfs:domain [ a owl:Class ; owl:unionOf ( fis:Option fis:Warrant ) ] ;
+    rdfs:range  xsd:decimal .
+
+fis:hasExpirationDate a owl:DatatypeProperty ;
+    rdfs:label "has expiration date" ;
+    skos:definition "The date on which a derivative contract expires, is settled or otherwise terminates (CFA Level 1 Derivatives)." ;
+    rdfs:domain fis:Derivative ;
+    rdfs:range  xsd:dateTime .
+
+fis:hasNetAssetValue a owl:DatatypeProperty ;
+    rdfs:label "has net asset value" ;
+    skos:definition "The per-share value of a fund equal to its total assets minus liabilities divided by shares outstanding (CFA; Wikipedia: Net asset value)." ;
+    rdfs:domain fis:Fund ;
+    rdfs:range  xsd:decimal .
+
+fis:hasNotionalAmount a owl:DatatypeProperty ;
+    rdfs:label "has notional amount" ;
+    skos:definition "The reference principal amount on which a derivative's cash flows are calculated, not itself exchanged (BIS Glossary; CFA Level 1 Derivatives)." ;
+    rdfs:domain fis:Derivative ;
+    rdfs:range  xsd:decimal .
+
+fis:hasIssueDate a owl:DatatypeProperty ;
+    rdfs:label "has issue date" ;
+    skos:definition "The date on which a security is issued and first offered to investors (Nasdaq Glossary)." ;
+    rdfs:domain fis:Security ;
+    rdfs:range  xsd:dateTime .
+
+#################################################################
+#  Core classes
+#################################################################
+
+fis:Security a owl:Class ;
+    rdfs:label "Security" ;
+    skos:definition "A tradable financial instrument representing an ownership position, a creditor relationship, or contractual rights conveyed by a contract such as an option (SEC; Wikipedia: Security (finance))." ;
+    rdfs:subClassOf fis:Asset ;
+    owl:disjointUnionOf ( fis:Equity fis:DebtInstrument fis:Derivative fis:Fund ) .
+
+fis:Equity a owl:Class ;
+    rdfs:label "Equity" ;
+    skos:definition "A security representing an ownership (residual) interest in a corporation, conferring a claim on assets and earnings after creditors are paid (CFA Level 1 Equity; Wikipedia: Stock)." ;
+    rdfs:subClassOf fis:Security ;
+    rdfs:subClassOf [ a owl:Restriction ;
+        owl:onProperty fis:hasIssuer ;
+        owl:someValuesFrom fis:Corporation ] ;
+    rdfs:subClassOf [ a owl:Restriction ;
+        owl:onProperty fis:hasIssuer ;
+        owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+        owl:onClass fis:Issuer ] .
+
+fis:DebtInstrument a owl:Class ;
+    rdfs:label "Debt Instrument" ;
+    skos:definition "A security representing a creditor relationship whereby the issuer owes the holder a sum that is repayable, usually with interest (IFRS 9; CFA Level 1 Fixed Income)." ;
+    rdfs:subClassOf fis:Security ;
+    rdfs:subClassOf [ a owl:Restriction ;
+        owl:onProperty fis:hasFaceValue ;
+        owl:someValuesFrom xsd:decimal ] ;
+    rdfs:subClassOf [ a owl:Restriction ;
+        owl:onProperty fis:hasIssuer ;
+        owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+        owl:onClass fis:Issuer ] .
+
+fis:Derivative a owl:Class ;
+    rdfs:label "Derivative" ;
+    skos:definition "A security whose value is derived from the value of one or more underlying assets, rates or indices (BIS Glossary; CFA Level 1 Derivatives)." ;
+    rdfs:subClassOf fis:Security ;
+    rdfs:subClassOf [ a owl:Restriction ;
+        owl:onProperty fis:hasUnderlying ;
+        owl:someValuesFrom fis:Asset ] .
+
+fis:Fund a owl:Class ;
+    rdfs:label "Fund" ;
+    skos:definition "A pooled investment vehicle that aggregates capital from many investors to invest in a diversified portfolio of securities (CFA Level 1 Alternative Investments; Wikipedia: Investment fund)." ;
+    rdfs:subClassOf fis:Security ;
+    rdfs:subClassOf [ a owl:Restriction ;
+        owl:onProperty fis:hasIssuer ;
+        owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ;
+        owl:onClass fis:Issuer ] .
+
+#################################################################
+#  Equity subtypes
+#################################################################
+
+fis:CommonStock a owl:Class ;
+    rdfs:label "Common Stock" ;
+    skos:definition "An equity security conferring voting rights and a residual claim on a corporation's assets and profits after all prior claims are satisfied (CFA; Wikipedia: Common stock)." ;
+    rdfs:subClassOf fis:Equity .
+
+fis:PreferredStock a owl:Class ;
+    rdfs:label "Preferred Stock" ;
+    skos:definition "An equity security with priority over common stock for dividend payments and asset distribution, typically carrying no voting rights (CFA; Wikipedia: Preferred stock)." ;
+    rdfs:subClassOf fis:Equity .
+
+fis:DepositaryReceipt a owl:Class ;
+    rdfs:label "Depositary Receipt" ;
+    skos:definition "A negotiable equity security issued by a depositary bank representing ownership of shares in a foreign company, such as an American Depositary Receipt (CFA Level 1 Equity; Wikipedia: Depositary receipt)." ;
+    rdfs:subClassOf fis:Equity .
+
+#################################################################
+#  Debt subtypes
+#################################################################
+
+fis:Bond a owl:Class ;
+    rdfs:label "Bond" ;
+    skos:definition "A longer-term debt instrument under which the issuer typically pays periodic coupon interest and repays the face value at maturity (CFA Level 1 Fixed Income; Wikipedia: Bond)." ;
+    rdfs:subClassOf fis:DebtInstrument ;
+    rdfs:subClassOf [ a owl:Restriction ;
+        owl:onProperty fis:hasCouponRate ;
+        owl:someValuesFrom xsd:decimal ] .
+
+# Bonds classified by issuer type are DEFINED (necessary+sufficient): a bond issued by
+# a government IS a government bond, so the reasoner classifies a bond from its issuer
+# assertion.
+fis:GovernmentBond a owl:Class ;
+    rdfs:label "Government Bond" ;
+    skos:definition "A bond issued by a national or sovereign government, typically to finance public expenditure (CFA; Wikipedia: Government bond)." ;
+    owl:equivalentClass [ a owl:Class ; owl:intersectionOf ( fis:Bond
+        [ a owl:Restriction ; owl:onProperty fis:hasIssuer ; owl:someValuesFrom fis:Government ] ) ] .
+
+fis:CorporateBond a owl:Class ;
+    rdfs:label "Corporate Bond" ;
+    skos:definition "A bond issued by a corporation to raise debt financing for its operations (CFA; Wikipedia: Corporate bond)." ;
+    owl:equivalentClass [ a owl:Class ; owl:intersectionOf ( fis:Bond
+        [ a owl:Restriction ; owl:onProperty fis:hasIssuer ; owl:someValuesFrom fis:Corporation ] ) ] .
+
+fis:MunicipalBond a owl:Class ;
+    rdfs:label "Municipal Bond" ;
+    skos:definition "A bond issued by a state, city or other local government authority (CFA; Wikipedia: Municipal bond)." ;
+    owl:equivalentClass [ a owl:Class ; owl:intersectionOf ( fis:Bond
+        [ a owl:Restriction ; owl:onProperty fis:hasIssuer ; owl:someValuesFrom fis:Municipality ] ) ] .
+
+fis:SupranationalBond a owl:Class ;
+    rdfs:label "Supranational Bond" ;
+    skos:definition "A bond issued by a supranational entity such as the World Bank or a regional development bank (BIS Glossary; CFA Level 1 Fixed Income)." ;
+    owl:equivalentClass [ a owl:Class ; owl:intersectionOf ( fis:Bond
+        [ a owl:Restriction ; owl:onProperty fis:hasIssuer ; owl:someValuesFrom fis:SupranationalEntity ] ) ] .
+
+fis:MoneyMarketInstrument a owl:Class ;
+    rdfs:label "Money Market Instrument" ;
+    skos:definition "A short-term debt instrument, typically maturing within one year and issued at or near its face value (CFA Level 1 Fixed Income; BIS Glossary)." ;
+    rdfs:subClassOf fis:DebtInstrument .
+
+fis:TreasuryBill a owl:Class ;
+    rdfs:label "Treasury Bill" ;
+    skos:definition "A short-term money-market instrument issued at a discount by a national treasury and maturing within one year (CFA; Wikipedia: Treasury bill)." ;
+    rdfs:subClassOf fis:MoneyMarketInstrument ;
+    rdfs:subClassOf [ a owl:Restriction ;
+        owl:onProperty fis:hasIssuer ;
+        owl:someValuesFrom fis:Government ] .
+
+fis:CommercialPaper a owl:Class ;
+    rdfs:label "Commercial Paper" ;
+    skos:definition "A short-term money-market instrument, typically unsecured, issued by a corporation to meet near-term funding needs (CFA; Wikipedia: Commercial paper)." ;
+    rdfs:subClassOf fis:MoneyMarketInstrument ;
+    rdfs:subClassOf [ a owl:Restriction ;
+        owl:onProperty fis:hasIssuer ;
+        owl:someValuesFrom fis:Corporation ] .
+
+fis:CertificateOfDeposit a owl:Class ;
+    rdfs:label "Certificate of Deposit" ;
+    skos:definition "A short-term money-market instrument issued by a bank that pays a fixed rate of interest over a stated term (Nasdaq Glossary; Wikipedia: Certificate of deposit)." ;
+    rdfs:subClassOf fis:MoneyMarketInstrument .
+
+# Feature-based bond subtypes (classified by structure, orthogonal to issuer type;
+# deliberately NOT declared disjoint from the by-issuer bond classes).
+fis:ConvertibleBond a owl:Class ;
+    rdfs:label "Convertible Bond" ;
+    skos:definition "A bond that may or must be converted into a predetermined number of the issuer's equity shares (CFA Level 1 Fixed Income; Wikipedia: Convertible bond)." ;
+    owl:equivalentClass [ a owl:Class ; owl:intersectionOf ( fis:Bond
+        [ a owl:Restriction ; owl:onProperty fis:hasConversionTarget ; owl:someValuesFrom fis:Equity ] ) ] .
+
+fis:ZeroCouponBond a owl:Class ;
+    rdfs:label "Zero-Coupon Bond" ;
+    skos:definition "A bond that pays no periodic coupon and is issued at a discount to its face value, which is repaid at maturity (CFA Level 1 Fixed Income; Wikipedia: Zero-coupon bond)." ;
+    rdfs:subClassOf fis:Bond .
+
+fis:AssetBackedSecurity a owl:Class ;
+    rdfs:label "Asset-Backed Security" ;
+    skos:definition "A debt security whose payments are collateralized by, and derived from, a pool of underlying financial assets (CFA Level 1 Fixed Income; IFRS 9)." ;
+    rdfs:subClassOf fis:DebtInstrument .
+
+fis:MortgageBackedSecurity a owl:Class ;
+    rdfs:label "Mortgage-Backed Security" ;
+    skos:definition "An asset-backed security whose underlying pool consists of mortgage loans (CFA Level 1 Fixed Income; Wikipedia: Mortgage-backed security)." ;
+    rdfs:subClassOf fis:AssetBackedSecurity .
+
+#################################################################
+#  Derivative subtypes
+#################################################################
+
+fis:Option a owl:Class ;
+    rdfs:label "Option" ;
+    skos:definition "A derivative contract granting the holder the right, but not the obligation, to buy or sell an underlying asset at a stated strike price (CFA; Wikipedia: Option (finance))." ;
+    rdfs:subClassOf fis:Derivative ;
+    rdfs:subClassOf [ a owl:Restriction ;
+        owl:onProperty fis:hasStrikePrice ;
+        owl:someValuesFrom xsd:decimal ] .
+
+fis:CallOption a owl:Class ;
+    rdfs:label "Call Option" ;
+    skos:definition "An option granting the holder the right to buy the underlying asset at the strike price (CFA; Wikipedia: Call option)." ;
+    rdfs:subClassOf fis:Option .
+
+fis:PutOption a owl:Class ;
+    rdfs:label "Put Option" ;
+    skos:definition "An option granting the holder the right to sell the underlying asset at the strike price (CFA; Wikipedia: Put option)." ;
+    rdfs:subClassOf fis:Option .
+
+fis:Future a owl:Class ;
+    rdfs:label "Future" ;
+    skos:definition "A standardized, exchange-traded derivative obligating the counterparties to transact an underlying asset at a predetermined future date and price (CFA; Wikipedia: Futures contract)." ;
+    rdfs:subClassOf fis:ExchangeTradedDerivative .
+
+fis:Forward a owl:Class ;
+    rdfs:label "Forward" ;
+    skos:definition "A customized over-the-counter derivative obligating the counterparties to transact an underlying asset at a future date and agreed price (CFA; Wikipedia: Forward contract)." ;
+    rdfs:subClassOf fis:OverTheCounterDerivative .
+
+fis:Swap a owl:Class ;
+    rdfs:label "Swap" ;
+    skos:definition "A derivative in which two parties agree to exchange sequences of cash flows over a set period (BIS Glossary; CFA; Wikipedia: Swap (finance))." ;
+    rdfs:subClassOf fis:Derivative ;
+    rdfs:subClassOf [ a owl:Restriction ;
+        owl:onProperty fis:hasNotionalAmount ;
+        owl:someValuesFrom xsd:decimal ] .
+
+fis:InterestRateSwap a owl:Class ;
+    rdfs:label "Interest Rate Swap" ;
+    skos:definition "A swap in which counterparties exchange fixed-rate for floating-rate interest cash flows on a notional principal (BIS Glossary; CFA Level 1 Derivatives)." ;
+    rdfs:subClassOf fis:Swap ,
+        [ a owl:Restriction ; owl:onProperty fis:hasUnderlying ;
+          owl:someValuesFrom [ a owl:Class ; owl:unionOf ( fis:InterestRateAsset fis:DebtInstrument ) ] ] .
+
+fis:CurrencySwap a owl:Class ;
+    rdfs:label "Currency Swap" ;
+    skos:definition "A swap in which counterparties exchange principal and interest cash flows denominated in two different currencies (BIS Glossary; CFA Level 1 Derivatives)." ;
+    rdfs:subClassOf fis:Swap ,
+        [ a owl:Restriction ; owl:onProperty fis:hasUnderlying ; owl:someValuesFrom fis:Currency ] .
+
+fis:CreditDefaultSwap a owl:Class ;
+    rdfs:label "Credit Default Swap" ;
+    skos:definition "A swap in which the buyer receives compensation from the seller upon a credit event of a reference entity, in exchange for periodic premium payments (BIS Glossary; CFA Level 1 Derivatives)." ;
+    rdfs:subClassOf fis:Swap .
+
+fis:Warrant a owl:Class ;
+    rdfs:label "Warrant" ;
+    skos:definition "A derivative issued by a company granting the holder the right to buy the issuer's equity at a set price before expiry (CFA Level 1 Derivatives; Wikipedia: Warrant (finance))." ;
+    rdfs:subClassOf fis:Derivative ;
+    rdfs:subClassOf [ a owl:Restriction ;
+        owl:onProperty fis:hasUnderlying ;
+        owl:someValuesFrom fis:Equity ] ;
+    rdfs:subClassOf [ a owl:Restriction ;
+        owl:onProperty fis:hasStrikePrice ;
+        owl:someValuesFrom xsd:decimal ] .
+
+# Defined class: demonstrates chained inference (derivative -> underlying
+# security -> that security's issuer), enabled by Security being a kind of Asset.
+# Derivatives classified by the KIND of underlying are defined (necessary+sufficient)
+# genus+differentia bridge classes, orthogonal to the option/future/forward/swap form axis.
+fis:EquityDerivative a owl:Class ;
+    rdfs:label "Equity Derivative" ;
+    skos:definition "A derivative whose underlying is an equity security; an equity option or equity future is an example (CFA Level 1 Derivatives)." ;
+    owl:equivalentClass [ a owl:Class ; owl:intersectionOf ( fis:Derivative
+        [ a owl:Restriction ; owl:onProperty fis:hasUnderlying ; owl:someValuesFrom fis:Equity ] ) ] .
+
+fis:CurrencyDerivative a owl:Class ;
+    rdfs:label "Currency Derivative" ;
+    skos:definition "A derivative whose underlying is a currency, such as a currency forward or FX swap (BIS Glossary; CFA Level 1 Derivatives)." ;
+    owl:equivalentClass [ a owl:Class ; owl:intersectionOf ( fis:Derivative
+        [ a owl:Restriction ; owl:onProperty fis:hasUnderlying ; owl:someValuesFrom fis:Currency ] ) ] .
+
+fis:CommodityDerivative a owl:Class ;
+    rdfs:label "Commodity Derivative" ;
+    skos:definition "A derivative whose underlying is a physical commodity, such as a commodity future (CFA Level 1 Alternative Investments; BIS Glossary)." ;
+    owl:equivalentClass [ a owl:Class ; owl:intersectionOf ( fis:Derivative
+        [ a owl:Restriction ; owl:onProperty fis:hasUnderlying ; owl:someValuesFrom fis:Commodity ] ) ] .
+
+fis:InterestRateDerivative a owl:Class ;
+    rdfs:label "Interest Rate Derivative" ;
+    skos:definition "A derivative whose underlying is an interest rate or rate-bearing instrument, such as an interest-rate swap (BIS Glossary; CFA Level 1 Derivatives)." ;
+    owl:equivalentClass [ a owl:Class ; owl:intersectionOf ( fis:Derivative
+        [ a owl:Restriction ; owl:onProperty fis:hasUnderlying ;
+          owl:someValuesFrom [ a owl:Class ; owl:unionOf ( fis:InterestRateAsset fis:DebtInstrument ) ] ] ) ] .
+
+#################################################################
+#  Fund subtypes
+#################################################################
+
+fis:MutualFund a owl:Class ;
+    rdfs:label "Mutual Fund" ;
+    skos:definition "An open-end pooled investment fund whose shares are bought from and redeemed by the fund at net asset value (CFA; Wikipedia: Mutual fund)." ;
+    rdfs:subClassOf fis:OpenEndFund .
+
+fis:ExchangeTradedFund a owl:Class ;
+    rdfs:label "Exchange-Traded Fund" ;
+    skos:definition "A pooled investment fund whose shares trade on a securities exchange throughout the trading day like a stock, and are created and redeemed in kind by authorized participants (CFA; Wikipedia: Exchange-traded fund)." ;
+    rdfs:subClassOf fis:Fund .
+
+fis:HedgeFund a owl:Class ;
+    rdfs:label "Hedge Fund" ;
+    skos:definition "A privately offered pooled investment fund that employs a broad range of strategies and is available mainly to qualified investors (CFA Level 1 Alternative Investments; Wikipedia: Hedge fund)." ;
+    rdfs:subClassOf fis:Fund .
+
+fis:MoneyMarketFund a owl:Class ;
+    rdfs:label "Money Market Fund" ;
+    skos:definition "An open-end fund that invests in short-term money-market instruments and seeks to maintain a stable net asset value (CFA; Wikipedia: Money market fund)." ;
+    rdfs:subClassOf fis:MutualFund .
+
+fis:ClosedEndFund a owl:Class ;
+    rdfs:label "Closed-End Fund" ;
+    skos:definition "A fund that issues a fixed number of shares which then trade on an exchange, rather than being redeemed by the fund at net asset value (CFA; Wikipedia: Closed-end fund)." ;
+    rdfs:subClassOf fis:Fund .
+
+# Defined (necessary+sufficient) bridge class, orthogonal to the open/closed/exchange
+# fund form axis: an index fund is any fund that tracks a market index.
+fis:IndexFund a owl:Class ;
+    rdfs:label "Index Fund" ;
+    skos:definition "A fund designed to replicate the performance of a specified market index (CFA; Wikipedia: Index fund)." ;
+    owl:equivalentClass [ a owl:Class ; owl:intersectionOf ( fis:Fund
+        [ a owl:Restriction ; owl:onProperty fis:hasTrackedIndex ; owl:someValuesFrom fis:MarketIndex ] ) ] .
+
+#################################################################
+#  Issuer classes
+#################################################################
+
+fis:Issuer a owl:Class ;
+    rdfs:label "Issuer" ;
+    skos:definition "A legal entity that develops, registers and offers securities to investors to finance its activities (SEC; Wikipedia: Issuer)." ;
+    owl:disjointWith fis:Asset .
+
+fis:Government a owl:Class ;
+    rdfs:label "Government" ;
+    skos:definition "A national or sovereign governmental entity that issues securities such as government bonds and treasury bills (CFA; Wikipedia: Government)." ;
+    rdfs:subClassOf fis:Issuer .
+
+fis:Corporation a owl:Class ;
+    rdfs:label "Corporation" ;
+    skos:definition "A legally incorporated business entity that issues equity and corporate debt securities (CFA; Wikipedia: Corporation)." ;
+    rdfs:subClassOf fis:Issuer .
+
+fis:Municipality a owl:Class ;
+    rdfs:label "Municipality" ;
+    skos:definition "A sub-sovereign local or regional governmental entity that issues municipal securities (CFA; Wikipedia: Municipality)." ;
+    rdfs:subClassOf fis:Issuer .
+
+fis:SupranationalEntity a owl:Class ;
+    rdfs:label "Supranational Entity" ;
+    skos:definition "An international organisation formed by multiple sovereign states that issues securities, such as the World Bank or a regional development bank (BIS Glossary; CFA Level 1 Fixed Income)." ;
+    rdfs:subClassOf fis:Issuer .
+
+#################################################################
+#  Asset (underlying) classes
+#################################################################
+
+fis:Asset a owl:Class ;
+    rdfs:label "Asset" ;
+    skos:definition "Any resource of economic value that can serve as the reference or underlying of a financial instrument (BIS Glossary; CFA)." .
+
+fis:Commodity a owl:Class ;
+    rdfs:label "Commodity" ;
+    skos:definition "A basic physical good such as a metal, energy product or agricultural product that can underlie a derivative (CFA Level 1 Alternatives; Wikipedia: Commodity)." ;
+    rdfs:subClassOf fis:Asset .
+
+fis:Currency a owl:Class ;
+    rdfs:label "Currency" ;
+    skos:definition "A unit of money used as the underlying reference of a foreign-exchange instrument or derivative (BIS Glossary; Wikipedia: Currency)." ;
+    rdfs:subClassOf fis:Asset .
+
+fis:MarketIndex a owl:Class ;
+    rdfs:label "Market Index" ;
+    skos:definition "A statistical measure of the value of a defined basket of securities, used as an underlying reference or tracking benchmark (CFA; Wikipedia: Stock market index)." ;
+    rdfs:subClassOf fis:Asset .
+
+fis:InterestRateAsset a owl:Class ;
+    rdfs:label "Interest Rate Asset" ;
+    skos:definition "A reference interest rate or rate-bearing instrument that serves as the underlying of an interest-rate derivative (BIS Glossary; CFA)." ;
+    rdfs:subClassOf fis:Asset .
+
+fis:RealEstate a owl:Class ;
+    rdfs:label "Real Estate" ;
+    skos:definition "Land and any permanent structures on it, held as an investment asset and able to serve as the underlying of a property derivative or fund (CFA Level 1 Alternative Investments; Wikipedia: Real estate)." ;
+    rdfs:subClassOf fis:Asset .
+
+#################################################################
+#  Disjointness axioms
+#################################################################
+
+# Equity by form
+[] a owl:AllDisjointClasses ;
+    owl:members ( fis:CommonStock fis:PreferredStock fis:DepositaryReceipt ) .
+
+# Bond by issuer type (NB: the feature-based ConvertibleBond / ZeroCouponBond are a
+# separate, orthogonal classification and are intentionally not in this set)
+[] a owl:AllDisjointClasses ;
+    owl:members ( fis:GovernmentBond fis:CorporateBond fis:MunicipalBond fis:SupranationalBond ) .
+
+# Debt instrument families: bonds vs money-market.
+fis:Bond owl:disjointWith fis:MoneyMarketInstrument .
+
+# Money-market subtypes
+[] a owl:AllDisjointClasses ;
+    owl:members ( fis:TreasuryBill fis:CommercialPaper fis:CertificateOfDeposit ) .
+
+# Derivative families
+[] a owl:AllDisjointClasses ;
+    owl:members ( fis:Option fis:Future fis:Forward fis:Swap fis:Warrant ) .
+
+# Option direction
+fis:CallOption owl:disjointWith fis:PutOption .
+
+# Swap families
+[] a owl:AllDisjointClasses ;
+    owl:members ( fis:InterestRateSwap fis:CurrencySwap fis:CreditDefaultSwap ) .
+
+# Fund families
+[] a owl:AllDisjointClasses ;
+    owl:members ( fis:MutualFund fis:ExchangeTradedFund fis:HedgeFund fis:ClosedEndFund ) .
+
+# Issuer types
+[] a owl:AllDisjointClasses ;
+    owl:members ( fis:Government fis:Corporation fis:Municipality fis:SupranationalEntity ) .
+
+# Non-security asset categories are mutually disjoint and disjoint from Security.
+# Because Security is itself an Asset, an equity (a Security) can legitimately be a
+# derivative's underlying, enabling chained inference (see fis:EquityDerivative).
+[] a owl:AllDisjointClasses ;
+    owl:members ( fis:Security fis:Commodity fis:Currency fis:MarketIndex fis:RealEstate ) .
+
+
+#################################################################
+#  Additional classes and properties
+#################################################################
+
+###  Additional object properties
+
+fis:hasCollateral a owl:ObjectProperty ;
+    rdfs:label "has collateral" ;
+    skos:definition "Links a security to the asset(s) pledged or pooled as collateral backing it (BIS Glossary; Wikipedia: Asset-backed security)." ;
+    rdfs:domain fis:Security ; rdfs:range fis:Asset .
+
+fis:hasDenominationCurrency a owl:ObjectProperty ;
+    rdfs:label "has denomination currency" ;
+    skos:definition "The currency in which a security is denominated (Wikipedia: Eurobond)." ;
+    rdfs:domain fis:Security ; rdfs:range fis:Currency .
+
+fis:hasEmbeddedOption a owl:ObjectProperty ;
+    rdfs:label "has embedded option" ;
+    skos:definition "Links a bond to an option embedded in its indenture, e.g. an issuer call or holder put (CFA Level 1 Fixed Income)." ;
+    rdfs:domain fis:Bond ; rdfs:range fis:Option .
+
+fis:hasReferenceEntity a owl:ObjectProperty ;
+    rdfs:label "has reference entity" ;
+    skos:definition "The issuer whose credit risk a credit derivative or credit-linked security transfers (Wikipedia: Credit default swap; Credit-linked note)." ;
+    rdfs:domain fis:Security ; rdfs:range fis:Issuer .
+
+fis:hasCreditRating a owl:ObjectProperty ;
+    rdfs:label "has credit rating" ;
+    skos:definition "Links a security or issuer to its assessed credit quality grade (Wikipedia: Credit rating; CFA Level 1 Fixed Income)." ;
+    rdfs:domain [ a owl:Class ; owl:unionOf ( fis:Security fis:Issuer ) ] ; rdfs:range fis:CreditRating .
+
+###  Yeni datatype property'ler
+
+fis:hasVotingRight a owl:DatatypeProperty ;
+    rdfs:label "has voting right" ;
+    skos:definition "Whether the equity carries shareholder voting rights (Wikipedia: Common stock)." ;
+    rdfs:domain fis:Equity ; rdfs:range xsd:boolean .
+
+fis:hasSeniority a owl:DatatypeProperty ;
+    rdfs:label "has seniority" ;
+    skos:definition "The priority of a debt claim in the capital structure, e.g. senior or subordinated (CFA Level 1 Fixed Income)." ;
+    rdfs:domain fis:DebtInstrument ; rdfs:range xsd:string .
+
+fis:hasDeliveryDate a owl:DatatypeProperty ;
+    rdfs:label "has delivery date" ;
+    skos:definition "The date on which the underlying of a forward or future is to be delivered (CFA Level 1 Derivatives)." ;
+    rdfs:domain fis:Derivative ; rdfs:range xsd:dateTime .
+
+fis:hasDeliveryPrice a owl:DatatypeProperty ;
+    rdfs:label "has delivery price" ;
+    skos:definition "The price agreed in a forward contract for delivery of the underlying (CFA Level 1 Derivatives)." ;
+    rdfs:domain fis:Derivative ; rdfs:range xsd:decimal .
+
+###  Derecelendirme ekseni (minimal paket)
+
+fis:CreditRating a owl:Class ;
+    rdfs:label "Credit Rating" ;
+    skos:definition "An assessment of the creditworthiness of a security or issuer, expressed as a grade (Wikipedia: Credit rating)." .
+
+fis:InvestmentGradeRating a owl:Class ;
+    rdfs:label "Investment Grade Rating" ;
+    skos:definition "A credit rating of BBB-/Baa3 or above (CFA Level 1 Fixed Income)." ;
+    rdfs:subClassOf fis:CreditRating ;
+    owl:disjointWith fis:SpeculativeGradeRating .
+
+fis:SpeculativeGradeRating a owl:Class ;
+    rdfs:label "Speculative Grade Rating" ;
+    skos:definition "A credit rating below investment grade; also called high-yield or junk (CFA Level 1 Fixed Income)." ;
+    rdfs:subClassOf fis:CreditRating .
+
+###  Underlying assets
+
+fis:Loan a owl:Class ;
+    rdfs:label "Loan" ;
+    skos:definition "A debt asset arising from lending money; loans are pooled as collateral in securitisations (Wikipedia: Collateralized debt obligation)." ;
+    rdfs:subClassOf fis:Asset .
+
+fis:Mortgage a owl:Class ;
+    rdfs:label "Mortgage" ;
+    skos:definition "A loan secured by real estate; the collateral pool of mortgage-backed securities (Wikipedia: Mortgage-backed security)." ;
+    rdfs:subClassOf fis:Loan .
+
+###  Money-market instruments
+
+
+fis:BankersAcceptance a owl:Class ;
+    rdfs:label "Bankers Acceptance" ;
+    skos:definition "A short-term draft drawn on and accepted by a bank, traded at a discount (Wikipedia: Banker's acceptance)." ;
+    rdfs:subClassOf fis:BillOfExchange .
+
+fis:BillOfExchange a owl:Class ;
+    rdfs:label "Bill Of Exchange" ;
+    skos:definition "A written order binding one party to pay a fixed sum to another on demand or at a set date (Wikipedia: Negotiable instrument)." ;
+    rdfs:subClassOf fis:MoneyMarketInstrument .
+
+[] a owl:AllDisjointClasses ;
+    owl:members ( fis:TreasuryBill fis:CommercialPaper fis:CertificateOfDeposit fis:BillOfExchange ) .
+
+###  Debt instruments and bond family
+
+fis:PromissoryNote a owl:Class ;
+    rdfs:label "Promissory Note" ;
+    skos:definition "A written promise by one party to pay another a definite sum, either on demand or at a future date (Wikipedia: Promissory note)." ;
+    rdfs:subClassOf fis:DebtInstrument .
+
+fis:Debenture a owl:Class ;
+    rdfs:label "Debenture" ;
+    skos:definition "A bond backed only by the general credit of the issuer rather than specific collateral (Wikipedia: Debenture)." ;
+    rdfs:subClassOf fis:Bond .
+[] a owl:AllDisjointClasses ;
+    owl:members ( fis:Debenture fis:MortgageBond fis:CoveredBond ) .
+
+fis:Eurobond a owl:Class ;
+    rdfs:label "Eurobond" ;
+    skos:definition "A bond denominated in a currency other than that of the country where it is issued (Wikipedia: Eurobond)." ;
+    rdfs:subClassOf fis:Bond .
+
+fis:PerpetualBond a owl:Class ;
+    rdfs:label "Perpetual Bond" ;
+    skos:definition "A bond with no maturity date, paying coupons indefinitely (Wikipedia: Perpetual bond)." ;
+    rdfs:subClassOf fis:Bond .
+
+fis:FixedRateBond a owl:Class ;
+    rdfs:label "Fixed Rate Bond" ;
+    skos:definition "A bond whose coupon rate is fixed for its entire term (CFA Level 1 Fixed Income)." ;
+    rdfs:subClassOf fis:Bond ;
+    owl:disjointWith fis:FloatingRateNote .
+
+fis:FloatingRateNote a owl:Class ;
+    rdfs:label "Floating Rate Note" ;
+    skos:definition "A bond whose coupon resets periodically relative to a reference rate (Wikipedia: Floating rate note)." ;
+    rdfs:subClassOf fis:Bond .
+
+fis:CallableBond a owl:Class ;
+    rdfs:label "Callable Bond" ;
+    skos:definition "A bond the issuer may redeem before maturity via an embedded call option (CFA Level 1 Fixed Income)." ;
+    owl:equivalentClass [ a owl:Class ; owl:intersectionOf ( fis:Bond
+        [ a owl:Restriction ; owl:onProperty fis:hasEmbeddedOption ; owl:someValuesFrom fis:CallOption ] ) ] .
+
+fis:PutableBond a owl:Class ;
+    rdfs:label "Putable Bond" ;
+    skos:definition "A bond the holder may sell back to the issuer before maturity via an embedded put option (CFA Level 1 Fixed Income)." ;
+    owl:equivalentClass [ a owl:Class ; owl:intersectionOf ( fis:Bond
+        [ a owl:Restriction ; owl:onProperty fis:hasEmbeddedOption ; owl:someValuesFrom fis:PutOption ] ) ] .
+
+fis:CoveredBond a owl:Class ;
+    rdfs:label "Covered Bond" ;
+    skos:definition "A bond backed by a segregated cover pool of assets that remains on the issuer's balance sheet (Wikipedia: Covered bond)." ;
+    rdfs:subClassOf fis:Bond ,
+        [ a owl:Restriction ; owl:onProperty fis:hasCollateral ; owl:someValuesFrom fis:Asset ] .
+
+fis:MortgageBond a owl:Class ;
+    rdfs:label "Mortgage Bond" ;
+    skos:definition "A bond secured by a mortgage on the issuer's property (Wikipedia: Mortgage bond)." ;
+    rdfs:subClassOf fis:Bond ,
+        [ a owl:Restriction ; owl:onProperty fis:hasCollateral ; owl:someValuesFrom fis:RealEstate ] .
+
+fis:InflationIndexedBond a owl:Class ;
+    rdfs:label "Inflation Indexed Bond" ;
+    skos:definition "A bond whose principal or coupons are indexed to inflation (Wikipedia: Inflation-indexed bond)." ;
+    rdfs:subClassOf fis:Bond .
+
+fis:TreasuryBond a owl:Class ;
+    rdfs:label "Treasury Bond" ;
+    skos:definition "A long-term marketable government bond issued by a national treasury (Wikipedia: United States Treasury security)." ;
+    rdfs:subClassOf fis:GovernmentBond .
+
+fis:HighYieldBond a owl:Class ;
+    rdfs:label "High Yield Bond" ;
+    skos:definition "A bond rated below investment grade, offering higher yield for higher credit risk (CFA Level 1 Fixed Income; Wikipedia: High-yield debt)." ;
+    owl:equivalentClass [ a owl:Class ; owl:intersectionOf ( fis:Bond
+        [ a owl:Restriction ; owl:onProperty fis:hasCreditRating ; owl:someValuesFrom fis:SpeculativeGradeRating ] ) ] .
+
+fis:hasExchangeTarget a owl:ObjectProperty ;
+    rdfs:label "has exchange target" ;
+    skos:definition "Relates an exchangeable bond to the equity of a company other than the issuer into which it may be exchanged (Wikipedia: Exchangeable bond)." ;
+    rdfs:domain fis:ExchangeableBond ;
+    rdfs:range  fis:Equity .
+
+fis:ExchangeableBond a owl:Class ;
+    rdfs:label "Exchangeable Bond" ;
+    skos:definition "A bond exchangeable into equity shares of a company other than the issuer; distinguished from a convertible bond, which converts into the issuer's own shares (Wikipedia: Exchangeable bond)." ;
+    rdfs:subClassOf fis:Bond ,
+        [ a owl:Restriction ; owl:onProperty fis:hasExchangeTarget ; owl:someValuesFrom fis:Equity ] .
+
+fis:MandatoryConvertible a owl:Class ;
+    rdfs:label "Mandatory Convertible" ;
+    skos:definition "A convertible bond that must be converted into equity by a set date (Wikipedia: Convertible bond)." ;
+    rdfs:subClassOf fis:ConvertibleBond .
+
+fis:CreditLinkedNote a owl:Class ;
+    rdfs:label "Credit Linked Note" ;
+    skos:definition "A note whose repayment is linked to the credit performance of a reference entity via an embedded credit derivative (Wikipedia: Credit-linked note)." ;
+    rdfs:subClassOf fis:DebtInstrument .
+
+###  Asset-backed securities
+
+fis:CollateralizedDebtObligation a owl:Class ;
+    rdfs:label "Collateralized Debt Obligation" ;
+    skos:definition "An asset-backed security backed by a pool of debt obligations such as loans or bonds (Wikipedia: Collateralized debt obligation)." ;
+    rdfs:subClassOf fis:AssetBackedSecurity ,
+        [ a owl:Restriction ; owl:onProperty fis:hasCollateral ;
+          owl:someValuesFrom [ a owl:Class ; owl:unionOf ( fis:Loan fis:DebtInstrument ) ] ] .
+
+fis:MortgageBackedSecurity owl:equivalentClass [ a owl:Class ; owl:intersectionOf ( fis:AssetBackedSecurity
+        [ a owl:Restriction ; owl:onProperty fis:hasCollateral ; owl:someValuesFrom fis:Mortgage ] ) ] .
+
+fis:CollateralizedMortgageObligation a owl:Class ;
+    rdfs:label "Collateralized Mortgage Obligation" ;
+    skos:definition "A multi-class mortgage-backed security that redirects pool cash flows to tranches (Wikipedia: Collateralized mortgage obligation)." ;
+    rdfs:subClassOf fis:MortgageBackedSecurity ;
+    owl:disjointWith fis:PassThroughSecurity .
+
+fis:PassThroughSecurity a owl:Class ;
+    rdfs:label "Pass Through Security" ;
+    skos:definition "A mortgage-backed security that passes pool principal and interest directly through to holders (Wikipedia: Mortgage-backed security)." ;
+    rdfs:subClassOf fis:MortgageBackedSecurity .
+
+fis:ResidentialMortgageBackedSecurity a owl:Class ;
+    rdfs:label "Residential Mortgage Backed Security" ;
+    skos:definition "A mortgage-backed security collateralised by residential mortgages (Wikipedia: Residential mortgage-backed security)." ;
+    rdfs:subClassOf fis:MortgageBackedSecurity ;
+    owl:disjointWith fis:CommercialMortgageBackedSecurity .
+
+fis:CommercialMortgageBackedSecurity a owl:Class ;
+    rdfs:label "Commercial Mortgage Backed Security" ;
+    skos:definition "A mortgage-backed security collateralised by commercial property mortgages (Wikipedia: Commercial mortgage-backed security)." ;
+    rdfs:subClassOf fis:MortgageBackedSecurity .
+
+fis:AssetBackedCommercialPaper a owl:Class ;
+    rdfs:label "Asset Backed Commercial Paper" ;
+    skos:definition "Short-term commercial paper collateralised by financial assets (Wikipedia: Asset-backed commercial paper)." ;
+    rdfs:subClassOf fis:CommercialPaper ,
+        [ a owl:Restriction ; owl:onProperty fis:hasCollateral ; owl:someValuesFrom fis:Asset ] .
+
+###  Derivatives
+
+fis:CreditDerivative a owl:Class ;
+    rdfs:label "Credit Derivative" ;
+    skos:definition "A derivative whose payoff depends on the credit risk of a reference entity (BIS Glossary; Wikipedia: Credit derivative)." ;
+    rdfs:subClassOf fis:Derivative .
+
+fis:CreditDefaultSwap rdfs:subClassOf fis:CreditDerivative ,
+    [ a owl:Restriction ; owl:onProperty fis:hasReferenceEntity ; owl:someValuesFrom fis:Issuer ] .
+
+fis:AmericanOption a owl:Class ;
+    rdfs:label "American Option" ;
+    skos:definition "An option exercisable at any time up to expiration (CFA Level 1 Derivatives)." ;
+    rdfs:subClassOf fis:Option ;
+    owl:disjointWith fis:EuropeanOption .
+
+fis:EuropeanOption a owl:Class ;
+    rdfs:label "European Option" ;
+    skos:definition "An option exercisable only at expiration (CFA Level 1 Derivatives)." ;
+    rdfs:subClassOf fis:Option .
+
+fis:CurrencyOption a owl:Class ;
+    rdfs:label "Currency Option" ;
+    skos:definition "An option whose underlying is a currency (CFA Level 1 Derivatives)." ;
+    owl:equivalentClass [ a owl:Class ; owl:intersectionOf ( fis:Option
+        [ a owl:Restriction ; owl:onProperty fis:hasUnderlying ; owl:someValuesFrom fis:Currency ] ) ] .
+
+fis:InterestRateFuture a owl:Class ;
+    rdfs:label "Interest Rate Future" ;
+    skos:definition "A future whose underlying is an interest-bearing instrument or rate (Wikipedia: Interest rate future)." ;
+    owl:equivalentClass [ a owl:Class ; owl:intersectionOf ( fis:Future
+        [ a owl:Restriction ; owl:onProperty fis:hasUnderlying ;
+          owl:someValuesFrom [ a owl:Class ; owl:unionOf ( fis:InterestRateAsset fis:DebtInstrument ) ] ] ) ] .
+
+fis:ForeignExchangeSwap a owl:Class ;
+    rdfs:label "Foreign Exchange Swap" ;
+    skos:definition "A simultaneous spot exchange and forward re-exchange of two currencies; distinct from a currency swap, which also exchanges interest streams (BIS Glossary)." ;
+    rdfs:subClassOf fis:Swap ,
+        [ a owl:Restriction ; owl:onProperty fis:hasUnderlying ; owl:someValuesFrom fis:Currency ] .
+
+[] a owl:AllDisjointClasses ;
+    owl:members ( fis:InterestRateSwap fis:CurrencySwap fis:CreditDefaultSwap fis:ForeignExchangeSwap ) .
+
+fis:ExchangeTradedDerivative a owl:Class ;
+    rdfs:label "Exchange Traded Derivative" ;
+    skos:definition "A standardised derivative traded on an organised exchange and centrally cleared (BIS Glossary)." ;
+    rdfs:subClassOf fis:Derivative ;
+    owl:disjointWith fis:OverTheCounterDerivative .
+
+fis:OverTheCounterDerivative a owl:Class ;
+    rdfs:label "Over The Counter Derivative" ;
+    skos:definition "A derivative negotiated bilaterally rather than on an exchange (BIS Glossary)." ;
+    rdfs:subClassOf fis:Derivative .
+
+###  Hisse senedi ailesi
+
+fis:ConvertiblePreferredStock a owl:Class ;
+    rdfs:label "Convertible Preferred Stock" ;
+    skos:definition "Preferred stock convertible into a set number of common shares (Wikipedia: Preferred stock)." ;
+    owl:equivalentClass [ a owl:Class ; owl:intersectionOf ( fis:PreferredStock
+        [ a owl:Restriction ; owl:onProperty fis:hasConversionTarget ; owl:someValuesFrom fis:CommonStock ] ) ] .
+
+fis:CumulativePreferredStock a owl:Class ;
+    rdfs:label "Cumulative Preferred Stock" ;
+    skos:definition "Preferred stock whose missed dividends accumulate and must be paid before common dividends (Wikipedia: Preferred stock)." ;
+    rdfs:subClassOf fis:PreferredStock .
+
+###  Fonlar
+
+
+fis:OpenEndFund a owl:Class ;
+    rdfs:label "Open End Fund" ;
+    skos:definition "A fund that issues and redeems shares on demand at net asset value (Wikipedia: Open-end fund)." ;
+    rdfs:subClassOf fis:Fund ;
+    owl:disjointWith fis:ClosedEndFund .
+
+
+###  Issuers
+
+fis:Bank a owl:Class ;
+    rdfs:label "Bank" ;
+    skos:definition "A deposit-taking credit institution; a frequent issuer of bonds, covered bonds and money market instruments (Wikipedia: Bank)." ;
+    rdfs:subClassOf fis:Corporation .
+
+fis:InsuranceCompany a owl:Class ;
+    rdfs:label "Insurance Company" ;
+    skos:definition "A corporation that underwrites insurance and issues securities to fund and invest reserves (Wikipedia: Insurance)." ;
+    rdfs:subClassOf fis:Corporation .
+
+fis:CreditUnion a owl:Class ;
+    rdfs:label "Credit Union" ;
+    skos:definition "A member-owned financial cooperative that issues deposit-like instruments (Wikipedia: Credit union)." ;
+    rdfs:subClassOf fis:Issuer .
+
+fis:ThriftInstitution a owl:Class ;
+    rdfs:label "Thrift Institution" ;
+    skos:definition "A savings-focused depository institution such as a savings and loan association (Wikipedia: Savings and loan association)." ;
+    rdfs:subClassOf fis:Issuer .
+
+fis:Trust a owl:Class ;
+    rdfs:label "Trust" ;
+    skos:definition "A legal arrangement holding assets for beneficiaries; a common issuing vehicle in securitisation (Wikipedia: Trust law)." ;
+    rdfs:subClassOf fis:Issuer .
+
+fis:SpecialPurposeVehicle a owl:Class ;
+    rdfs:label "Special Purpose Vehicle" ;
+    skos:definition "A bankruptcy-remote entity created to hold securitised assets and issue asset-backed securities (Wikipedia: Special-purpose entity)." ;
+    rdfs:subClassOf fis:Issuer .
+
+fis:CentralBank a owl:Class ;
+    rdfs:label "Central Bank" ;
+    skos:definition "The monetary authority that issues currency and short-term instruments and conducts monetary policy (Wikipedia: Central bank)." ;
+    rdfs:subClassOf fis:Issuer .
+
+fis:GovernmentSponsoredEnterprise a owl:Class ;
+    rdfs:label "Government Sponsored Enterprise" ;
+    skos:definition "A congressionally chartered financial intermediary such as an agency securitising mortgages (Wikipedia: Government-sponsored enterprise)." ;
+    rdfs:subClassOf fis:Issuer .
+
+###  Extended underlying and asset disjointness
+
+[] a owl:AllDisjointClasses ;
+    owl:members ( fis:Security fis:Commodity fis:Currency fis:MarketIndex fis:RealEstate fis:Loan ) .

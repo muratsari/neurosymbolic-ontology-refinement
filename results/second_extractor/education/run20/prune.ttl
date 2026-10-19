@@ -1,0 +1,1225 @@
+@prefix ea: <http://example.org/onto/assessment#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+<http://example.org/onto/assessment> a owl:Ontology ;
+    rdfs:label "Educational Assessment Ontology"@en ;
+    rdfs:comment "An ontology formalizing concepts, classifications, qualities, and relationships in educational assessment based on domain corpus literature."@en .
+
+ea:AchievementTest a owl:Class ;
+    rdfs:label "Achievement Test"@en ;
+    rdfs:comment "A backward-looking test measuring knowledge and skills acquired from prior instruction."@en ;
+    rdfs:subClassOf ea:StandardizedTest .
+
+ea:AnalyticScoring a owl:Class ;
+    rdfs:label "Analytic Scoring"@en ;
+    rdfs:comment "An approach evaluating multiple separate dimensions, criteria, or traits independently."@en ;
+    rdfs:subClassOf ea:ScoringApproach ;
+    owl:disjointWith ea:HolisticScoring ;
+    skos:altLabel "Analytic Grading"@en .
+
+ea:AnecdotalFeedback a owl:Class ;
+    rdfs:label "Anecdotal Feedback"@en ;
+    rdfs:comment "Oral or written qualitative comments on work."@en ;
+    rdfs:subClassOf ea:CorrectiveFeedback .
+
+ea:AptitudeTest a owl:Class ;
+    rdfs:label "Aptitude Test"@en ;
+    rdfs:comment "A forward-looking test predicting a student's future ability or potential in an endeavor."@en ;
+    rdfs:subClassOf ea:StandardizedTest .
+
+ea:AuthenticAssessment a owl:Class ;
+    rdfs:label "Authentic Assessment"@en ;
+    rdfs:comment "The measurement of accomplishments within a realistic, practical context relevant outside the school setting."@en ;
+    rdfs:subClassOf ea:PerformanceAssessment .
+
+ea:CalculationItem a owl:Class ;
+    rdfs:label "Calculation Item"@en ;
+    rdfs:subClassOf ea:AssessmentItem ;
+    skos:altLabel "Mathematics Question"@en .
+
+ea:CollegeAdmissionsTest a owl:Class ;
+    rdfs:label "College Admissions Test"@en ;
+    rdfs:comment "A test used as part of the criteria for admitting students to tertiary institutions."@en ;
+    rdfs:subClassOf ea:StandardizedTest .
+
+ea:CommonAssessment a owl:Class ;
+    rdfs:label "Common Assessment"@en ;
+    rdfs:comment "An assessment collaboratively developed and shared across classrooms, departments, or schools to standardize evaluation."@en ;
+    rdfs:subClassOf ea:Assessment .
+
+ea:CompetitiveExamination a owl:Class ;
+    rdfs:label "Competitive Examination"@en ;
+    rdfs:comment "A norm-referenced, high-stakes test where candidates are ranked and the top rankers are selected for limited positions or admissions."@en ;
+    rdfs:subClassOf ea:Test ;
+    owl:equivalentClass [ owl:intersectionOf ( ea:Test [ a owl:Restriction ;
+                        owl:onProperty ea:hasReferencingType ;
+                        owl:someValuesFrom ea:NormReferencing ] [ a owl:Restriction ;
+                        owl:onProperty ea:hasStakesLevel ;
+                        owl:someValuesFrom ea:HighStakes ] ) ] ;
+    skos:altLabel "Competitive Exam"@en .
+
+ea:ComplexAssessment a owl:Class ;
+    rdfs:label "Complex Assessment"@en ;
+    rdfs:comment "An assessment with format implicitness requiring a rubric and an expert examiner."@en ;
+    rdfs:subClassOf ea:Assessment .
+
+ea:ComputerMedium a owl:Class ;
+    rdfs:label "Computer Medium"@en ;
+    rdfs:subClassOf ea:WrittenMedium ;
+    skos:altLabel "Electronic Medium"@en,
+        "On-Screen Medium"@en,
+        "Online Medium"@en .
+
+ea:ConsequentialValidity a owl:Class ;
+    rdfs:label "Consequential Validity"@en ;
+    rdfs:comment "Validity evidence relating to the social and educational consequences of test score use."@en ;
+    rdfs:subClassOf ea:Validity .
+
+ea:ContentValidity a owl:Class ;
+    rdfs:label "Content Validity"@en ;
+    rdfs:comment "The systematic examination of test content to determine whether it covers a representative sample of the domain."@en ;
+    rdfs:subClassOf ea:Validity ;
+    skos:altLabel "Logical Validity"@en,
+        "Subject-Matter Validity"@en .
+
+ea:ContinuousAssessment a owl:Class ;
+    rdfs:label "Continuous Assessment"@en ;
+    rdfs:comment "An examination practice evaluating student progress throughout a course rather than solely at a final exam."@en ;
+    rdfs:subClassOf ea:Assessment .
+
+ea:ConvergentValidity a owl:Class ;
+    rdfs:label "Convergent Validity"@en ;
+    rdfs:comment "Evidence that measures of constructs that should theoretically be related are related."@en ;
+    rdfs:subClassOf ea:ConstructValidity ;
+    owl:disjointWith ea:DiscriminantValidity .
+
+ea:DevelopmentalRubric a owl:Class ;
+    rdfs:label "Developmental Rubric"@en ;
+    rdfs:comment "A subset of analytic rubrics facilitating transformative learning through developmental successions."@en ;
+    rdfs:subClassOf ea:AnalyticRubric .
+
+ea:DigitalPortfolio a owl:Class ;
+    rdfs:label "Digital Portfolio"@en ;
+    rdfs:subClassOf ea:PortfolioAssessment ;
+    skos:altLabel "E-Portfolio"@en,
+        "Online Portfolio"@en .
+
+ea:EssayItem a owl:Class ;
+    rdfs:label "Essay Item"@en ;
+    rdfs:subClassOf ea:SubjectiveItem ;
+    skos:altLabel "Essay Question"@en,
+        "Extended-Response Item"@en,
+        "Free-Response Question"@en .
+
+ea:FaceValidity a owl:Class ;
+    rdfs:label "Face Validity"@en ;
+    rdfs:comment "A subjective estimate of whether a test superficially appears to measure what it purports to measure."@en ;
+    rdfs:subClassOf ea:Validity .
+
+ea:FillInTheBlankWithWordBank a owl:Class ;
+    rdfs:label "Fill-in-the-Blank with Word Bank"@en ;
+    rdfs:subClassOf ea:FillInTheBlankItem ;
+    owl:disjointWith ea:FillInTheBlankWithoutWordBank .
+
+ea:FinalExam a owl:Class ;
+    rdfs:label "Final Exam"@en ;
+    rdfs:comment "A comprehensive test administered at the conclusion of an academic course or degree programme."@en ;
+    rdfs:subClassOf ea:Test ;
+    skos:altLabel "Final Examination"@en,
+        "Finals"@en .
+
+ea:FormalAssessment a owl:Class ;
+    rdfs:label "Formal Assessment"@en ;
+    rdfs:comment "Assessment given a numerical score or grade based on student performance."@en ;
+    rdfs:subClassOf ea:Assessment ;
+    owl:disjointWith ea:InformalAssessment ;
+    owl:equivalentClass [ owl:intersectionOf ( ea:Assessment [ a owl:Restriction ;
+                        owl:onProperty ea:hasFormalityType ;
+                        owl:someValuesFrom ea:FormalAssessmentFormality ] ) ] .
+
+ea:ForwardLookingAssessment a owl:Class ;
+    rdfs:label "Forward-Looking Assessment"@en ;
+    rdfs:comment "An assessment asking examinees to consider themselves in hypothetical future situations."@en ;
+    rdfs:subClassOf ea:Assessment .
+
+ea:HighStakesTest a owl:Class ;
+    rdfs:label "High-Stakes Test"@en ;
+    rdfs:comment "A test used to make important decisions carrying significant consequences such as graduation, licensure, or accountability sanctions."@en ;
+    rdfs:subClassOf ea:Test ;
+    owl:disjointWith ea:LowStakesTest ;
+    owl:equivalentClass [ owl:intersectionOf ( ea:Test [ a owl:Restriction ;
+                        owl:onProperty ea:hasStakesLevel ;
+                        owl:someValuesFrom ea:HighStakes ] ) ] ;
+    skos:altLabel "High-Stakes Assessment"@en .
+
+ea:HolisticRubric a owl:Class ;
+    rdfs:label "Holistic Rubric"@en ;
+    rdfs:comment "A rubric providing an overall rating for student work, considering all aspects together."@en ;
+    rdfs:subClassOf ea:Rubric ;
+    owl:disjointWith ea:AnalyticRubric .
+
+ea:ImmediateFeedbackAssessmentTechnique a owl:Class ;
+    rdfs:label "Immediate Feedback Assessment Technique"@en ;
+    rdfs:comment "An interactive testing system using scratch-off sheets providing instant feedback on answers."@en ;
+    rdfs:subClassOf ea:CorrectiveFeedback ;
+    skos:altLabel "IF-AT"@en .
+
+ea:InterimAssessment a owl:Class ;
+    rdfs:label "Interim Assessment"@en ;
+    rdfs:comment "Periodic assessment used to evaluate student progress and determine whether students are on track for summative tests."@en ;
+    rdfs:subClassOf ea:Assessment ;
+    owl:equivalentClass [ owl:intersectionOf ( ea:Assessment [ a owl:Restriction ;
+                        owl:onProperty ea:hasPurpose ;
+                        owl:someValuesFrom ea:InterimPurpose ] ) ] ;
+    skos:altLabel "Benchmark Assessment"@en,
+        "Benchmark Test"@en .
+
+ea:InternalAssessment a owl:Class ;
+    rdfs:label "Internal Assessment"@en ;
+    rdfs:comment "Assessment set and marked by the school (teachers)."@en ;
+    rdfs:subClassOf ea:Assessment ;
+    owl:disjointWith ea:ExternalAssessment ;
+    owl:equivalentClass [ owl:intersectionOf ( ea:Assessment [ a owl:Restriction ;
+                        owl:onProperty ea:hasOriginType ;
+                        owl:someValuesFrom ea:InternalOrigin ] ) ] .
+
+ea:InternationalComparisonTest a owl:Class ;
+    rdfs:label "International Comparison Test"@en ;
+    rdfs:comment "A standardized test administered across multiple countries to compare educational achievement."@en ;
+    rdfs:subClassOf ea:StandardizedTest .
+
+ea:IntraRaterReliability a owl:Class ;
+    rdfs:label "Intra-Rater Reliability"@en ;
+    rdfs:comment "Consistency of a single rater across multiple evaluations."@en ;
+    rdfs:subClassOf ea:InterRaterReliability .
+
+ea:IpsativeAssessment a owl:Class ;
+    rdfs:label "Ipsative Assessment"@en ;
+    rdfs:comment "Assesses present performance in comparison to prior performance of the same individual."@en ;
+    rdfs:subClassOf ea:Assessment ;
+    owl:equivalentClass [ owl:intersectionOf ( ea:Assessment [ a owl:Restriction ;
+                        owl:onProperty ea:hasReferencingType ;
+                        owl:someValuesFrom ea:IpsativeReferencing ] ) ] ;
+    skos:altLabel "Forced-Choice Assessment"@en .
+
+ea:MatchingItem a owl:Class ;
+    rdfs:label "Matching Item"@en ;
+    rdfs:subClassOf ea:ObjectiveItem ;
+    skos:altLabel "Matching Question"@en .
+
+ea:MidtermExam a owl:Class ;
+    rdfs:label "Midterm Exam"@en ;
+    rdfs:comment "An exam administered near the middle of an academic term or semester."@en ;
+    rdfs:subClassOf ea:Test ;
+    skos:altLabel "Midterm Examination"@en .
+
+ea:ObjectiveAssessment a owl:Class ;
+    rdfs:label "Objective Assessment"@en ;
+    rdfs:comment "Assessment questioning that has a single correct answer."@en ;
+    rdfs:subClassOf ea:Assessment ;
+    owl:disjointWith ea:SubjectiveAssessment ;
+    owl:equivalentClass [ owl:intersectionOf ( ea:Assessment [ a owl:Restriction ;
+                        owl:onProperty ea:hasScoringObjectivity ;
+                        owl:someValuesFrom ea:ObjectiveScoring ] ) ] .
+
+ea:OralTest a owl:Class ;
+    rdfs:label "Oral Test"@en ;
+    rdfs:comment "A test administered verbally."@en ;
+    rdfs:subClassOf ea:Test ;
+    owl:equivalentClass [ owl:intersectionOf ( ea:Test [ a owl:Restriction ;
+                        owl:onProperty ea:hasAdministrationMedium ;
+                        owl:someValuesFrom ea:OralMedium ] ) ] .
+
+ea:PaperMedium a owl:Class ;
+    rdfs:label "Paper Medium"@en ;
+    rdfs:subClassOf ea:WrittenMedium .
+
+ea:PeerAssessment a owl:Class ;
+    rdfs:label "Peer Assessment"@en ;
+    rdfs:comment "A formative procedure in which students evaluate each other's work."@en ;
+    rdfs:subClassOf ea:FormativeAssessment ;
+    skos:altLabel "Peer Evaluation"@en .
+
+ea:PlacementAssessment a owl:Class ;
+    rdfs:label "Placement Assessment"@en ;
+    rdfs:comment "Conducted before instruction to establish a baseline or place students into suitable instructional sequences."@en ;
+    rdfs:subClassOf ea:Assessment ;
+    owl:equivalentClass [ owl:intersectionOf ( ea:Assessment [ a owl:Restriction ;
+                        owl:onProperty ea:hasPurpose ;
+                        owl:someValuesFrom ea:PlacementPurpose ] ) ] ;
+    skos:altLabel "Initial Assessment"@en,
+        "Placement Evaluation"@en,
+        "Pre-Assessment"@en,
+        "Threshold Knowledge Test"@en .
+
+ea:PracticalTest a owl:Class ;
+    rdfs:label "Practical Test"@en ;
+    rdfs:comment "A test requiring an examinee to demonstrate skills through action or performance."@en ;
+    rdfs:subClassOf ea:Test ;
+    owl:equivalentClass [ owl:intersectionOf ( ea:Test [ a owl:Restriction ;
+                        owl:onProperty ea:hasAdministrationMedium ;
+                        owl:someValuesFrom ea:PracticalMedium ] ) ] .
+
+ea:PsychologicalTest a owl:Class ;
+    rdfs:label "Psychological Test"@en ;
+    rdfs:comment "A standardized measure evaluating cognitive, emotional, developmental, or social characteristics."@en ;
+    rdfs:subClassOf ea:StandardizedTest ;
+    skos:altLabel "IQ Test"@en .
+
+ea:Quiz a owl:Class ;
+    rdfs:label "Quiz"@en ;
+    rdfs:comment "A brief assessment covering a small amount of instructional material."@en ;
+    rdfs:subClassOf ea:Test .
+
+ea:RecastFeedback a owl:Class ;
+    rdfs:label "Recast Feedback"@en ;
+    rdfs:comment "Subtle correction of errors by modeling the correct form."@en ;
+    rdfs:subClassOf ea:CorrectiveFeedback ;
+    skos:altLabel "Recast"@en .
+
+ea:ScoreFeedback a owl:Class ;
+    rdfs:label "Score Feedback"@en ;
+    rdfs:comment "Feedback provided in the form of a score, letter grade, or percentage."@en ;
+    rdfs:subClassOf ea:CorrectiveFeedback .
+
+ea:ScreeningAssessment a owl:Class ;
+    rdfs:label "Screening Assessment"@en ;
+    rdfs:comment "Used to determine readiness for a program or identify specialized educational and developmental needs."@en ;
+    rdfs:subClassOf ea:Assessment ;
+    owl:equivalentClass [ owl:intersectionOf ( ea:Assessment [ a owl:Restriction ;
+                        owl:onProperty ea:hasPurpose ;
+                        owl:someValuesFrom ea:ScreeningPurpose ] ) ] ;
+    skos:altLabel "Developmental Screening"@en,
+        "Screening Test"@en .
+
+ea:SelfAssessment a owl:Class ;
+    rdfs:label "Self-Assessment"@en ;
+    rdfs:comment "A diagnostic assessment in which students evaluate their own performance and learning progress."@en ;
+    rdfs:subClassOf ea:DiagnosticAssessment ;
+    skos:altLabel "Self-Evaluation"@en .
+
+ea:ShortAnswerItem a owl:Class ;
+    rdfs:label "Short-Answer Item"@en ;
+    rdfs:subClassOf ea:SubjectiveItem ;
+    skos:altLabel "Short-Answer Question"@en .
+
+ea:SplitHalfReliability a owl:Class ;
+    rdfs:label "Split-Half Reliability"@en ;
+    rdfs:comment "Internal consistency estimated by correlating scores on two halves of a test."@en ;
+    rdfs:subClassOf ea:InternalConsistencyReliability .
+
+ea:SummativeAssessment a owl:Class ;
+    rdfs:label "Summative Assessment"@en ;
+    rdfs:comment "Conducted at the end of an instructional unit or program to evaluate learning and summarize achievement."@en ;
+    rdfs:subClassOf ea:Assessment ;
+    owl:equivalentClass [ owl:intersectionOf ( ea:Assessment [ a owl:Restriction ;
+                        owl:onProperty ea:hasPurpose ;
+                        owl:someValuesFrom ea:SummativePurpose ] ) ] ;
+    skos:altLabel "Assessment of Learning"@en,
+        "Summative Evaluation"@en .
+
+ea:TraitInformedScoring a owl:Class ;
+    rdfs:label "Trait-Informed Scoring"@en ;
+    rdfs:comment "Scoring that guides raters to attend to multiple criteria before assigning a single integrated score."@en ;
+    rdfs:subClassOf ea:HolisticScoring .
+
+ea:TrueFalseItem a owl:Class ;
+    rdfs:label "True-False Item"@en ;
+    rdfs:subClassOf ea:ObjectiveItem ;
+    skos:altLabel "True/False Question"@en .
+
+ea:TrueScore a owl:Class ;
+    rdfs:label "True Score"@en ;
+    rdfs:comment "The replicable feature of the concept being measured that would recur in the absence of error."@en ;
+    rdfs:subClassOf ea:TestScore ;
+    owl:disjointWith ea:ObservedScore .
+
+ea:UnitTest a owl:Class ;
+    rdfs:label "Unit Test"@en ;
+    rdfs:comment "A test administered to evaluate learning over a specific instructional unit."@en ;
+    rdfs:subClassOf ea:Test .
+
+ea:ValueAddedMeasure a owl:Class ;
+    rdfs:label "Value-Added Measure"@en ;
+    rdfs:comment "Statistical algorithms using standardized test results over time to estimate individual teacher effects on student learning."@en ;
+    rdfs:subClassOf owl:Thing ;
+    skos:altLabel "Growth Measure"@en .
+
+ea:WrittenTest a owl:Class ;
+    rdfs:label "Written Test"@en ;
+    rdfs:comment "A test administered on paper or via computer."@en ;
+    rdfs:subClassOf ea:Test ;
+    owl:equivalentClass [ owl:intersectionOf ( ea:Test [ a owl:Restriction ;
+                        owl:onProperty ea:hasAdministrationMedium ;
+                        owl:someValuesFrom ea:WrittenMedium ] ) ] .
+
+ea:hasAchievementLevel a owl:ObjectProperty ;
+    rdfs:label "has achievement level"@en ;
+    rdfs:domain ea:Rubric ;
+    rdfs:range ea:AchievementLevel ;
+    owl:inverseOf ea:isAchievementLevelOf .
+
+ea:hasAssessmentItem a owl:ObjectProperty ;
+    rdfs:label "has assessment item"@en ;
+    rdfs:domain ea:Assessment ;
+    rdfs:range ea:AssessmentItem ;
+    owl:inverseOf ea:isAssessmentItemOf .
+
+ea:hasCutScore a owl:ObjectProperty ;
+    rdfs:label "has cut score"@en ;
+    rdfs:domain ea:CriterionReferencedAssessment ;
+    rdfs:range ea:CutScore ;
+    owl:inverseOf ea:isCutScoreOf .
+
+ea:hasDistractorOption a owl:ObjectProperty ;
+    rdfs:label "has distractor option"@en ;
+    rdfs:domain ea:MultipleChoiceItem ;
+    rdfs:range ea:DistractorOption ;
+    rdfs:subPropertyOf ea:hasOption ;
+    owl:inverseOf ea:isDistractorOptionOf .
+
+ea:hasEvaluativeCriterion a owl:ObjectProperty ;
+    rdfs:label "has evaluative criterion"@en ;
+    rdfs:domain ea:Rubric ;
+    rdfs:range ea:EvaluativeCriterion ;
+    owl:inverseOf ea:isEvaluativeCriterionOf .
+
+ea:hasFeedback a owl:ObjectProperty ;
+    rdfs:label "has feedback"@en ;
+    rdfs:domain ea:Assessment ;
+    rdfs:range ea:Feedback ;
+    owl:inverseOf ea:isFeedbackOf .
+
+ea:hasItemCount a owl:DatatypeProperty ;
+    rdfs:label "has item count"@en ;
+    rdfs:comment "The total number of questions or items comprising an assessment."@en ;
+    rdfs:domain ea:Assessment ;
+    rdfs:range xsd:integer .
+
+ea:hasLearningOutcome a owl:ObjectProperty ;
+    rdfs:label "has learning outcome"@en ;
+    rdfs:domain ea:Assessment ;
+    rdfs:range ea:LearningOutcome ;
+    owl:inverseOf ea:isLearningOutcomeOf .
+
+ea:hasMeasurementError a owl:ObjectProperty ;
+    rdfs:label "has measurement error"@en ;
+    rdfs:domain ea:Assessment ;
+    rdfs:range ea:MeasurementError ;
+    owl:inverseOf ea:isMeasurementErrorOf .
+
+ea:hasNormGroup a owl:ObjectProperty ;
+    rdfs:label "has norm group"@en ;
+    rdfs:domain ea:NormReferencedAssessment ;
+    rdfs:range ea:NormGroup ;
+    owl:inverseOf ea:isNormGroupOf .
+
+ea:hasPassPercentage a owl:DatatypeProperty ;
+    rdfs:label "has pass percentage"@en ;
+    rdfs:comment "The minimum percentage of items required to achieve a passing standard."@en ;
+    rdfs:domain ea:CutScore ;
+    rdfs:range xsd:decimal .
+
+ea:hasProficiencyLevel a owl:ObjectProperty ;
+    rdfs:label "has proficiency level"@en ;
+    rdfs:domain ea:Assessment ;
+    rdfs:range ea:ProficiencyLevel ;
+    owl:inverseOf ea:isProficiencyLevelOf .
+
+ea:hasReliability a owl:ObjectProperty ;
+    rdfs:label "has reliability"@en ;
+    rdfs:domain ea:Assessment ;
+    rdfs:range ea:Reliability ;
+    owl:inverseOf ea:isReliabilityOf .
+
+ea:hasReliabilityCoefficient a owl:DatatypeProperty ;
+    rdfs:label "has reliability coefficient"@en ;
+    rdfs:comment "A quantitative reliability coefficient ranging from 0.00 to 1.00."@en ;
+    rdfs:domain ea:Reliability ;
+    rdfs:range xsd:decimal .
+
+ea:hasRubric a owl:ObjectProperty ;
+    rdfs:label "has rubric"@en ;
+    rdfs:domain ea:Assessment ;
+    rdfs:range ea:Rubric ;
+    owl:inverseOf ea:isRubricOf .
+
+ea:hasScoringApproach a owl:ObjectProperty ;
+    rdfs:label "has scoring approach"@en ;
+    rdfs:domain ea:Assessment ;
+    rdfs:range ea:ScoringApproach ;
+    owl:inverseOf ea:isScoringApproachOf .
+
+ea:hasScoringStrategy a owl:ObjectProperty ;
+    rdfs:label "has scoring strategy"@en ;
+    rdfs:domain ea:Rubric ;
+    rdfs:range ea:ScoringStrategy ;
+    owl:inverseOf ea:isScoringStrategyOf .
+
+ea:hasValidity a owl:ObjectProperty ;
+    rdfs:label "has validity"@en ;
+    rdfs:domain ea:Assessment ;
+    rdfs:range ea:Validity ;
+    owl:inverseOf ea:isValidityOf .
+
+ea:ConcurrentValidity a owl:Class ;
+    rdfs:label "Concurrent Validity"@en ;
+    rdfs:comment "Criterion validity evidence collected at the same time as the test."@en ;
+    rdfs:subClassOf ea:CriterionValidity .
+
+ea:CriterionReferencing a owl:Class ;
+    rdfs:label "Criterion Referencing"@en ;
+    rdfs:subClassOf ea:ReferencingType ;
+    skos:altLabel "Standards-Based Referencing"@en .
+
+ea:DiagnosticAssessment a owl:Class ;
+    rdfs:label "Diagnostic Assessment"@en ;
+    rdfs:comment "Tension in corpus: In one passage, diagnostic assessment is listed as a primary coordinate category alongside placement, formative, and summative assessments ('Placement, formative, summative and diagnostic assessment'). In subsequent passages, it is classified as a subtype or form of formative assessment ('A common form of formative assessment is diagnostic assessment'). Both claims are modeled as axioms."@en ;
+    rdfs:subClassOf ea:Assessment,
+        ea:FormativeAssessment ;
+    owl:equivalentClass [ owl:intersectionOf ( ea:Assessment [ a owl:Restriction ;
+                        owl:onProperty ea:hasPurpose ;
+                        owl:someValuesFrom ea:DiagnosticPurpose ] ) ] ;
+    skos:altLabel "Diagnostic Evaluation"@en,
+        "Diagnostic Test"@en .
+
+ea:DiagnosticPurpose a owl:Class ;
+    rdfs:label "Diagnostic Purpose"@en ;
+    rdfs:subClassOf ea:AssessmentPurpose .
+
+ea:DiscriminantValidity a owl:Class ;
+    rdfs:label "Discriminant Validity"@en ;
+    rdfs:comment "Evidence that constructs that should theoretically be unrelated are in fact unrelated."@en ;
+    rdfs:subClassOf ea:ConstructValidity ;
+    skos:altLabel "Divergent Validity"@en .
+
+ea:ExternalAssessment a owl:Class ;
+    rdfs:label "External Assessment"@en ;
+    rdfs:comment "Assessment set by a governing body and marked by external or unbiased personnel."@en ;
+    rdfs:subClassOf ea:Assessment ;
+    owl:equivalentClass [ owl:intersectionOf ( ea:Assessment [ a owl:Restriction ;
+                        owl:onProperty ea:hasOriginType ;
+                        owl:someValuesFrom ea:ExternalOrigin ] ) ] .
+
+ea:FillInTheBlankWithoutWordBank a owl:Class ;
+    rdfs:label "Fill-in-the-Blank without Word Bank"@en ;
+    rdfs:subClassOf ea:FillInTheBlankItem .
+
+ea:FormativePurpose a owl:Class ;
+    rdfs:label "Formative Purpose"@en ;
+    rdfs:subClassOf ea:AssessmentPurpose ;
+    skos:altLabel "Assessment for Learning Purpose"@en,
+        "Educative Purpose"@en .
+
+ea:InformalAssessment a owl:Class ;
+    rdfs:label "Informal Assessment"@en ;
+    rdfs:comment "Casual assessment that does not contribute to a final course grade."@en ;
+    rdfs:subClassOf ea:Assessment ;
+    owl:equivalentClass [ owl:intersectionOf ( ea:Assessment [ a owl:Restriction ;
+                        owl:onProperty ea:hasFormalityType ;
+                        owl:someValuesFrom ea:InformalAssessmentFormality ] ) ] .
+
+ea:IntendedLearningOutcome a owl:Class ;
+    rdfs:label "Intended Learning Outcome"@en ;
+    rdfs:subClassOf ea:LearningOutcome ;
+    skos:altLabel "Aim"@en .
+
+ea:InterimPurpose a owl:Class ;
+    rdfs:label "Interim Purpose"@en ;
+    rdfs:subClassOf ea:AssessmentPurpose ;
+    skos:altLabel "Benchmark Purpose"@en .
+
+ea:IpsativeReferencing a owl:Class ;
+    rdfs:label "Ipsative Referencing"@en ;
+    rdfs:subClassOf ea:ReferencingType ;
+    skos:altLabel "Forced-Choice Referencing"@en,
+        "Self-Referencing"@en .
+
+ea:LowStakesTest a owl:Class ;
+    rdfs:label "Low-Stakes Test"@en ;
+    rdfs:comment "A test with minimal or no significant public or consequential outcomes."@en ;
+    rdfs:subClassOf ea:Test ;
+    owl:equivalentClass [ owl:intersectionOf ( ea:Test [ a owl:Restriction ;
+                        owl:onProperty ea:hasStakesLevel ;
+                        owl:someValuesFrom ea:LowStakes ] ) ] ;
+    skos:altLabel "Low-Stakes Assessment"@en .
+
+ea:MeasuredLearningOutcome a owl:Class ;
+    rdfs:label "Measured Learning Outcome"@en ;
+    rdfs:subClassOf ea:LearningOutcome ;
+    skos:altLabel "Objective"@en .
+
+ea:NonStandardizedTest a owl:Class ;
+    rdfs:label "Non-Standardized Test"@en ;
+    rdfs:comment "A test where different items, varying conditions, or differing evaluation standards are applied to test takers."@en ;
+    rdfs:subClassOf ea:Test ;
+    owl:equivalentClass [ owl:intersectionOf ( ea:Test [ a owl:Restriction ;
+                        owl:onProperty ea:hasStandardizationStatus ;
+                        owl:someValuesFrom ea:NonStandardizedStatus ] ) ] ;
+    skos:altLabel "Non-Standardized Assessment"@en .
+
+ea:ObservedScore a owl:Class ;
+    rdfs:label "Observed Score"@en ;
+    rdfs:comment "The actual attained score on an assessment, reflecting true score plus error."@en ;
+    rdfs:subClassOf ea:TestScore .
+
+ea:ParallelFormsReliability a owl:Class ;
+    rdfs:label "Parallel-Forms Reliability"@en ;
+    rdfs:comment "Consistency of performance across different but equivalent forms of a test."@en ;
+    rdfs:subClassOf ea:ReliabilityEstimate ;
+    skos:altLabel "Alternate-Forms Reliability"@en,
+        "Form Equivalence"@en,
+        "Inter-Method Reliability"@en .
+
+ea:PlacementPurpose a owl:Class ;
+    rdfs:label "Placement Purpose"@en ;
+    rdfs:subClassOf ea:AssessmentPurpose ;
+    skos:altLabel "Initial Purpose"@en,
+        "Pre-Assessment Purpose"@en .
+
+ea:PortfolioAssessment a owl:Class ;
+    rdfs:label "Portfolio Assessment"@en ;
+    rdfs:comment "An assessment evaluating a compilation of academic work collected over time."@en ;
+    rdfs:subClassOf ea:PerformanceAssessment ;
+    skos:altLabel "Portfolio-Based Assessment"@en .
+
+ea:PredictiveValidity a owl:Class ;
+    rdfs:label "Predictive Validity"@en ;
+    rdfs:comment "Criterion validity evidence predicting performance on a criterion assessed at a future time."@en ;
+    rdfs:subClassOf ea:CriterionValidity .
+
+ea:RandomError a owl:Class ;
+    rdfs:label "Random Error"@en ;
+    rdfs:subClassOf ea:MeasurementError .
+
+ea:RaterRelatedReliability a owl:Class ;
+    rdfs:label "Rater-Related Reliability"@en ;
+    rdfs:subClassOf ea:ReliabilityFactorCategory .
+
+ea:ScreeningPurpose a owl:Class ;
+    rdfs:label "Screening Purpose"@en ;
+    rdfs:subClassOf ea:AssessmentPurpose .
+
+ea:StudentRelatedReliability a owl:Class ;
+    rdfs:label "Student-Related Reliability"@en ;
+    rdfs:subClassOf ea:ReliabilityFactorCategory .
+
+ea:SubjectiveAssessment a owl:Class ;
+    rdfs:label "Subjective Assessment"@en ;
+    rdfs:comment "Assessment questioning that may have more than one correct answer or expression."@en ;
+    rdfs:subClassOf ea:Assessment ;
+    owl:equivalentClass [ owl:intersectionOf ( ea:Assessment [ a owl:Restriction ;
+                        owl:onProperty ea:hasScoringObjectivity ;
+                        owl:someValuesFrom ea:SubjectiveScoring ] ) ] .
+
+ea:SummativePurpose a owl:Class ;
+    rdfs:label "Summative Purpose"@en ;
+    rdfs:subClassOf ea:AssessmentPurpose ;
+    skos:altLabel "Assessment of Learning Purpose"@en .
+
+ea:SystematicError a owl:Class ;
+    rdfs:label "Systematic Error"@en ;
+    rdfs:subClassOf ea:MeasurementError .
+
+ea:TestAdministrationRelatedReliability a owl:Class ;
+    rdfs:label "Test Administration-Related Reliability"@en ;
+    rdfs:subClassOf ea:ReliabilityFactorCategory .
+
+ea:TestRelatedReliability a owl:Class ;
+    rdfs:label "Test-Related Reliability"@en ;
+    rdfs:subClassOf ea:ReliabilityFactorCategory .
+
+ea:TestRetestReliability a owl:Class ;
+    rdfs:label "Test-Retest Reliability"@en ;
+    rdfs:comment "Consistency of test scores from one administration to another with the same subjects."@en ;
+    rdfs:subClassOf ea:ReliabilityEstimate ;
+    skos:altLabel "Repeatability"@en,
+        "Temporal Stability"@en .
+
+ea:UnintendedLearningOutcome a owl:Class ;
+    rdfs:label "Unintended Learning Outcome"@en ;
+    rdfs:subClassOf ea:LearningOutcome .
+
+ea:hasKeyOption a owl:ObjectProperty ;
+    rdfs:label "has key option"@en ;
+    rdfs:domain ea:MultipleChoiceItem ;
+    rdfs:range ea:KeyOption ;
+    rdfs:subPropertyOf ea:hasOption ;
+    owl:inverseOf ea:isKeyOptionOf .
+
+ea:hasStem a owl:FunctionalProperty,
+        owl:ObjectProperty ;
+    rdfs:label "has stem"@en ;
+    rdfs:domain ea:MultipleChoiceItem ;
+    rdfs:range ea:ItemStem ;
+    owl:inverseOf ea:isStemOf .
+
+ea:isAchievementLevelOf a owl:ObjectProperty ;
+    rdfs:label "is achievement level of"@en ;
+    rdfs:domain ea:AchievementLevel ;
+    rdfs:range ea:Rubric .
+
+ea:isAdministrationMediumOf a owl:ObjectProperty ;
+    rdfs:label "is administration medium of"@en ;
+    rdfs:domain ea:AdministrationMedium ;
+    rdfs:range ea:Assessment .
+
+ea:isAssessmentItemOf a owl:ObjectProperty ;
+    rdfs:label "is assessment item of"@en ;
+    rdfs:domain ea:AssessmentItem ;
+    rdfs:range ea:Assessment .
+
+ea:isCutScoreOf a owl:ObjectProperty ;
+    rdfs:label "is cut score of"@en ;
+    rdfs:domain ea:CutScore ;
+    rdfs:range ea:CriterionReferencedAssessment .
+
+ea:isDistractorOptionOf a owl:ObjectProperty ;
+    rdfs:label "is distractor option of"@en ;
+    rdfs:domain ea:DistractorOption ;
+    rdfs:range ea:MultipleChoiceItem .
+
+ea:isEvaluativeCriterionOf a owl:ObjectProperty ;
+    rdfs:label "is evaluative criterion of"@en ;
+    rdfs:domain ea:EvaluativeCriterion ;
+    rdfs:range ea:Rubric .
+
+ea:isFeedbackOf a owl:ObjectProperty ;
+    rdfs:label "is feedback of"@en ;
+    rdfs:domain ea:Feedback ;
+    rdfs:range ea:Assessment .
+
+ea:isFormalityTypeOf a owl:ObjectProperty ;
+    rdfs:label "is formality type of"@en ;
+    rdfs:domain ea:FormalityType ;
+    rdfs:range ea:Assessment .
+
+ea:isKeyOptionOf a owl:ObjectProperty ;
+    rdfs:label "is key option of"@en ;
+    rdfs:domain ea:KeyOption ;
+    rdfs:range ea:MultipleChoiceItem .
+
+ea:isLearningOutcomeOf a owl:ObjectProperty ;
+    rdfs:label "is learning outcome of"@en ;
+    rdfs:domain ea:LearningOutcome ;
+    rdfs:range ea:Assessment .
+
+ea:isMeasurementErrorOf a owl:ObjectProperty ;
+    rdfs:label "is measurement error of"@en ;
+    rdfs:domain ea:MeasurementError ;
+    rdfs:range ea:Assessment .
+
+ea:isNormGroupOf a owl:ObjectProperty ;
+    rdfs:label "is norm group of"@en ;
+    rdfs:domain ea:NormGroup ;
+    rdfs:range ea:NormReferencedAssessment .
+
+ea:isOptionOf a owl:ObjectProperty ;
+    rdfs:label "is option of"@en ;
+    rdfs:domain ea:ItemOption ;
+    rdfs:range ea:MultipleChoiceItem .
+
+ea:isOriginTypeOf a owl:ObjectProperty ;
+    rdfs:label "is origin type of"@en ;
+    rdfs:domain ea:OriginType ;
+    rdfs:range ea:Assessment .
+
+ea:isProficiencyLevelOf a owl:ObjectProperty ;
+    rdfs:label "is proficiency level of"@en ;
+    rdfs:domain ea:ProficiencyLevel ;
+    rdfs:range ea:Assessment .
+
+ea:isPurposeOf a owl:ObjectProperty ;
+    rdfs:label "is purpose of"@en ;
+    rdfs:domain ea:AssessmentPurpose ;
+    rdfs:range ea:Assessment .
+
+ea:isReferencingTypeOf a owl:ObjectProperty ;
+    rdfs:label "is referencing type of"@en ;
+    rdfs:domain ea:ReferencingType ;
+    rdfs:range ea:Assessment .
+
+ea:isReliabilityOf a owl:ObjectProperty ;
+    rdfs:label "is reliability of"@en ;
+    rdfs:domain ea:Reliability ;
+    rdfs:range ea:Assessment .
+
+ea:isRubricOf a owl:ObjectProperty ;
+    rdfs:label "is rubric of"@en ;
+    rdfs:domain ea:Rubric ;
+    rdfs:range ea:Assessment .
+
+ea:isScoringApproachOf a owl:ObjectProperty ;
+    rdfs:label "is scoring approach of"@en ;
+    rdfs:domain ea:ScoringApproach ;
+    rdfs:range ea:Assessment .
+
+ea:isScoringObjectivityOf a owl:ObjectProperty ;
+    rdfs:label "is scoring objectivity of"@en ;
+    rdfs:domain ea:ScoringObjectivity ;
+    rdfs:range ea:Assessment .
+
+ea:isScoringStrategyOf a owl:ObjectProperty ;
+    rdfs:label "is scoring strategy of"@en ;
+    rdfs:domain ea:ScoringStrategy ;
+    rdfs:range ea:Rubric .
+
+ea:isStakesLevelOf a owl:ObjectProperty ;
+    rdfs:label "is stakes level of"@en ;
+    rdfs:domain ea:StakesLevel ;
+    rdfs:range ea:Assessment .
+
+ea:isStandardizationStatusOf a owl:ObjectProperty ;
+    rdfs:label "is standardization status of"@en ;
+    rdfs:domain ea:StandardizationStatus ;
+    rdfs:range ea:Assessment .
+
+ea:isStemOf a owl:ObjectProperty ;
+    rdfs:label "is stem of"@en ;
+    rdfs:domain ea:ItemStem ;
+    rdfs:range ea:MultipleChoiceItem .
+
+ea:isValidityOf a owl:ObjectProperty ;
+    rdfs:label "is validity of"@en ;
+    rdfs:domain ea:Validity ;
+    rdfs:range ea:Assessment .
+
+ea:AchievementLevel a owl:Class ;
+    rdfs:label "Achievement Level"@en ;
+    rdfs:comment "A defined tier or scale point of proficiency or performance quality."@en ;
+    rdfs:subClassOf owl:Thing ;
+    skos:altLabel "Accomplishment Level"@en,
+        "Quality Definition"@en .
+
+ea:AnalyticRubric a owl:Class ;
+    rdfs:label "Analytic Rubric"@en ;
+    rdfs:comment "A rubric evaluating various dimensions or components separately."@en ;
+    rdfs:subClassOf ea:Rubric .
+
+ea:AssessmentQuality a owl:Class ;
+    rdfs:label "Assessment Quality"@en ;
+    rdfs:comment "Psychometric and evaluative characteristics of an assessment instrument."@en ;
+    rdfs:subClassOf owl:Thing .
+
+ea:ConstructValidity a owl:Class ;
+    rdfs:label "Construct Validity"@en ;
+    rdfs:comment "The extent to which operationalizations reflect the theoretical construct; in modern theory, it subsumes other validity forms."@en ;
+    rdfs:subClassOf ea:Validity .
+
+ea:CriterionReferencedAssessment a owl:Class ;
+    rdfs:label "Criterion-Referenced Assessment"@en ;
+    rdfs:comment "Measures student performance against a fixed set of predefined criteria or learning standards."@en ;
+    rdfs:subClassOf ea:Assessment ;
+    owl:equivalentClass [ owl:intersectionOf ( ea:Assessment [ a owl:Restriction ;
+                        owl:onProperty ea:hasReferencingType ;
+                        owl:someValuesFrom ea:CriterionReferencing ] ) ] ;
+    skos:altLabel "Criterion-Referenced Test"@en,
+        "Standards-Based Assessment"@en .
+
+ea:CriterionValidity a owl:Class ;
+    rdfs:label "Criterion Validity"@en ;
+    rdfs:comment "Evidence comparing test scores against an external criterion."@en ;
+    rdfs:subClassOf ea:Validity ;
+    owl:disjointUnionOf ( ea:ConcurrentValidity ea:PredictiveValidity ) ;
+    skos:altLabel "Criterion-Related Validity"@en .
+
+ea:EvaluativeCriterion a owl:Class ;
+    rdfs:label "Evaluative Criterion"@en ;
+    rdfs:comment "A standard, objective, or dimension defining what is evaluated in a student's response."@en ;
+    rdfs:subClassOf owl:Thing .
+
+ea:ExternalOrigin a owl:Class ;
+    rdfs:label "External Origin"@en ;
+    rdfs:subClassOf ea:OriginType .
+
+ea:FillInTheBlankItem a owl:Class ;
+    rdfs:label "Fill-in-the-Blank Item"@en ;
+    rdfs:subClassOf ea:AssessmentItem ;
+    skos:altLabel "Fill-in-the-Blank Question"@en .
+
+ea:FormalAssessmentFormality a owl:Class ;
+    rdfs:label "Formal Assessment Formality"@en ;
+    rdfs:subClassOf ea:FormalityType .
+
+ea:FormativeAssessment a owl:Class ;
+    rdfs:label "Formative Assessment"@en ;
+    rdfs:comment "Conducted concurrently with instruction to monitor learning and provide in-process feedback to adapt teaching and learning."@en ;
+    rdfs:subClassOf ea:Assessment ;
+    owl:equivalentClass [ owl:intersectionOf ( ea:Assessment [ a owl:Restriction ;
+                        owl:onProperty ea:hasPurpose ;
+                        owl:someValuesFrom ea:FormativePurpose ] ) ] ;
+    skos:altLabel "Assessment for Learning"@en,
+        "Classroom Assessment"@en,
+        "Educative Assessment"@en,
+        "Formative Evaluation"@en,
+        "Formative Feedback"@en .
+
+ea:HolisticScoring a owl:Class ;
+    rdfs:label "Holistic Scoring"@en ;
+    rdfs:comment "An approach that appraises student work as an integrated entity based on overall quality."@en ;
+    rdfs:subClassOf ea:ScoringApproach ;
+    skos:altLabel "General Impression Scoring"@en,
+        "Holistic Grading"@en,
+        "Nonreductionist Grading"@en .
+
+ea:InformalAssessmentFormality a owl:Class ;
+    rdfs:label "Informal Assessment Formality"@en ;
+    rdfs:subClassOf ea:FormalityType .
+
+ea:InterRaterReliability a owl:Class ;
+    rdfs:label "Inter-Rater Reliability"@en ;
+    rdfs:comment "Degree of agreement between two or more independent raters."@en ;
+    rdfs:subClassOf ea:ReliabilityEstimate ;
+    skos:altLabel "Inter-Coder Reliability"@en,
+        "Inter-Observer Reliability"@en,
+        "Inter-Rater Agreement"@en .
+
+ea:InternalConsistencyReliability a owl:Class ;
+    rdfs:label "Internal Consistency Reliability"@en ;
+    rdfs:comment "Consistency of test results across items within a test."@en ;
+    rdfs:subClassOf ea:ReliabilityEstimate .
+
+ea:InternalOrigin a owl:Class ;
+    rdfs:label "Internal Origin"@en ;
+    rdfs:subClassOf ea:OriginType .
+
+ea:LowStakes a owl:Class ;
+    rdfs:label "Low Stakes"@en ;
+    rdfs:subClassOf ea:StakesLevel .
+
+ea:NonStandardizedStatus a owl:Class ;
+    rdfs:label "Non-Standardized Status"@en ;
+    rdfs:subClassOf ea:StandardizationStatus .
+
+ea:NormGroup a owl:Class ;
+    rdfs:label "Norm Group"@en ;
+    rdfs:comment "A statistically selected sample of examinees whose scores establish the basis for norm-referenced comparisons."@en ;
+    rdfs:subClassOf owl:Thing ;
+    skos:altLabel "Norming Group"@en,
+        "Reference Population"@en .
+
+ea:NormReferencedAssessment a owl:Class ;
+    rdfs:label "Norm-Referenced Assessment"@en ;
+    rdfs:comment "Compares and ranks test takers in relation to one another or a predefined norming group."@en ;
+    rdfs:subClassOf ea:Assessment ;
+    owl:equivalentClass [ owl:intersectionOf ( ea:Assessment [ a owl:Restriction ;
+                        owl:onProperty ea:hasReferencingType ;
+                        owl:someValuesFrom ea:NormReferencing ] ) ] ;
+    skos:altLabel "Norm-Referenced Test"@en,
+        "Normative Assessment"@en .
+
+ea:NormReferencing a owl:Class ;
+    rdfs:label "Norm Referencing"@en ;
+    rdfs:subClassOf ea:ReferencingType ;
+    skos:altLabel "Normative Assessment Referencing"@en .
+
+ea:OralMedium a owl:Class ;
+    rdfs:label "Oral Medium"@en ;
+    rdfs:subClassOf ea:AdministrationMedium .
+
+ea:PerformanceAssessment a owl:Class ;
+    rdfs:label "Performance Assessment"@en ;
+    rdfs:comment "An assessment requiring students to solve real-world problems or perform tasks resulting in products or performances."@en ;
+    rdfs:subClassOf ea:Assessment ;
+    skos:altLabel "Performance Test"@en,
+        "Performance-Based Assessment"@en .
+
+ea:PracticalMedium a owl:Class ;
+    rdfs:label "Practical Medium"@en ;
+    rdfs:subClassOf ea:AdministrationMedium .
+
+ea:ProficiencyLevel a owl:Class ;
+    rdfs:label "Proficiency Level"@en ;
+    rdfs:comment "A qualitative category on a performance scale (e.g. below basic, basic, proficient, advanced)."@en ;
+    rdfs:subClassOf owl:Thing ;
+    skos:altLabel "Achievement Level Scale"@en .
+
+ea:ScoringStrategy a owl:Class ;
+    rdfs:label "Scoring Strategy"@en ;
+    rdfs:comment "A set of guidelines or algorithm for deriving marks or grades from criteria."@en ;
+    rdfs:subClassOf owl:Thing .
+
+ea:StandardizedStatus a owl:Class ;
+    rdfs:label "Standardized Status"@en ;
+    rdfs:subClassOf ea:StandardizationStatus .
+
+ea:TestScore a owl:Class ;
+    rdfs:label "Test Score"@en ;
+    rdfs:comment "A numerical or categorical score resulting from an assessment."@en ;
+    rdfs:subClassOf owl:Thing .
+
+ea:hasFormalityType a owl:FunctionalProperty,
+        owl:ObjectProperty ;
+    rdfs:label "has formality type"@en ;
+    rdfs:domain ea:Assessment ;
+    rdfs:range ea:FormalityType ;
+    owl:inverseOf ea:isFormalityTypeOf .
+
+ea:hasOption a owl:ObjectProperty ;
+    rdfs:label "has option"@en ;
+    rdfs:domain ea:MultipleChoiceItem ;
+    rdfs:range ea:ItemOption ;
+    owl:inverseOf ea:isOptionOf .
+
+ea:hasOriginType a owl:FunctionalProperty,
+        owl:ObjectProperty ;
+    rdfs:label "has origin type"@en ;
+    rdfs:domain ea:Assessment ;
+    rdfs:range ea:OriginType ;
+    owl:inverseOf ea:isOriginTypeOf .
+
+ea:hasStandardizationStatus a owl:FunctionalProperty,
+        owl:ObjectProperty ;
+    rdfs:label "has standardization status"@en ;
+    rdfs:domain ea:Assessment ;
+    rdfs:range ea:StandardizationStatus ;
+    owl:inverseOf ea:isStandardizationStatusOf .
+
+ea:CutScore a owl:Class ;
+    rdfs:label "Cut Score"@en ;
+    rdfs:comment "A predetermined score threshold dividing passing from failing or classifying proficiency levels."@en ;
+    rdfs:subClassOf owl:Thing ;
+    skos:altLabel "Cut-Off Score"@en,
+        "Passing Score"@en .
+
+ea:DistractorOption a owl:Class ;
+    rdfs:label "Distractor Option"@en ;
+    rdfs:subClassOf ea:ItemOption ;
+    skos:altLabel "Distractor"@en,
+        "Incorrect Answer"@en .
+
+ea:Feedback a owl:Class ;
+    rdfs:label "Feedback"@en ;
+    rdfs:comment "Information returned to students or instructors regarding performance."@en ;
+    rdfs:subClassOf owl:Thing .
+
+ea:HighStakes a owl:Class ;
+    rdfs:label "High Stakes"@en ;
+    rdfs:subClassOf ea:StakesLevel .
+
+ea:ItemStem a owl:Class ;
+    rdfs:label "Item Stem"@en ;
+    rdfs:comment "The opening portion of an assessment item presenting the problem, question, or context."@en ;
+    rdfs:subClassOf owl:Thing .
+
+ea:ObjectiveItem a owl:Class ;
+    rdfs:label "Objective Item"@en ;
+    rdfs:subClassOf ea:AssessmentItem ;
+    owl:disjointWith ea:SubjectiveItem ;
+    owl:equivalentClass [ owl:intersectionOf ( ea:AssessmentItem [ a owl:Restriction ;
+                        owl:onProperty ea:hasScoringObjectivity ;
+                        owl:someValuesFrom ea:ObjectiveScoring ] ) ] .
+
+ea:ObjectiveScoring a owl:Class ;
+    rdfs:label "Objective Scoring"@en ;
+    rdfs:subClassOf ea:ScoringObjectivity .
+
+ea:SubjectiveItem a owl:Class ;
+    rdfs:label "Subjective Item"@en ;
+    rdfs:subClassOf ea:AssessmentItem ;
+    owl:equivalentClass [ owl:intersectionOf ( ea:AssessmentItem [ a owl:Restriction ;
+                        owl:onProperty ea:hasScoringObjectivity ;
+                        owl:someValuesFrom ea:SubjectiveScoring ] ) ] ;
+    skos:altLabel "Open-Ended Item"@en .
+
+ea:SubjectiveScoring a owl:Class ;
+    rdfs:label "Subjective Scoring"@en ;
+    rdfs:subClassOf ea:ScoringObjectivity .
+
+ea:hasAdministrationMedium a owl:ObjectProperty ;
+    rdfs:label "has administration medium"@en ;
+    rdfs:domain ea:Assessment ;
+    rdfs:range ea:AdministrationMedium ;
+    owl:inverseOf ea:isAdministrationMediumOf .
+
+ea:hasStakesLevel a owl:FunctionalProperty,
+        owl:ObjectProperty ;
+    rdfs:label "has stakes level"@en ;
+    rdfs:domain ea:Assessment ;
+    rdfs:range ea:StakesLevel ;
+    owl:inverseOf ea:isStakesLevelOf .
+
+ea:CorrectiveFeedback a owl:Class ;
+    rdfs:label "Corrective Feedback"@en ;
+    rdfs:comment "Information provided to learners to correct errors and improve learning."@en ;
+    rdfs:subClassOf ea:Feedback .
+
+ea:FormalityType a owl:Class ;
+    rdfs:label "Formality Type"@en ;
+    rdfs:comment "Distinction between assessments contributing to formal grades versus casual non-grading procedures."@en ;
+    rdfs:subClassOf owl:Thing ;
+    owl:disjointUnionOf ( ea:FormalAssessmentFormality ea:InformalAssessmentFormality ) .
+
+ea:ItemOption a owl:Class ;
+    rdfs:label "Item Option"@en ;
+    rdfs:subClassOf owl:Thing ;
+    owl:disjointUnionOf ( ea:KeyOption ea:DistractorOption ) ;
+    skos:altLabel "Alternative Answer"@en .
+
+ea:KeyOption a owl:Class ;
+    rdfs:label "Key Option"@en ;
+    rdfs:subClassOf ea:ItemOption ;
+    skos:altLabel "Correct Answer"@en,
+        "Key"@en .
+
+ea:MeasurementError a owl:Class ;
+    rdfs:label "Measurement Error"@en ;
+    rdfs:comment "Discrepancy between obtained test scores and true scores."@en ;
+    rdfs:subClassOf owl:Thing ;
+    owl:disjointUnionOf ( ea:RandomError ea:SystematicError ) .
+
+ea:OriginType a owl:Class ;
+    rdfs:label "Origin Type"@en ;
+    rdfs:comment "Distinction between assessments set and marked internally by schools versus external bodies."@en ;
+    rdfs:subClassOf owl:Thing ;
+    owl:disjointUnionOf ( ea:InternalOrigin ea:ExternalOrigin ) .
+
+ea:Reliability a owl:Class ;
+    rdfs:label "Reliability"@en ;
+    rdfs:comment "The consistency of an assessment, or freedom from measurement error."@en ;
+    rdfs:subClassOf ea:AssessmentQuality ;
+    skos:altLabel "Test Reliability"@en .
+
+ea:ReliabilityEstimate a owl:Class ;
+    rdfs:label "Reliability Estimate"@en ;
+    rdfs:comment "Methods and statistical classes used to estimate test reliability."@en ;
+    rdfs:subClassOf ea:Reliability ;
+    owl:disjointUnionOf ( ea:TestRetestReliability ea:ParallelFormsReliability ea:InternalConsistencyReliability ea:InterRaterReliability ) .
+
+ea:ReliabilityFactorCategory a owl:Class ;
+    rdfs:label "Reliability Factor Category"@en ;
+    rdfs:comment "Categories of sources of error affecting reliability."@en ;
+    rdfs:subClassOf owl:Thing ;
+    owl:disjointUnionOf ( ea:StudentRelatedReliability ea:RaterRelatedReliability ea:TestAdministrationRelatedReliability ea:TestRelatedReliability ) .
+
+ea:ScoringApproach a owl:Class ;
+    rdfs:label "Scoring Approach"@en ;
+    rdfs:comment "Methodology used to grade or score constructed responses."@en ;
+    rdfs:subClassOf owl:Thing .
+
+ea:ScoringObjectivity a owl:Class ;
+    rdfs:label "Scoring Objectivity"@en ;
+    rdfs:comment "Classification of scoring and questioning based on whether a single correct answer exists."@en ;
+    rdfs:subClassOf owl:Thing ;
+    owl:disjointUnionOf ( ea:ObjectiveScoring ea:SubjectiveScoring ) .
+
+ea:StakesLevel a owl:Class ;
+    rdfs:label "Stakes Level"@en ;
+    rdfs:comment "The severity or consequence level of the assessment outcomes."@en ;
+    rdfs:subClassOf owl:Thing ;
+    owl:disjointUnionOf ( ea:HighStakes ea:LowStakes ) .
+
+ea:StandardizationStatus a owl:Class ;
+    rdfs:label "Standardization Status"@en ;
+    rdfs:comment "Indication of whether testing conditions and scoring are uniform."@en ;
+    rdfs:subClassOf owl:Thing ;
+    owl:disjointUnionOf ( ea:StandardizedStatus ea:NonStandardizedStatus ) .
+
+ea:WrittenMedium a owl:Class ;
+    rdfs:label "Written Medium"@en ;
+    rdfs:subClassOf ea:AdministrationMedium .
+
+ea:hasReferencingType a owl:ObjectProperty ;
+    rdfs:label "has referencing type"@en ;
+    rdfs:domain ea:Assessment ;
+    rdfs:range ea:ReferencingType ;
+    owl:inverseOf ea:isReferencingTypeOf .
+
+ea:hasScoringObjectivity a owl:FunctionalProperty,
+        owl:ObjectProperty ;
+    rdfs:label "has scoring objectivity"@en ;
+    rdfs:domain ea:Assessment ;
+    rdfs:range ea:ScoringObjectivity ;
+    owl:inverseOf ea:isScoringObjectivityOf .
+
+ea:AdministrationMedium a owl:Class ;
+    rdfs:label "Administration Medium"@en ;
+    rdfs:comment "The format or delivery mode through which an assessment is completed."@en ;
+    rdfs:subClassOf owl:Thing ;
+    owl:disjointUnionOf ( ea:WrittenMedium ea:OralMedium ea:PracticalMedium ) .
+
+ea:LearningOutcome a owl:Class ;
+    rdfs:label "Learning Outcome"@en ;
+    rdfs:comment "A statement describing what students should know or be able to do."@en ;
+    rdfs:subClassOf owl:Thing ;
+    owl:disjointUnionOf ( ea:IntendedLearningOutcome ea:MeasuredLearningOutcome ea:UnintendedLearningOutcome ) .
+
+ea:ReferencingType a owl:Class ;
+    rdfs:label "Referencing Type"@en ;
+    rdfs:comment "The framework against which assessment results or test scores are interpreted."@en ;
+    rdfs:subClassOf owl:Thing .
+
+ea:StandardizedTest a owl:Class ;
+    rdfs:label "Standardized Test"@en ;
+    rdfs:comment "A test administered and scored in a predetermined, standard, and consistent manner across test takers."@en ;
+    rdfs:subClassOf ea:Test ;
+    owl:disjointWith ea:NonStandardizedTest ;
+    owl:equivalentClass [ owl:intersectionOf ( ea:Test [ a owl:Restriction ;
+                        owl:onProperty ea:hasStandardizationStatus ;
+                        owl:someValuesFrom ea:StandardizedStatus ] ) ] ;
+    skos:altLabel "Standardized Assessment"@en .
+
+ea:hasPurpose a owl:ObjectProperty ;
+    rdfs:label "has purpose"@en ;
+    rdfs:domain ea:Assessment ;
+    rdfs:range ea:AssessmentPurpose ;
+    owl:inverseOf ea:isPurposeOf .
+
+ea:Validity a owl:Class ;
+    rdfs:label "Validity"@en ;
+    rdfs:comment "The extent to which an assessment measures what it purports to measure."@en ;
+    rdfs:subClassOf ea:AssessmentQuality ;
+    skos:altLabel "Test Validity"@en .
+
+ea:AssessmentItem a owl:Class ;
+    rdfs:label "Assessment Item"@en ;
+    rdfs:comment "A discrete component or question within an assessment or test."@en ;
+    rdfs:subClassOf owl:Thing ;
+    skos:altLabel "Question"@en,
+        "Test Item"@en .
+
+ea:AssessmentPurpose a owl:Class ;
+    rdfs:label "Assessment Purpose"@en ;
+    rdfs:comment "The functional objective or role guiding an assessment practice."@en ;
+    rdfs:subClassOf owl:Thing .
+
+ea:MultipleChoiceItem a owl:Class ;
+    rdfs:label "Multiple-Choice Item"@en ;
+    rdfs:comment "An objective item with a stem and several options where exactly one option is keyed as correct."@en ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:onClass ea:ItemStem ;
+            owl:onProperty ea:hasStem ;
+            owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ],
+        [ a owl:Restriction ;
+            owl:onClass ea:KeyOption ;
+            owl:onProperty ea:hasKeyOption ;
+            owl:qualifiedCardinality "1"^^xsd:nonNegativeInteger ],
+        ea:ObjectiveItem ;
+    skos:altLabel "MCQ"@en,
+        "Multiple-Choice Question"@en,
+        "One-Best-Answer Question"@en .
+
+ea:Rubric a owl:Class ;
+    rdfs:label "Rubric"@en ;
+    rdfs:comment "A scoring guide containing evaluative criteria, achievement levels, and a scoring strategy."@en ;
+    rdfs:subClassOf owl:Thing ;
+    skos:altLabel "Scoring Guide"@en .
+
+ea:Test a owl:Class ;
+    rdfs:label "Test"@en ;
+    rdfs:comment "An assessment intended to measure a test-taker's knowledge, skill, aptitude, physical fitness, or standing in a topic."@en ;
+    rdfs:subClassOf ea:Assessment ;
+    skos:altLabel "Exam"@en,
+        "Examination"@en .
+
+ea:Assessment a owl:Class ;
+    rdfs:label "Assessment"@en ;
+    rdfs:comment "The systematic process of documenting and using empirical data on knowledge, skill, attitudes, aptitude, and beliefs to refine programs and improve student learning."@en ;
+    rdfs:subClassOf owl:Thing ;
+    skos:altLabel "Educational Assessment"@en,
+        "Educational Evaluation"@en .
+

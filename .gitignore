@@ -1,0 +1,7 @@
+.venv*/
+.DS_Store
+__pycache__/
+*.pyc
+results/pipeline_reference/
+results/my_*/
+scoring_check/

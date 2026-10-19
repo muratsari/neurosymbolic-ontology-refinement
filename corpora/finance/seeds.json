@@ -1,0 +1,578 @@
+{
+  "domain": "finance",
+  "sub_domain": "Financial Instruments & Securities",
+  "concept_ttl": "../../reference_ontologies/securities.ttl",
+  "boundary": {
+    "in_scope": "The taxonomy of financial securities and their defining attributes: equity/stock (common stock, preferred stock, depositary receipts); debt/bonds (government, corporate and municipal bonds, money-market instruments such as treasury bills, commercial paper and certificates of deposit, and structured/asset-backed and mortgage-backed debt); derivatives (options including calls and puts, futures, forwards, swaps including interest-rate, currency and credit-default swaps, and warrants); and pooled funds (mutual funds, exchange-traded funds, hedge funds, money-market funds and closed-end funds), together with their issuers (governments, corporations, municipalities and supranational entities) and underlying assets (commodities, currencies, market indices, interest rates and real estate). The instruments' defining attributes are in scope (issuer, maturity, coupon, dividend, face value, strike price, notional amount and net asset value), as are the relations among them (issuedBy/hasIssuer, hasUnderlying, paysCoupon, hasMaturity, convertibleInto, tracksIndex).",
+    "out_of_scope": "Trading mechanics, order types and market microstructure; specific companies, tickers or other real-world instances of instruments; accounting and tax treatment beyond plain definitions; valuation/pricing models and risk analytics; and regulatory filing or issuance procedures. These are excluded so that the corpus scope equals the gold-standard TBox, which covers only the taxonomy of securities, their issuers, underlying assets and defining attributes, and explicitly excludes trading mechanics, accounting/tax treatment and real instances."
+  },
+  "wikipedia_seeds": [
+    "Security (finance)",
+    "Financial instrument",
+    "Stock",
+    "Common stock",
+    "Preferred stock",
+    "Depositary receipt",
+    "Bond (finance)",
+    "Government bond",
+    "Corporate bond",
+    "Municipal bond",
+    "Money market",
+    "Commercial paper",
+    "Certificate of deposit",
+    "Convertible bond",
+    "Zero-coupon bond",
+    "Asset-backed security",
+    "Mortgage-backed security",
+    "Derivative (finance)",
+    "Option (finance)",
+    "Futures contract",
+    "Forward contract",
+    "Swap (finance)",
+    "Interest rate swap",
+    "Credit default swap",
+    "Warrant (finance)",
+    "Equity derivative",
+    "Mutual fund",
+    "Exchange-traded fund",
+    "Hedge fund",
+    "Closed-end fund",
+    "Coupon (finance)",
+    "Maturity (finance)",
+    "Face value",
+    "Par value",
+    "Underlying",
+    "Yield (finance)",
+    "Stock market",
+    "Share capital",
+    "Strike price"
+  ],
+  "drop_sections": [
+    "taxation",
+    "tax",
+    "tax treatment",
+    "accounting",
+    "accounting treatment",
+    "regulation",
+    "regulatory",
+    "regulatory framework",
+    "trading",
+    "trading mechanics",
+    "valuation",
+    "pricing",
+    "pricing and valuation",
+    "risk",
+    "risks",
+    "criticism",
+    "criticisms",
+    "controversy",
+    "controversies",
+    "settlement",
+    "clearing",
+    "market microstructure",
+    "advantages and disadvantages",
+    "advantages",
+    "disadvantages",
+    "by country",
+    "comparison",
+    "examples"
+  ],
+  "expansion": {
+    "enabled": true,
+    "concept_matched_only": true
+  },
+  "concept_synonyms": {
+    "Security": [
+      "securities"
+    ],
+    "Equity": [
+      "equity security",
+      "equity securities",
+      "shares",
+      "share",
+      "stock"
+    ],
+    "Debt Instrument": [
+      "debt instrument",
+      "debt security",
+      "debt securities",
+      "fixed income security",
+      "fixed-income security",
+      "fixed income"
+    ],
+    "Derivative": [
+      "derivatives",
+      "derivative contract",
+      "derivative instrument"
+    ],
+    "Fund": [
+      "funds",
+      "investment fund",
+      "pooled investment",
+      "collective investment"
+    ],
+    "Common Stock": [
+      "common stock",
+      "common shares",
+      "common share",
+      "ordinary shares",
+      "ordinary share"
+    ],
+    "Preferred Stock": [
+      "preferred stock",
+      "preferred shares",
+      "preferred share",
+      "preference shares",
+      "preference share"
+    ],
+    "Depositary Receipt": [
+      "depositary receipt",
+      "depository receipt",
+      "american depositary receipt",
+      "ADR",
+      "global depositary receipt",
+      "GDR"
+    ],
+    "Bond": [
+      "bonds"
+    ],
+    "Government Bond": [
+      "government bonds",
+      "sovereign bond",
+      "treasury bond",
+      "treasury note",
+      "sovereign debt"
+    ],
+    "Corporate Bond": [
+      "corporate bonds"
+    ],
+    "Municipal Bond": [
+      "municipal bonds",
+      "muni bond",
+      "muni"
+    ],
+    "Money Market Instrument": [
+      "money market instrument",
+      "money-market instrument",
+      "money market instruments",
+      "money market security"
+    ],
+    "Treasury Bill": [
+      "treasury bill",
+      "treasury bills",
+      "t-bill",
+      "t-bills"
+    ],
+    "Commercial Paper": [
+      "commercial papers"
+    ],
+    "Certificate of Deposit": [
+      "certificate of deposit",
+      "certificates of deposit"
+    ],
+    "Convertible Bond": [
+      "convertible bonds",
+      "convertible note",
+      "convertible security",
+      "convertible debt"
+    ],
+    "Zero-Coupon Bond": [
+      "zero coupon bond",
+      "zero-coupon bond",
+      "zero-coupon bonds",
+      "zero coupon",
+      "zero-coupon"
+    ],
+    "Asset-Backed Security": [
+      "asset backed security",
+      "asset-backed securities",
+      "ABS"
+    ],
+    "Mortgage-Backed Security": [
+      "mortgage backed security",
+      "mortgage-backed securities",
+      "MBS"
+    ],
+    "Option": [
+      "options"
+    ],
+    "Call Option": [
+      "call option",
+      "call options"
+    ],
+    "Put Option": [
+      "put option",
+      "put options"
+    ],
+    "Future": [
+      "futures contract",
+      "futures contracts",
+      "futures"
+    ],
+    "Forward": [
+      "forward contract",
+      "forward contracts"
+    ],
+    "Swap": [
+      "swaps"
+    ],
+    "Interest Rate Swap": [
+      "interest rate swaps",
+      "interest-rate swap"
+    ],
+    "Currency Swap": [
+      "currency swaps",
+      "cross-currency swap",
+      "foreign exchange swap",
+      "fx swap"
+    ],
+    "Credit Default Swap": [
+      "credit default swaps",
+      "CDS"
+    ],
+    "Warrant": [
+      "warrants"
+    ],
+    "Equity Derivative": [
+      "equity derivatives",
+      "equity option",
+      "stock option"
+    ],
+    "Mutual Fund": [
+      "mutual funds",
+      "open-end fund",
+      "open-ended fund",
+      "open-end investment company"
+    ],
+    "Exchange-Traded Fund": [
+      "exchange traded fund",
+      "exchange-traded funds",
+      "ETF",
+      "ETFs"
+    ],
+    "Hedge Fund": [
+      "hedge funds"
+    ],
+    "Money Market Fund": [
+      "money market fund",
+      "money-market fund",
+      "money market funds"
+    ],
+    "Closed-End Fund": [
+      "closed end fund",
+      "closed-end funds",
+      "closed-end investment company"
+    ],
+    "Issuer": [
+      "issuers",
+      "issuing entity"
+    ],
+    "Government": [
+      "sovereign",
+      "national government",
+      "federal government"
+    ],
+    "Corporation": [
+      "corporate issuer",
+      "incorporated company"
+    ],
+    "Municipality": [
+      "municipalities",
+      "municipal government",
+      "local government"
+    ],
+    "Supranational Entity": [
+      "supranational",
+      "supranational entity",
+      "supranational organisation",
+      "supranational organization",
+      "supranational issuer",
+      "multilateral development bank"
+    ],
+    "Asset": [
+      "assets",
+      "underlying asset",
+      "underlying"
+    ],
+    "Commodity": [
+      "commodities"
+    ],
+    "Currency": [
+      "currencies",
+      "foreign exchange",
+      "foreign currency"
+    ],
+    "Market Index": [
+      "stock market index",
+      "stock index",
+      "market index",
+      "stock indices",
+      "stock market indices",
+      "benchmark index"
+    ],
+    "Interest Rate Asset": [
+      "interest rate",
+      "interest-rate",
+      "reference rate",
+      "reference interest rate",
+      "benchmark interest rate"
+    ],
+    "Real Estate": [
+      "real estate",
+      "real-estate",
+      "real property"
+    ]
+  },
+  "other_layers": [
+    {
+      "source_type": "terminological",
+      "title": "ECB Glossary (European Central Bank) - letter U",
+      "url": "https://www.ecb.europa.eu/services/glossary/html/glossu.en.html",
+      "language": "English",
+      "license": "© European Central Bank - reproduction permitted with acknowledgement of source",
+      "access_note": "Client-side (JS) rendered; fetched with headless Chrome (render:true).",
+      "fetch": true,
+      "render": true
+    },
+    {
+      "source_type": "terminological",
+      "title": "ECB Glossary (European Central Bank) - letter T",
+      "url": "https://www.ecb.europa.eu/services/glossary/html/glosst.en.html",
+      "language": "English",
+      "license": "© European Central Bank - reproduction permitted with acknowledgement of source",
+      "access_note": "Client-side (JS) rendered; fetched with headless Chrome (render:true).",
+      "fetch": true,
+      "render": true
+    },
+    {
+      "source_type": "terminological",
+      "title": "ECB Glossary (European Central Bank) - letter R",
+      "url": "https://www.ecb.europa.eu/services/glossary/html/glossr.en.html",
+      "language": "English",
+      "license": "© European Central Bank - reproduction permitted with acknowledgement of source",
+      "access_note": "Client-side (JS) rendered; fetched with headless Chrome (render:true).",
+      "fetch": true,
+      "render": true
+    },
+    {
+      "source_type": "terminological",
+      "title": "ECB Glossary (European Central Bank) - letter P",
+      "url": "https://www.ecb.europa.eu/services/glossary/html/glossp.en.html",
+      "language": "English",
+      "license": "© European Central Bank - reproduction permitted with acknowledgement of source",
+      "access_note": "Client-side (JS) rendered; fetched with headless Chrome (render:true).",
+      "fetch": true,
+      "render": true
+    },
+    {
+      "source_type": "terminological",
+      "title": "ECB Glossary (European Central Bank) - letter G",
+      "url": "https://www.ecb.europa.eu/services/glossary/html/glossg.en.html",
+      "language": "English",
+      "license": "© European Central Bank - reproduction permitted with acknowledgement of source",
+      "access_note": "Client-side (JS) rendered; fetched with headless Chrome (render:true).",
+      "fetch": true,
+      "render": true
+    },
+    {
+      "source_type": "terminological",
+      "title": "ECB Glossary (European Central Bank) - letter A",
+      "url": "https://www.ecb.europa.eu/services/glossary/html/glossa.en.html",
+      "language": "English",
+      "license": "© European Central Bank - reproduction permitted with acknowledgement of source",
+      "access_note": "Client-side (JS) rendered; fetched with headless Chrome (render:true).",
+      "fetch": true,
+      "render": true
+    },
+    {
+      "source_type": "terminological",
+      "title": "ECB Glossary (European Central Bank) - letter W",
+      "url": "https://www.ecb.europa.eu/services/glossary/html/glossw.en.html",
+      "language": "English",
+      "license": "© European Central Bank - reproduction permitted with acknowledgement of source",
+      "access_note": "Client-side (JavaScript) rendered; fetched with headless Chrome (render:true); retrieved 2026-06-29.",
+      "fetch": true,
+      "render": true
+    },
+    {
+      "source_type": "terminological",
+      "title": "ECB Glossary (European Central Bank) - letter S",
+      "url": "https://www.ecb.europa.eu/services/glossary/html/glosss.en.html",
+      "language": "English",
+      "license": "© European Central Bank - reproduction permitted with acknowledgement of source",
+      "access_note": "Client-side (JavaScript) rendered; fetched with headless Chrome (render:true); retrieved 2026-06-29.",
+      "fetch": true,
+      "render": true
+    },
+    {
+      "source_type": "terminological",
+      "title": "ECB Glossary (European Central Bank) - letter O",
+      "url": "https://www.ecb.europa.eu/services/glossary/html/glosso.en.html",
+      "language": "English",
+      "license": "© European Central Bank - reproduction permitted with acknowledgement of source",
+      "access_note": "Client-side (JavaScript) rendered; fetched with headless Chrome (render:true); retrieved 2026-06-29.",
+      "fetch": true,
+      "render": true
+    },
+    {
+      "source_type": "terminological",
+      "title": "ECB Glossary (European Central Bank) - letter M",
+      "url": "https://www.ecb.europa.eu/services/glossary/html/glossm.en.html",
+      "language": "English",
+      "license": "© European Central Bank - reproduction permitted with acknowledgement of source",
+      "access_note": "Client-side (JavaScript) rendered; fetched with headless Chrome (render:true); retrieved 2026-06-29.",
+      "fetch": true,
+      "render": true
+    },
+    {
+      "source_type": "terminological",
+      "title": "ECB Glossary (European Central Bank) - letter I",
+      "url": "https://www.ecb.europa.eu/services/glossary/html/glossi.en.html",
+      "language": "English",
+      "license": "© European Central Bank - reproduction permitted with acknowledgement of source",
+      "access_note": "Client-side (JavaScript) rendered; fetched with headless Chrome (render:true); retrieved 2026-06-29.",
+      "fetch": true,
+      "render": true
+    },
+    {
+      "source_type": "terminological",
+      "title": "ECB Glossary (European Central Bank) - letter F",
+      "url": "https://www.ecb.europa.eu/services/glossary/html/glossf.en.html",
+      "language": "English",
+      "license": "© European Central Bank - reproduction permitted with acknowledgement of source",
+      "access_note": "Client-side (JavaScript) rendered; fetched with headless Chrome (render:true); retrieved 2026-06-29.",
+      "fetch": true,
+      "render": true
+    },
+    {
+      "source_type": "terminological",
+      "title": "ECB Glossary (European Central Bank) - letter E",
+      "url": "https://www.ecb.europa.eu/services/glossary/html/glosse.en.html",
+      "language": "English",
+      "license": "© European Central Bank - reproduction permitted with acknowledgement of source",
+      "access_note": "Client-side (JavaScript) rendered; fetched with headless Chrome (render:true); retrieved 2026-06-29.",
+      "fetch": true,
+      "render": true
+    },
+    {
+      "source_type": "terminological",
+      "title": "ECB Glossary (European Central Bank) - letter D",
+      "url": "https://www.ecb.europa.eu/services/glossary/html/glossd.en.html",
+      "language": "English",
+      "license": "© European Central Bank - reproduction permitted with acknowledgement of source",
+      "access_note": "Client-side (JavaScript) rendered; fetched with headless Chrome (render:true); retrieved 2026-06-29.",
+      "fetch": true,
+      "render": true
+    },
+    {
+      "source_type": "terminological",
+      "title": "ECB Glossary (European Central Bank) - letter C",
+      "url": "https://www.ecb.europa.eu/services/glossary/html/glossc.en.html",
+      "language": "English",
+      "license": "© European Central Bank - reproduction permitted with acknowledgement of source",
+      "access_note": "Client-side (JavaScript) rendered; fetched with headless Chrome (render:true); retrieved 2026-06-29.",
+      "fetch": true,
+      "render": true
+    },
+    {
+      "source_type": "terminological",
+      "title": "ECB Glossary (European Central Bank) - letter B",
+      "url": "https://www.ecb.europa.eu/services/glossary/html/glossb.en.html",
+      "language": "English",
+      "license": "© European Central Bank - reproduction permitted with acknowledgement of source",
+      "access_note": "Client-side (JavaScript) rendered; fetched with headless Chrome (render:true); retrieved 2026-06-29.",
+      "fetch": true,
+      "render": true
+    },
+    {
+      "source_type": "terminological",
+      "title": "Glossary of economics (Wikipedia)",
+      "url": "https://en.wikipedia.org/wiki/Glossary_of_economics",
+      "language": "English",
+      "license": "CC BY-SA 4.0",
+      "access_note": "Wikipedia-family term -> definition glossary; openly licensed and fetchable as HTML. fetch:false because its whole-page extract (~28k words of broad, mostly out-of-scope economics terms) dominates the corpus and adds no concept beyond the encyclopedic layer (which already covers 47/47); consult the securities entries manually.",
+      "fetch": false
+    },
+    {
+      "source_type": "terminological",
+      "title": "BIS Glossary (Bank for International Settlements)",
+      "url": "https://www.bis.org/glossary.htm",
+      "language": "English",
+      "license": "(c) BIS - terms of use restrict bulk reuse/scraping",
+      "access_note": "Authoritative finance/derivatives term -> definition glossary (source of underlying/notional/swap definitions). ToS restricts scraping -> fetch:false, consult manually.",
+      "fetch": false
+    },
+    {
+      "source_type": "reference",
+      "title": "OpenStax, Principles of Finance - Ch.10 Bonds and Bond Valuation; Ch.11 Stocks and Stock Valuation",
+      "url": "https://openstax.org/books/principles-finance/pages/10-introduction",
+      "language": "English",
+      "license": "CC BY 4.0",
+      "access_note": "Open educational resource (relation-dense instrument-type chapters). Pages are React/JS-rendered and also distributed as PDF -> fetch:false, ingest the PDF/section export manually.",
+      "fetch": false
+    },
+    {
+      "source_type": "normative",
+      "title": "IFRS 9 Financial Instruments - IFRS Foundation standard summary",
+      "url": "https://www.ifrs.org/issued-standards/list-of-standards/ifrs-9-financial-instruments/",
+      "language": "English",
+      "license": "(c) IFRS Foundation - terms of use restrict reuse",
+      "access_note": "Normative classification of financial instruments (debt vs equity, ABS) - source of disjointness/definitional constraints. ToS/PDF -> fetch:false, consult manually.",
+      "fetch": false
+    },
+    {
+      "source_type": "normative",
+      "title": "SEC / Investor.gov - statutory definition of a security (Securities Act of 1933 sec. 2(a)(1)) and issuer",
+      "url": "https://www.investor.gov/introduction-investing/investing-basics/glossary",
+      "language": "English",
+      "license": "U.S. government work - public domain",
+      "access_note": "Authoritative legal definition of 'security' and 'issuer' (the hasIssuer cardinality anchor). Statutory text is PDF/site-structured -> fetch:false, consult manually.",
+      "fetch": false
+    },
+    {
+      "source_type": "reference",
+      "title": "Open Risk Manual (financial risk wiki)",
+      "url": "https://www.openriskmanual.org/wiki/",
+      "language": "English",
+      "license": "CC BY-SA",
+      "access_note": "NOT auto-fetched: pages are heavily template-driven; action=parse yields negligible prose. Consult manually.",
+      "fetch": false
+    }
+  ],
+  "wiki_sources": [
+    {
+      "name": "Simple English Wikipedia",
+      "api": "https://simple.wikipedia.org/w/api.php",
+      "mode": "extracts",
+      "license": "CC BY-SA 4.0",
+      "source_type": "encyclopedic",
+      "titles": [
+        "Security (finance)",
+        "Financial instrument",
+        "Stock",
+        "Share (finance)",
+        "Bond (finance)",
+        "Derivative (finance)",
+        "Option (finance)",
+        "Futures contract",
+        "Mutual fund",
+        "Exchange-traded fund",
+        "Hedge fund",
+        "Dividend",
+        "Interest"
+      ]
+    },
+    {
+      "name": "Wikibooks: Financial Derivatives",
+      "api": "https://en.wikibooks.org/w/api.php",
+      "mode": "extracts",
+      "license": "CC BY-SA 4.0",
+      "source_type": "reference",
+      "titles": [
+        "Financial Derivatives",
+        "Principles of Finance/What is Finance?"
+      ]
+    }
+  ],
+  "max_units_per_source": 150
+}

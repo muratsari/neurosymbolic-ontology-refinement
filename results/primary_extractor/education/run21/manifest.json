@@ -1,0 +1,122 @@
+{
+  "domain": "assessment",
+  "run": "run21",
+  "settings": {
+    "max_output_tokens": 64000,
+    "reasoning": "high",
+    "prompt_cache": "extraction call (ttl 1h where configurable)",
+    "correct_mode": "rewrite",
+    "chunk_chars": 600000,
+    "max_refine_iters": 5,
+    "hard_error_types": [
+      "inconsistency",
+      "unsatisfiable_class"
+    ]
+  },
+  "telemetry": {
+    "llm": "anthropic:claude-sonnet-5",
+    "wall_seconds": 968.6,
+    "calls": 3,
+    "in_tokens": 216216,
+    "cache_read_tokens": 199842,
+    "cache_write_tokens": 0,
+    "out_tokens": 113207,
+    "thinking_tokens": 0,
+    "api_seconds": 958.8,
+    "parse_attempts": 3,
+    "parse_failures": 0,
+    "truncated_replies": 0,
+    "served_model_ids": [
+      "claude-sonnet-5"
+    ],
+    "refine_iterations": 1,
+    "refine_stop": "no_hard_errors"
+  },
+  "refine_history": [
+    {
+      "iter": 0,
+      "n_errors": 8,
+      "n_hard": 8,
+      "C": 0.9441,
+      "unsat": 8
+    },
+    {
+      "iter": 1,
+      "n_errors": 0,
+      "n_hard": 0,
+      "C": 1.0,
+      "unsat": 0
+    }
+  ],
+  "prune_info": {
+    "removed_classes": 8,
+    "removed_triples": 69,
+    "removed_axioms": 1
+  },
+  "scores": [
+    {
+      "domain": "assessment",
+      "run": "run21",
+      "config": "llm_only",
+      "llm": "anthropic:claude-sonnet-5",
+      "consistency_C": 0.9441,
+      "consistent": true,
+      "unsatisfiable": 8,
+      "n_errors": 8,
+      "gen_classes": 143,
+      "f1": 0.3714,
+      "precision": 0.2991,
+      "recall": 0.4895,
+      "concept_f1": 0.4658,
+      "relation_f1": 0.2405
+    },
+    {
+      "domain": "assessment",
+      "run": "run21",
+      "config": "prune",
+      "llm": "anthropic:claude-sonnet-5",
+      "consistency_C": 1.0,
+      "consistent": true,
+      "unsatisfiable": 0,
+      "n_errors": 0,
+      "gen_classes": 135,
+      "f1": 0.3137,
+      "precision": 0.2617,
+      "recall": 0.3916,
+      "concept_f1": 0.4076,
+      "relation_f1": 0.1781
+    },
+    {
+      "domain": "assessment",
+      "run": "run21",
+      "config": "single_pass",
+      "llm": "anthropic:claude-sonnet-5",
+      "consistency_C": 1.0,
+      "consistent": true,
+      "unsatisfiable": 0,
+      "n_errors": 0,
+      "gen_classes": 143,
+      "f1": 0.3763,
+      "precision": 0.3057,
+      "recall": 0.4895,
+      "concept_f1": 0.4658,
+      "relation_f1": 0.2484
+    },
+    {
+      "domain": "assessment",
+      "run": "run21",
+      "config": "hybrid",
+      "llm": "anthropic:claude-sonnet-5",
+      "consistency_C": 1.0,
+      "consistent": true,
+      "unsatisfiable": 0,
+      "n_errors": 0,
+      "gen_classes": 143,
+      "f1": 0.3763,
+      "precision": 0.3057,
+      "recall": 0.4895,
+      "concept_f1": 0.4658,
+      "relation_f1": 0.2484
+    }
+  ]
+}

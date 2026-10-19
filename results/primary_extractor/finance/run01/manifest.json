@@ -1,0 +1,115 @@
+{
+  "domain": "securities",
+  "run": "run01",
+  "settings": {
+    "max_output_tokens": 64000,
+    "reasoning": "high",
+    "prompt_cache": "extraction call (ttl 1h where configurable)",
+    "correct_mode": "rewrite",
+    "chunk_chars": 600000,
+    "max_refine_iters": 5,
+    "hard_error_types": [
+      "inconsistency",
+      "unsatisfiable_class"
+    ]
+  },
+  "telemetry": {
+    "llm": "anthropic:claude-sonnet-5",
+    "wall_seconds": 534.0,
+    "calls": 2,
+    "in_tokens": 172603,
+    "cache_read_tokens": 0,
+    "cache_write_tokens": 155504,
+    "out_tokens": 63628,
+    "thinking_tokens": 0,
+    "api_seconds": 524.8,
+    "parse_attempts": 2,
+    "parse_failures": 0,
+    "truncated_replies": 0,
+    "served_model_ids": [
+      "claude-sonnet-5"
+    ],
+    "refine_iterations": 0,
+    "refine_stop": "gate_rejected"
+  },
+  "refine_history": [
+    {
+      "iter": 0,
+      "n_errors": 1,
+      "n_hard": 1,
+      "C": 0.0,
+      "unsat": 0
+    }
+  ],
+  "prune_info": {
+    "removed_classes": 0,
+    "removed_triples": 0,
+    "removed_axioms": 0
+  },
+  "scores": [
+    {
+      "domain": "securities",
+      "run": "run01",
+      "config": "llm_only",
+      "llm": "anthropic:claude-sonnet-5",
+      "consistency_C": 0.0,
+      "consistent": false,
+      "unsatisfiable": 0,
+      "n_errors": 1,
+      "gen_classes": 123,
+      "f1": 0.2344,
+      "precision": 0.2271,
+      "recall": 0.2423,
+      "concept_f1": 0.3423,
+      "relation_f1": 0.1006
+    },
+    {
+      "domain": "securities",
+      "run": "run01",
+      "config": "prune",
+      "llm": "anthropic:claude-sonnet-5",
+      "consistency_C": 0.0,
+      "consistent": false,
+      "unsatisfiable": 0,
+      "n_errors": 1,
+      "gen_classes": 123,
+      "f1": 0.2344,
+      "precision": 0.2271,
+      "recall": 0.2423,
+      "concept_f1": 0.3423,
+      "relation_f1": 0.1006
+    },
+    {
+      "domain": "securities",
+      "run": "run01",
+      "config": "single_pass",
+      "llm": "anthropic:claude-sonnet-5",
+      "consistency_C": 0.0,
+      "consistent": false,
+      "unsatisfiable": 0,
+      "n_errors": 1,
+      "gen_classes": 123,
+      "f1": 0.2344,
+      "precision": 0.2271,
+      "recall": 0.2423,
+      "concept_f1": 0.3423,
+      "relation_f1": 0.1006
+    },
+    {
+      "domain": "securities",
+      "run": "run01",
+      "config": "hybrid",
+      "llm": "anthropic:claude-sonnet-5",
+      "consistency_C": 0.0,
+      "consistent": false,
+      "unsatisfiable": 0,
+      "n_errors": 1,
+      "gen_classes": 123,
+      "f1": 0.2344,
+      "precision": 0.2271,
+      "recall": 0.2423,
+      "concept_f1": 0.3423,
+      "relation_f1": 0.1006
+    }
+  ]
+}

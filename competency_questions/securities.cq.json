@@ -1,0 +1,284 @@
+{
+  "domain": "securities",
+  "design_notes": "21 questions, balanced over categories: cardinality-violation 1, chained-realization 2, defined-class-realization 6, disjointness-violation 4, orthogonality-control 4, subsumption-transitive 4. Each question is derived mechanically from an axiom pattern of the reference ontology (paper Section 4.3); terms follow reference_ontologies/naming_contract.md. Frozen before the runs.",
+  "prefixes": {
+    "fis": "http://example.org/onto/securities#"
+  },
+  "cqs": [
+    {
+      "id": "CQ-V1",
+      "category": "defined-class-realization",
+      "nl": "A bond issued by a government is inferred to be a Government Bond (issuer-based sufficient condition).",
+      "setup": [
+        "fis:b1 a fis:Bond ; fis:hasIssuer fis:g1 .",
+        "fis:g1 a fis:Government ."
+      ],
+      "probe": {
+        "kind": "membership",
+        "ind": "fis:b1",
+        "cls": "fis:GovernmentBond"
+      },
+      "expect": "entailed"
+    },
+    {
+      "id": "CQ-V2",
+      "category": "defined-class-realization",
+      "nl": "A bond issued by a corporation is inferred to be a Corporate Bond.",
+      "setup": [
+        "fis:b2 a fis:Bond ; fis:hasIssuer fis:c1 .",
+        "fis:c1 a fis:Corporation ."
+      ],
+      "probe": {
+        "kind": "membership",
+        "ind": "fis:b2",
+        "cls": "fis:CorporateBond"
+      },
+      "expect": "entailed"
+    },
+    {
+      "id": "CQ-V3",
+      "category": "defined-class-realization",
+      "nl": "A derivative whose underlying is an equity is inferred to be an Equity Derivative.",
+      "setup": [
+        "fis:d1 a fis:Derivative ; fis:hasUnderlying fis:e1 .",
+        "fis:e1 a fis:Equity ."
+      ],
+      "probe": {
+        "kind": "membership",
+        "ind": "fis:d1",
+        "cls": "fis:EquityDerivative"
+      },
+      "expect": "entailed"
+    },
+    {
+      "id": "CQ-V4",
+      "category": "defined-class-realization",
+      "nl": "A derivative whose underlying is a commodity is inferred to be a Commodity Derivative.",
+      "setup": [
+        "fis:d2 a fis:Derivative ; fis:hasUnderlying fis:cm1 .",
+        "fis:cm1 a fis:Commodity ."
+      ],
+      "probe": {
+        "kind": "membership",
+        "ind": "fis:d2",
+        "cls": "fis:CommodityDerivative"
+      },
+      "expect": "entailed"
+    },
+    {
+      "id": "CQ-V5",
+      "category": "defined-class-realization",
+      "nl": "A derivative whose underlying is a currency is inferred to be a Currency Derivative.",
+      "setup": [
+        "fis:d3 a fis:Derivative ; fis:hasUnderlying fis:cu1 .",
+        "fis:cu1 a fis:Currency ."
+      ],
+      "probe": {
+        "kind": "membership",
+        "ind": "fis:d3",
+        "cls": "fis:CurrencyDerivative"
+      },
+      "expect": "entailed"
+    },
+    {
+      "id": "CQ-V6",
+      "category": "chained-realization",
+      "nl": "A derivative on an equity underlying is inferred to be a Security via the chain EquityDerivative < Derivative < Security.",
+      "setup": [
+        "fis:d4 a fis:Derivative ; fis:hasUnderlying fis:e2 .",
+        "fis:e2 a fis:Equity ."
+      ],
+      "probe": {
+        "kind": "membership",
+        "ind": "fis:d4",
+        "cls": "fis:Security"
+      },
+      "expect": "entailed"
+    },
+    {
+      "id": "CQ-V7",
+      "category": "chained-realization",
+      "nl": "A bond issued by a municipality is inferred to be a Debt Instrument via MunicipalBond < Bond < DebtInstrument.",
+      "setup": [
+        "fis:b3 a fis:Bond ; fis:hasIssuer fis:m1 .",
+        "fis:m1 a fis:Municipality ."
+      ],
+      "probe": {
+        "kind": "membership",
+        "ind": "fis:b3",
+        "cls": "fis:DebtInstrument"
+      },
+      "expect": "entailed"
+    },
+    {
+      "id": "CQ-V8",
+      "category": "subsumption-transitive",
+      "nl": "A Call Option is a Security (CallOption < Option < Derivative < Security).",
+      "probe": {
+        "kind": "subsumption",
+        "sub": "fis:CallOption",
+        "sup": "fis:Security"
+      },
+      "expect": "entailed"
+    },
+    {
+      "id": "CQ-V9",
+      "category": "subsumption-transitive",
+      "nl": "A Treasury Bill is a Security (TreasuryBill < MoneyMarketInstrument < DebtInstrument < Security).",
+      "probe": {
+        "kind": "subsumption",
+        "sub": "fis:TreasuryBill",
+        "sup": "fis:Security"
+      },
+      "expect": "entailed"
+    },
+    {
+      "id": "CQ-V10",
+      "category": "subsumption-transitive",
+      "nl": "A Mortgage-Backed Security is a Security (MortgageBackedSecurity < AssetBackedSecurity < DebtInstrument < Security).",
+      "probe": {
+        "kind": "subsumption",
+        "sub": "fis:MortgageBackedSecurity",
+        "sup": "fis:Security"
+      },
+      "expect": "entailed"
+    },
+    {
+      "id": "CQ-V11",
+      "category": "subsumption-transitive",
+      "nl": "A Common Stock is an Asset (CommonStock < Equity < Security < Asset).",
+      "probe": {
+        "kind": "subsumption",
+        "sub": "fis:CommonStock",
+        "sup": "fis:Asset"
+      },
+      "expect": "entailed"
+    },
+    {
+      "id": "CQ-V12",
+      "category": "disjointness-violation",
+      "nl": "An instrument cannot be both a Common Stock and a Preferred Stock (equity kinds are disjoint).",
+      "setup": [
+        "fis:x1 a fis:CommonStock , fis:PreferredStock ."
+      ],
+      "probe": {
+        "kind": "inconsistency"
+      },
+      "expect": "inconsistent"
+    },
+    {
+      "id": "CQ-V13",
+      "category": "disjointness-violation",
+      "nl": "A contract cannot be both an Option and a Future (derivative kinds are disjoint).",
+      "setup": [
+        "fis:x2 a fis:Option , fis:Future ."
+      ],
+      "probe": {
+        "kind": "inconsistency"
+      },
+      "expect": "inconsistent"
+    },
+    {
+      "id": "CQ-V14",
+      "category": "disjointness-violation",
+      "nl": "An instrument cannot be both a Bond and a Money Market Instrument (debt kinds are disjoint).",
+      "setup": [
+        "fis:x3 a fis:Bond , fis:MoneyMarketInstrument ."
+      ],
+      "probe": {
+        "kind": "inconsistency"
+      },
+      "expect": "inconsistent"
+    },
+    {
+      "id": "CQ-V15",
+      "category": "disjointness-violation",
+      "nl": "A fund cannot be both a Mutual Fund and a Hedge Fund (fund kinds are disjoint).",
+      "setup": [
+        "fis:x4 a fis:MutualFund , fis:HedgeFund ."
+      ],
+      "probe": {
+        "kind": "inconsistency"
+      },
+      "expect": "inconsistent"
+    },
+    {
+      "id": "CQ-V16",
+      "category": "cardinality-violation",
+      "nl": "A bond cannot have two different issuers (exactly-one-issuer constraint on debt instruments).",
+      "setup": [
+        "fis:s1 a fis:Bond ; fis:hasIssuer fis:i1 , fis:i2 .",
+        "fis:i1 a fis:Issuer . fis:i2 a fis:Issuer .",
+        "fis:i1 owl:differentFrom fis:i2 ."
+      ],
+      "probe": {
+        "kind": "inconsistency"
+      },
+      "expect": "inconsistent"
+    },
+    {
+      "id": "CQ-V17",
+      "category": "orthogonality-control",
+      "nl": "A convertible bond is a legitimate instrument: an individual ConvertibleBond does not make the ontology inconsistent (bond-with-equity-feature must not be modelled as a disjointness clash).",
+      "setup": [
+        "fis:k1 a fis:ConvertibleBond ."
+      ],
+      "probe": {
+        "kind": "consistency"
+      },
+      "expect": "consistent"
+    },
+    {
+      "id": "CQ-V18",
+      "category": "orthogonality-control",
+      "nl": "A preferred stock is a legitimate instrument: an individual PreferredStock (equity with debt-like features) must be satisfiable.",
+      "setup": [
+        "fis:k2 a fis:PreferredStock ."
+      ],
+      "probe": {
+        "kind": "consistency"
+      },
+      "expect": "consistent"
+    },
+    {
+      "id": "CQ-V19",
+      "category": "orthogonality-control",
+      "nl": "A zero-coupon bond is a legitimate instrument: an individual ZeroCouponBond (bond without coupon payments) must be satisfiable.",
+      "setup": [
+        "fis:k3 a fis:ZeroCouponBond ."
+      ],
+      "probe": {
+        "kind": "consistency"
+      },
+      "expect": "consistent"
+    },
+    {
+      "id": "CQ-V20",
+      "category": "orthogonality-control",
+      "nl": "A future on a commodity underlying is a legitimate combination: Future + hasUnderlying Commodity must be satisfiable.",
+      "setup": [
+        "fis:k4 a fis:Future ; fis:hasUnderlying fis:cm2 .",
+        "fis:cm2 a fis:Commodity ."
+      ],
+      "probe": {
+        "kind": "consistency"
+      },
+      "expect": "consistent"
+    },
+    {
+      "id": "CQ-V21",
+      "category": "defined-class-realization",
+      "nl": "A fund that tracks a market index is inferred to be an Index Fund.",
+      "setup": [
+        "fis:f1 a fis:Fund ; fis:hasTrackedIndex fis:ix1 .",
+        "fis:ix1 a fis:MarketIndex ."
+      ],
+      "probe": {
+        "kind": "membership",
+        "ind": "fis:f1",
+        "cls": "fis:IndexFund"
+      },
+      "expect": "entailed"
+    }
+  ]
+}

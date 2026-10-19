@@ -1,0 +1,616 @@
+@prefix ht: <http://example.org/onto/hypertension#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+ht: a owl:Ontology ;
+    rdfs:label "Hypertension Ontology"@en ;
+    rdfs:comment "An ontology modelling the classification, etiology, measurement, treatment and target-organ-damage aspects of hypertension, built from a corpus of clinical and guideline text. Where guidelines conflict (ACC/AHA 2017 vs ESC/ESH/JNC/WHO/ISH), a single class/property is retained and the conflict is noted in rdfs:comment."@en .
+
+ht:AorticCoarctation a owl:Class ;
+    rdfs:label "Aortic Coarctation"@en ;
+    rdfs:subClassOf ht:VascularCause ;
+    skos:altLabel "Coarctation of the Aorta"@en ;
+    skos:definition "A congenital narrowing of the aorta that typically affects younger patients and is a vascular cause of secondary hypertension."@en .
+
+ht:IsolatedSystolicHypertension a owl:Class ;
+    rdfs:label "Isolated Systolic Hypertension"@en ;
+    rdfs:comment "Under the 2017 ACC/AHA guideline a systolic pressure of 130 mmHg qualifies as hypertensive at any age, shifting the traditional 140 mmHg threshold for this condition downward."@en ;
+    rdfs:subClassOf ht:Hypertension ;
+    skos:altLabel "ISH"@en ;
+    skos:definition "A pattern of hypertension characterised by a disproportionate rise in systolic pressure with a preserved or low diastolic pressure, traditionally defined as systolic pressure above 140 mmHg with diastolic pressure below 90 mmHg, and most often caused by age-related arterial stiffening."@en .
+
+ht:LeftVentricularHypertrophy a owl:Class ;
+    rdfs:label "Left Ventricular Hypertrophy"@en ;
+    rdfs:subClassOf ht:HypertensiveHeartDisease ;
+    skos:altLabel "LVH"@en ;
+    skos:definition "Compensatory thickening of the left ventricular wall in response to chronically increased afterload; the hallmark structural manifestation of hypertensive heart disease."@en .
+
+ht:RenalArteryStenosis a owl:Class ;
+    rdfs:label "Renal Artery Stenosis"@en ;
+    rdfs:subClassOf ht:RenovascularDisease ;
+    skos:definition "Narrowing of a renal artery, the characteristic lesion underlying renovascular disease; may also be an atherosclerotic secondary cause of isolated systolic hypertension."@en .
+
+ht:ResistantHypertension a owl:Class ;
+    rdfs:label "Resistant Hypertension"@en ;
+    rdfs:comment "Common treatable secondary causes in resistant hypertension include primary aldosteronism (present in up to one in five such patients), obstructive sleep apnea, and renal artery stenosis."@en ;
+    rdfs:subClassOf ht:Hypertension ;
+    skos:definition "Blood pressure that remains uncontrolled despite adherence to optimally dosed therapy with three antihypertensive agents of different classes, one of which is a diuretic, or that requires four or more agents to control, after exclusion of the white-coat effect and confirmation of adherence."@en .
+
+ht:hasDiagnosticSystolicThreshold a owl:DatatypeProperty,
+        owl:FunctionalProperty ;
+    rdfs:label "has diagnostic systolic threshold"@en ;
+    rdfs:comment "Competing values documented in the corpus: 130 mmHg (2017 ACC/AHA) and 140 mmHg (ESC/ESH 2018/2023, JNC 7, WHO, ISH 2020)."@en ;
+    rdfs:domain ht:Hypertension ;
+    rdfs:range xsd:integer ;
+    skos:definition "The single systolic value, in mmHg, at or above which a guideline diagnoses hypertension."@en .
+
+ht:isAntihypertensiveOf a owl:ObjectProperty ;
+    rdfs:label "is antihypertensive of"@en ;
+    rdfs:domain ht:Antihypertensive ;
+    rdfs:range ht:Hypertension ;
+    owl:inverseOf ht:hasAntihypertensive ;
+    skos:definition "Relates a drug class to the hypertension it is used to treat."@en .
+
+ht:isBloodPressureCategoryOf a owl:ObjectProperty ;
+    rdfs:label "is blood pressure category of"@en ;
+    rdfs:domain ht:BloodPressureCategory ;
+    rdfs:range ht:BloodPressureReading ;
+    owl:inverseOf ht:hasBloodPressureCategory ;
+    skos:definition "Relates a blood pressure category to the reading it classifies."@en .
+
+ht:isMeasurementMethodOf a owl:ObjectProperty ;
+    rdfs:label "is measurement method of"@en ;
+    rdfs:domain ht:BloodPressureMeasurementMethod ;
+    rdfs:range ht:BloodPressureReading ;
+    owl:inverseOf ht:hasMeasurementMethod ;
+    skos:definition "Relates a measurement method to the reading it produced."@en .
+
+ht:isRetinalFindingOf a owl:ObjectProperty ;
+    rdfs:label "is retinal finding of"@en ;
+    rdfs:domain ht:RetinalFinding ;
+    rdfs:range ht:HypertensiveRetinopathy ;
+    owl:inverseOf ht:hasRetinalFinding ;
+    skos:definition "Relates a retinal finding to the instance of hypertensive retinopathy in which it occurs."@en .
+
+ht:isRiskFactorOf a owl:ObjectProperty ;
+    rdfs:label "is risk factor of"@en ;
+    rdfs:domain ht:RiskFactor ;
+    rdfs:range ht:Hypertension ;
+    owl:inverseOf ht:hasRiskFactor ;
+    skos:definition "Relates a risk factor to the hypertension it predisposes to."@en .
+
+ht:isSecondaryCauseOf a owl:ObjectProperty ;
+    rdfs:label "is secondary cause of"@en ;
+    rdfs:domain ht:SecondaryCause ;
+    rdfs:range ht:Hypertension ;
+    owl:inverseOf ht:hasSecondaryCause ;
+    skos:definition "Relates a secondary cause to the hypertension it produces."@en .
+
+ht:isTargetOrganDamageOf a owl:ObjectProperty ;
+    rdfs:label "is target organ damage of"@en ;
+    rdfs:domain ht:TargetOrganDamage ;
+    rdfs:range ht:BloodPressureReading ;
+    owl:inverseOf ht:hasTargetOrganDamage ;
+    skos:definition "Relates an instance of organ damage to the reading it is associated with."@en .
+
+ht:AdvancedAge a owl:Class ;
+    rdfs:label "Advanced Age"@en ;
+    rdfs:subClassOf ht:NonModifiableRiskFactor ;
+    skos:definition "Increasing age, a non-modifiable risk factor for hypertension, with prevalence rising to about 60 percent of individuals above age 60."@en .
+
+ht:AmbulatoryBloodPressureMonitoring a owl:Class ;
+    rdfs:label "Ambulatory Blood Pressure Monitoring"@en ;
+    rdfs:subClassOf ht:BloodPressureMeasurementMethod ;
+    skos:altLabel "ABPM"@en ;
+    skos:definition "Out-of-office measurement at regular intervals over a full 24-hour sleep-wake cycle, used as a reference standard to detect white coat and masked hypertension."@en .
+
+ht:AngiotensinConvertingEnzymeInhibitor a owl:Class ;
+    rdfs:label "Angiotensin Converting Enzyme Inhibitor"@en ;
+    rdfs:subClassOf ht:Antihypertensive ;
+    skos:altLabel "ACE Inhibitor"@en,
+        "ACEI"@en ;
+    skos:definition "A first-line antihypertensive class that inhibits angiotensin-converting enzyme, reducing angiotensin II production and increasing bradykinin, thereby promoting vasodilation; particularly favoured in diabetes, chronic kidney disease, and heart failure."@en .
+
+ht:AngiotensinReceptorBlocker a owl:Class ;
+    rdfs:label "Angiotensin Receptor Blocker"@en ;
+    rdfs:subClassOf ht:Antihypertensive ;
+    skos:altLabel "ARB"@en,
+        "Angiotensin II Receptor Blocker"@en ;
+    skos:definition "A first-line antihypertensive class that blocks the binding of angiotensin II to its receptor rather than inhibiting its formation; generally not combined with ACE inhibitors because both act on the same pathway."@en .
+
+ht:ArteriolarNarrowing a owl:Class ;
+    rdfs:label "Arteriolar Narrowing"@en ;
+    rdfs:subClassOf ht:RetinalFinding ;
+    skos:altLabel "Vascular Attenuation"@en ;
+    skos:definition "Generalized or focal narrowing of the retinal arterioles, an early sign of hypertensive retinopathy."@en .
+
+ht:ArteriovenousNicking a owl:Class ;
+    rdfs:label "Arteriovenous Nicking"@en ;
+    rdfs:subClassOf ht:RetinalFinding ;
+    skos:altLabel "AV Nipping"@en ;
+    skos:definition "Compression of a retinal vein where it is crossed by a sclerotic arteriole, a sign of hypertensive retinopathy."@en .
+
+ht:AuscultatoryMethod a owl:Class ;
+    rdfs:label "Auscultatory Method"@en ;
+    rdfs:subClassOf ht:BloodPressureMeasurementMethod ;
+    skos:definition "A blood pressure measurement technique using a stethoscope and sphygmomanometer in which Korotkoff sounds mark the systolic and diastolic pressures."@en .
+
+ht:BetaBlocker a owl:Class ;
+    rdfs:label "Beta Blocker"@en ;
+    rdfs:subClassOf ht:Antihypertensive ;
+    skos:definition "An antihypertensive class that inhibits catecholamine binding to beta-adrenergic receptors, reducing heart rate, contractility, and renin release; no longer recommended as first-line therapy for uncomplicated hypertension except with a compelling cardiac indication."@en .
+
+ht:CottonWoolSpot a owl:Class ;
+    rdfs:label "Cotton Wool Spot"@en ;
+    rdfs:subClassOf ht:RetinalFinding ;
+    skos:definition "A pale, fluffy retinal lesion representing localized ischemia, seen in more advanced hypertensive retinopathy."@en .
+
+ht:CushingSyndrome a owl:Class ;
+    rdfs:label "Cushing Syndrome"@en ;
+    rdfs:subClassOf ht:EndocrineCause ;
+    skos:definition "A disorder of excess glucocorticoids that causes secondary hypertension."@en .
+
+ht:Dihydropyridine a owl:Class ;
+    rdfs:label "Dihydropyridine"@en ;
+    rdfs:subClassOf ht:CalciumChannelBlocker ;
+    skos:definition "A subtype of calcium channel blocker that causes peripheral vasodilation and is preferred for the treatment of hypertension."@en .
+
+ht:DrugInducedCause a owl:Class ;
+    rdfs:label "Drug Induced Cause"@en ;
+    rdfs:subClassOf ht:SecondaryCause ;
+    skos:definition "A secondary cause of hypertension produced by a medication or substance, including NSAIDs, sympathomimetic decongestants, stimulants, corticosteroids, oral contraceptives, immunosuppressants, licorice, and recreational drugs such as cocaine and methamphetamine."@en .
+
+ht:ElevatedBloodPressure a owl:Class ;
+    rdfs:label "Elevated Blood Pressure"@en ;
+    rdfs:comment "JNC 7 labelled the 120-139/80-89 mmHg range 'prehypertension'; the 2017 ACC/AHA guideline split this into Elevated (120-129/<80) and Stage 1 Hypertension (130-139 or 80-89)."@en ;
+    rdfs:subClassOf ht:BloodPressureCategory ;
+    owl:equivalentClass [ owl:intersectionOf ( ht:BloodPressureReading [ a owl:Restriction ;
+                        owl:onProperty ht:hasSystolicValue ;
+                        owl:someValuesFrom [ a rdfs:Datatype ;
+                                owl:onDatatype xsd:integer ;
+                                owl:withRestrictions ( [ xsd:minInclusive 120 ] [ xsd:maxInclusive 129 ] ) ] ] [ a owl:Restriction ;
+                        owl:onProperty ht:hasDiastolicValue ;
+                        owl:someValuesFrom [ a rdfs:Datatype ;
+                                owl:onDatatype xsd:integer ;
+                                owl:withRestrictions ( [ xsd:maxExclusive 80 ] ) ] ] ) ] ;
+    skos:altLabel "Prehypertension"@en ;
+    skos:definition "A blood pressure reading with a systolic pressure of 120 to 129 mmHg and a diastolic pressure below 80 mmHg."@en .
+
+ht:ExcessiveAlcoholConsumption a owl:Class ;
+    rdfs:label "Excessive Alcohol Consumption"@en ;
+    rdfs:subClassOf ht:ModifiableRiskFactor ;
+    skos:definition "Drinking alcohol in excess of recommended limits, associated with higher blood pressure."@en .
+
+ht:ExcessiveSaltIntake a owl:Class ;
+    rdfs:label "Excessive Salt Intake"@en ;
+    rdfs:subClassOf ht:ModifiableRiskFactor ;
+    skos:definition "Consumption of dietary salt above recommended levels, increasing the risk of developing hypertension; approximately 50 to 60 percent of hypertensive patients are salt sensitive."@en .
+
+ht:FamilyHistoryOfHypertension a owl:Class ;
+    rdfs:label "Family History Of Hypertension"@en ;
+    rdfs:subClassOf ht:NonModifiableRiskFactor ;
+    skos:definition "A family history of high blood pressure, a non-modifiable risk factor reflecting heritable predisposition."@en .
+
+ht:GeneticPredisposition a owl:Class ;
+    rdfs:label "Genetic Predisposition"@en ;
+    rdfs:subClassOf ht:NonModifiableRiskFactor ;
+    skos:definition "Inherited genetic variation, including more than 2,000 identified common variants with small individual effects, contributing to susceptibility to hypertension."@en .
+
+ht:HardExudate a owl:Class ;
+    rdfs:label "Hard Exudate"@en ;
+    rdfs:subClassOf ht:RetinalFinding ;
+    skos:definition "A lipid deposit in the retina resulting from leakage through damaged retinal vessels in hypertensive retinopathy."@en .
+
+ht:HomeBloodPressureMonitoring a owl:Class ;
+    rdfs:label "Home Blood Pressure Monitoring"@en ;
+    rdfs:subClassOf ht:BloodPressureMeasurementMethod ;
+    skos:altLabel "HBPM"@en ;
+    skos:definition "Out-of-office self-measurement performed by the patient under standard conditions, found to be comparably accurate to 24-hour ambulatory monitoring."@en .
+
+ht:HypertensiveEmergency a owl:Class ;
+    rdfs:label "Hypertensive Emergency"@en ;
+    rdfs:subClassOf ht:HypertensiveCrisis ;
+    owl:equivalentClass [ owl:intersectionOf ( ht:HypertensiveCrisis [ a owl:Restriction ;
+                        owl:onProperty ht:hasTargetOrganDamage ;
+                        owl:someValuesFrom ht:TargetOrganDamage ] ) ] ;
+    skos:definition "A hypertensive crisis accompanied by acute hypertension-mediated organ damage, requiring immediate, controlled, usually intravenous reduction of blood pressure."@en .
+
+ht:HypertensiveEncephalopathy a owl:Class ;
+    rdfs:label "Hypertensive Encephalopathy"@en ;
+    rdfs:subClassOf ht:TargetOrganDamage ;
+    skos:definition "Brain swelling and dysfunction caused by severely elevated blood pressure, presenting with headache, confusion, or visual disturbance; a neurological manifestation of hypertensive emergency."@en .
+
+ht:HypertensiveNephropathy a owl:Class ;
+    rdfs:label "Hypertensive Nephropathy"@en ;
+    rdfs:subClassOf ht:TargetOrganDamage ;
+    skos:altLabel "Hypertensive Kidney Disease"@en,
+        "Hypertensive Nephrosclerosis"@en ;
+    skos:definition "Kidney damage attributable to chronic hypertension, characterised by nephrosclerosis of the small blood vessels, glomeruli, tubules and interstitium, reducing blood and oxygen supply and progressively lowering filtering capacity, potentially to end-stage kidney disease."@en .
+
+ht:HypertensiveUrgency a owl:Class ;
+    rdfs:label "Hypertensive Urgency"@en ;
+    rdfs:subClassOf ht:HypertensiveCrisis ;
+    skos:definition "A hypertensive crisis without evidence of acute target-organ damage, typically managed with gradual oral blood pressure reduction over 24 to 48 hours."@en .
+
+ht:Hyperthyroidism a owl:Class ;
+    rdfs:label "Hyperthyroidism"@en ;
+    rdfs:subClassOf ht:EndocrineCause ;
+    skos:definition "Excess thyroid hormone production, a recognised endocrine cause of secondary hypertension, including isolated systolic hypertension."@en .
+
+ht:Hypothyroidism a owl:Class ;
+    rdfs:label "Hypothyroidism"@en ;
+    rdfs:subClassOf ht:EndocrineCause ;
+    skos:definition "Deficient thyroid hormone production, a recognised endocrine cause of secondary hypertension, including isolated systolic hypertension."@en .
+
+ht:MaskedHypertension a owl:Class ;
+    rdfs:label "Masked Hypertension"@en ;
+    rdfs:subClassOf ht:Hypertension ;
+    skos:altLabel "MH"@en ;
+    skos:definition "A phenotype in which office blood pressure is normal but out-of-office (ambulatory or home) blood pressure is consistently elevated, carrying cardiovascular risk similar to sustained hypertension."@en .
+
+ht:NonDihydropyridine a owl:Class ;
+    rdfs:label "Non-Dihydropyridine"@en ;
+    rdfs:subClassOf ht:CalciumChannelBlocker ;
+    skos:definition "A subtype of calcium channel blocker, such as verapamil and diltiazem, that primarily affects cardiac contractility and atrioventricular conduction and is used for arrhythmia management."@en .
+
+ht:NormalBloodPressure a owl:Class ;
+    rdfs:label "Normal Blood Pressure"@en ;
+    rdfs:comment "European (ESC) convention places the normal diastolic threshold at under 70 mmHg rather than under 80 mmHg."@en ;
+    rdfs:subClassOf ht:BloodPressureCategory ;
+    owl:equivalentClass [ owl:intersectionOf ( ht:BloodPressureReading [ a owl:Restriction ;
+                        owl:onProperty ht:hasSystolicValue ;
+                        owl:someValuesFrom [ a rdfs:Datatype ;
+                                owl:onDatatype xsd:integer ;
+                                owl:withRestrictions ( [ xsd:maxExclusive 120 ] ) ] ] [ a owl:Restriction ;
+                        owl:onProperty ht:hasDiastolicValue ;
+                        owl:someValuesFrom [ a rdfs:Datatype ;
+                                owl:onDatatype xsd:integer ;
+                                owl:withRestrictions ( [ xsd:maxExclusive 80 ] ) ] ] ) ] ;
+    skos:definition "A blood pressure reading with a systolic pressure below 120 mmHg and a diastolic pressure below 80 mmHg."@en .
+
+ht:Obesity a owl:Class ;
+    rdfs:label "Obesity"@en ;
+    rdfs:subClassOf ht:ModifiableRiskFactor ;
+    skos:definition "Excess body weight, a modifiable risk factor for hypertension; weight reduction alone can lower systolic blood pressure by 5 to 20 mmHg."@en .
+
+ht:ObstructiveSleepApnea a owl:Class ;
+    rdfs:label "Obstructive Sleep Apnea"@en ;
+    rdfs:subClassOf ht:SecondaryCause ;
+    skos:altLabel "OSA"@en ;
+    skos:definition "A sleep-breathing disorder that is one of the most common causes of secondary hypertension and a frequent contributor to resistant hypertension."@en .
+
+ht:OscillometricMethod a owl:Class ;
+    rdfs:label "Oscillometric Method"@en ;
+    rdfs:subClassOf ht:BloodPressureMeasurementMethod ;
+    skos:definition "An automated blood pressure measurement technique that calculates systolic, diastolic and mean arterial pressure from oscillations in cuff pressure, requiring less operator skill than auscultation."@en .
+
+ht:Papilledema a owl:Class ;
+    rdfs:label "Papilledema"@en ;
+    rdfs:subClassOf ht:RetinalFinding ;
+    skos:altLabel "Optic Disc Edema"@en ;
+    skos:definition "Swelling of the optic disc, the most severe retinal finding, indicating malignant hypertensive retinopathy or hypertensive emergency."@en .
+
+ht:Pheochromocytoma a owl:Class ;
+    rdfs:label "Pheochromocytoma"@en ;
+    rdfs:subClassOf ht:EndocrineCause ;
+    skos:definition "A tumor that causes excessive secretion of norepinephrine and epinephrine, promoting vasoconstriction and secondary hypertension."@en .
+
+ht:PhysicalInactivity a owl:Class ;
+    rdfs:label "Physical Inactivity"@en ;
+    rdfs:subClassOf ht:ModifiableRiskFactor ;
+    skos:definition "Lack of regular physical exercise, a modifiable risk factor contributing to hypertension."@en .
+
+ht:PrimaryAldosteronism a owl:Class ;
+    rdfs:label "Primary Aldosteronism"@en ;
+    rdfs:subClassOf ht:EndocrineCause ;
+    skos:altLabel "Conn's Syndrome"@en ;
+    skos:definition "Autonomous overproduction of aldosterone by the adrenal glands, due to a solitary adenoma or bilateral hyperplasia, causing secondary hypertension and accounting for most endocrine-related cases."@en .
+
+ht:PrimaryHyperparathyroidism a owl:Class ;
+    rdfs:label "Primary Hyperparathyroidism"@en ;
+    rdfs:subClassOf ht:EndocrineCause ;
+    skos:definition "Excess parathyroid hormone secretion, a recognised endocrine contributor to secondary hypertension."@en .
+
+ht:PrimaryHypertension a owl:Class ;
+    rdfs:label "Primary Hypertension"@en ;
+    rdfs:subClassOf ht:Hypertension ;
+    skos:altLabel "Essential Hypertension"@en,
+        "Idiopathic Hypertension"@en ;
+    skos:definition "Hypertension with no single identifiable secondary cause, arising from a complex interaction of genetic predisposition and environmental factors; it accounts for the great majority (approximately 85-95%) of cases."@en .
+
+ht:Race a owl:Class ;
+    rdfs:label "Race"@en ;
+    rdfs:subClassOf ht:NonModifiableRiskFactor ;
+    skos:definition "A non-modifiable demographic risk factor for hypertension that also influences the selection of first-line antihypertensive therapy."@en .
+
+ht:RenalParenchymalDisease a owl:Class ;
+    rdfs:label "Renal Parenchymal Disease"@en ;
+    rdfs:subClassOf ht:RenalCause ;
+    skos:definition "Disease of the kidney tissue itself, including diabetic nephropathy, glomerulonephritis, interstitial disorders, polycystic kidney disease, and chronic kidney disease, that causes secondary hypertension."@en .
+
+ht:RetinalHemorrhage a owl:Class ;
+    rdfs:label "Retinal Hemorrhage"@en ;
+    rdfs:subClassOf ht:RetinalFinding ;
+    skos:altLabel "Blot Hemorrhage"@en,
+        "Flame Hemorrhage"@en ;
+    skos:definition "Bleeding into the retinal tissue resulting from breakdown of the blood-retinal barrier in advanced hypertensive retinopathy."@en .
+
+ht:SecondaryHypertension a owl:Class ;
+    rdfs:label "Secondary Hypertension"@en ;
+    rdfs:comment "Prevalence of secondary hypertension is strongly age-dependent: roughly 70-85% in children under 12, 10-15% in adolescents, lowest at ages 19-39, and about 17% in adults 65 and older."@en ;
+    rdfs:subClassOf ht:Hypertension ;
+    owl:equivalentClass [ owl:intersectionOf ( ht:Hypertension [ a owl:Restriction ;
+                        owl:onProperty ht:hasSecondaryCause ;
+                        owl:someValuesFrom ht:SecondaryCause ] ) ] ;
+    skos:altLabel "Inessential Hypertension"@en ;
+    skos:definition "Hypertension that has a specific, identifiable, and often correctable underlying cause, affecting a minority (approximately 5-15%) of hypertensive patients."@en .
+
+ht:Stage1Hypertension a owl:Class ;
+    rdfs:label "Stage 1 Hypertension"@en ;
+    rdfs:comment "The same 130-139/80-89 mmHg range is labelled 'High-Normal' by ESC/ESH and ISH 2020, and falls within 'prehypertension' under JNC 7."@en ;
+    rdfs:subClassOf ht:BloodPressureCategory ;
+    owl:equivalentClass [ owl:intersectionOf ( ht:BloodPressureReading [ owl:unionOf ( [ a owl:Restriction ;
+                                    owl:onProperty ht:hasSystolicValue ;
+                                    owl:someValuesFrom [ a rdfs:Datatype ;
+                                            owl:onDatatype xsd:integer ;
+                                            owl:withRestrictions ( [ xsd:minInclusive 130 ] [ xsd:maxInclusive 139 ] ) ] ] [ a owl:Restriction ;
+                                    owl:onProperty ht:hasDiastolicValue ;
+                                    owl:someValuesFrom [ a rdfs:Datatype ;
+                                            owl:onDatatype xsd:integer ;
+                                            owl:withRestrictions ( [ xsd:minInclusive 80 ] [ xsd:maxInclusive 89 ] ) ] ] ) ] ) ] ;
+    skos:definition "A blood pressure reading with a systolic pressure of 130 to 139 mmHg or a diastolic pressure of 80 to 89 mmHg."@en .
+
+ht:Stage2Hypertension a owl:Class ;
+    rdfs:label "Stage 2 Hypertension"@en ;
+    rdfs:comment "ESC/ESH subdivides this same range (>=140/90) into grades 1, 2 and 3; JNC 7 splits it into its own Stage 1 (140-159/90-99) and Stage 2 (>=160/100)."@en ;
+    rdfs:subClassOf ht:BloodPressureCategory ;
+    owl:equivalentClass [ owl:intersectionOf ( ht:BloodPressureReading [ owl:unionOf ( [ a owl:Restriction ;
+                                    owl:onProperty ht:hasSystolicValue ;
+                                    owl:someValuesFrom [ a rdfs:Datatype ;
+                                            owl:onDatatype xsd:integer ;
+                                            owl:withRestrictions ( [ xsd:minInclusive 140 ] ) ] ] [ a owl:Restriction ;
+                                    owl:onProperty ht:hasDiastolicValue ;
+                                    owl:someValuesFrom [ a rdfs:Datatype ;
+                                            owl:onDatatype xsd:integer ;
+                                            owl:withRestrictions ( [ xsd:minInclusive 90 ] ) ] ] ) ] ) ] ;
+    skos:definition "A blood pressure reading with a systolic pressure of 140 mmHg or more or a diastolic pressure of 90 mmHg or more."@en .
+
+ht:Stroke a owl:Class ;
+    rdfs:label "Stroke"@en ;
+    rdfs:subClassOf ht:TargetOrganDamage ;
+    skos:definition "Ischemic or hemorrhagic cerebrovascular injury resulting from sustained or acutely elevated blood pressure."@en .
+
+ht:ThiazideDiuretic a owl:Class ;
+    rdfs:label "Thiazide Diuretic"@en ;
+    rdfs:subClassOf ht:Antihypertensive ;
+    skos:altLabel "Thiazide-Type Diuretic"@en ;
+    skos:definition "A first-line antihypertensive class that blocks sodium reabsorption in the distal convoluted tubule, promoting natriuresis and diuresis and causing modest vasodilation; best available evidence favours low-dose thiazides as the first-line treatment of choice."@en .
+
+ht:TobaccoUse a owl:Class ;
+    rdfs:label "Tobacco Use"@en ;
+    rdfs:subClassOf ht:ModifiableRiskFactor ;
+    skos:altLabel "Smoking"@en ;
+    skos:definition "Consumption of tobacco products, a modifiable risk factor for hypertension and cardiovascular disease."@en .
+
+ht:WhiteCoatHypertension a owl:Class ;
+    rdfs:label "White Coat Hypertension"@en ;
+    rdfs:comment "NICE NG136 quantifies the white-coat effect as a discrepancy of more than 20/10 mmHg between clinic and average daytime ambulatory or home blood pressure."@en ;
+    rdfs:subClassOf ht:Hypertension ;
+    skos:altLabel "WCH"@en,
+        "White Coat Syndrome"@en ;
+    skos:definition "A phenotype in which blood pressure is consistently elevated when measured in a clinical setting but normal when measured out of office, believed to reflect anxiety related to the clinical encounter."@en .
+
+ht:hasAntihypertensive a owl:ObjectProperty ;
+    rdfs:label "has antihypertensive"@en ;
+    rdfs:domain ht:Hypertension ;
+    rdfs:range ht:Antihypertensive ;
+    skos:definition "Relates hypertension to a class of medication recommended for its treatment."@en .
+
+ht:hasBloodPressureCategory a owl:FunctionalProperty,
+        owl:ObjectProperty ;
+    rdfs:label "has blood pressure category"@en ;
+    rdfs:domain ht:BloodPressureReading ;
+    rdfs:range ht:BloodPressureCategory ;
+    skos:definition "Relates a blood pressure reading to the ACC/AHA 2017 category band it falls into."@en .
+
+ht:hasMeasurementMethod a owl:FunctionalProperty,
+        owl:ObjectProperty ;
+    rdfs:label "has measurement method"@en ;
+    rdfs:domain ht:BloodPressureReading ;
+    rdfs:range ht:BloodPressureMeasurementMethod ;
+    skos:definition "Relates a blood pressure reading to the technique by which it was obtained."@en .
+
+ht:hasRetinalFinding a owl:ObjectProperty ;
+    rdfs:label "has retinal finding"@en ;
+    rdfs:domain ht:HypertensiveRetinopathy ;
+    rdfs:range ht:RetinalFinding ;
+    skos:definition "Relates hypertensive retinopathy to a specific ophthalmoscopic sign observed."@en .
+
+ht:hasRiskFactor a owl:ObjectProperty ;
+    rdfs:label "has risk factor"@en ;
+    rdfs:domain ht:Hypertension ;
+    rdfs:range ht:RiskFactor ;
+    skos:definition "Relates hypertension to a factor that increases the likelihood of its development."@en .
+
+ht:HypertensiveHeartDisease a owl:Class ;
+    rdfs:label "Hypertensive Heart Disease"@en ;
+    rdfs:subClassOf ht:TargetOrganDamage ;
+    skos:definition "Structural and functional changes in the left ventricle, left atrium, and coronary arteries resulting from chronic blood pressure elevation, including remodeling, coronary microvascular dysfunction, and progression to heart failure."@en .
+
+ht:RenovascularDisease a owl:Class ;
+    rdfs:label "Renovascular Disease"@en ;
+    rdfs:subClassOf ht:RenalCause ;
+    skos:altLabel "Renovascular Hypertension"@en ;
+    skos:definition "Hypertension produced by narrowing or obstruction of a renal artery."@en .
+
+ht:VascularCause a owl:Class ;
+    rdfs:label "Vascular Cause"@en ;
+    rdfs:subClassOf ht:SecondaryCause ;
+    skos:definition "A secondary cause of hypertension arising from a structural abnormality of a major blood vessel."@en .
+
+ht:hasSecondaryCause a owl:ObjectProperty ;
+    rdfs:label "has secondary cause"@en ;
+    rdfs:domain ht:Hypertension ;
+    rdfs:range ht:SecondaryCause ;
+    skos:definition "Relates an instance of hypertension to the identifiable underlying cause responsible for it."@en .
+
+ht:hasTargetOrganDamage a owl:ObjectProperty ;
+    rdfs:label "has target organ damage"@en ;
+    rdfs:domain ht:BloodPressureReading ;
+    rdfs:range ht:TargetOrganDamage ;
+    skos:definition "Relates a hypertensive crisis reading to acute or chronic organ damage associated with it."@en .
+
+ht:CalciumChannelBlocker a owl:Class ;
+    rdfs:label "Calcium Channel Blocker"@en ;
+    rdfs:subClassOf ht:Antihypertensive ;
+    owl:disjointUnionOf ( ht:Dihydropyridine ht:NonDihydropyridine ) ;
+    skos:altLabel "CCB"@en ;
+    skos:definition "A first-line antihypertensive class that inhibits calcium entry through L-type voltage-gated channels in cardiac and vascular smooth muscle, comprising dihydropyridine and non-dihydropyridine subtypes."@en .
+
+ht:HypertensiveCrisis a owl:Class ;
+    rdfs:label "Hypertensive Crisis"@en ;
+    rdfs:comment "These numerical thresholds are conventional rather than independently outcome-predictive; the category is classified further by the presence or absence of acute target-organ damage."@en ;
+    rdfs:subClassOf ht:BloodPressureReading ;
+    owl:disjointUnionOf ( ht:HypertensiveEmergency ht:HypertensiveUrgency ) ;
+    owl:equivalentClass [ owl:intersectionOf ( ht:BloodPressureReading [ owl:unionOf ( [ a owl:Restriction ;
+                                    owl:onProperty ht:hasSystolicValue ;
+                                    owl:someValuesFrom [ a rdfs:Datatype ;
+                                            owl:onDatatype xsd:integer ;
+                                            owl:withRestrictions ( [ xsd:minInclusive 180 ] ) ] ] [ a owl:Restriction ;
+                                    owl:onProperty ht:hasDiastolicValue ;
+                                    owl:someValuesFrom [ a rdfs:Datatype ;
+                                            owl:onDatatype xsd:integer ;
+                                            owl:withRestrictions ( [ xsd:minInclusive 120 ] ) ] ] ) ] ) ] ;
+    skos:altLabel "Severe Hypertension"@en ;
+    skos:definition "A blood pressure reading with a systolic pressure of 180 mmHg or more or a diastolic pressure of 120 mmHg or more, representing a severe acute elevation in blood pressure."@en .
+
+ht:HypertensiveRetinopathy a owl:Class ;
+    rdfs:label "Hypertensive Retinopathy"@en ;
+    rdfs:comment "Graded severity systems such as the Keith-Wagener-Barker four-grade scheme are not modelled as separate classes; only the underlying retinal findings are represented."@en ;
+    rdfs:subClassOf ht:TargetOrganDamage ;
+    skos:definition "Damage to the retina and retinal circulation caused by sustained or abrupt elevations of blood pressure, visible on dilated ophthalmoscopic examination and correlated with the severity and chronicity of hypertension."@en .
+
+ht:RenalCause a owl:Class ;
+    rdfs:label "Renal Cause"@en ;
+    rdfs:subClassOf ht:SecondaryCause ;
+    skos:definition "A secondary cause of hypertension arising from kidney disease, the most common category of secondary hypertension."@en .
+
+ht:NonModifiableRiskFactor a owl:Class ;
+    rdfs:label "Non-Modifiable Risk Factor"@en ;
+    rdfs:subClassOf ht:RiskFactor ;
+    skos:definition "A risk factor for hypertension that cannot be changed, such as age, sex, race, or family history."@en .
+
+ht:RiskFactor a owl:Class ;
+    rdfs:label "Risk Factor"@en ;
+    owl:disjointUnionOf ( ht:ModifiableRiskFactor ht:NonModifiableRiskFactor ) ;
+    skos:definition "A modifiable or non-modifiable factor that increases the likelihood of developing hypertension."@en .
+
+ht:BloodPressureCategory a owl:Class ;
+    rdfs:label "Blood Pressure Category"@en ;
+    rdfs:comment "Competing guideline schemes exist (ESC/ESH 2018/2023 grading, JNC 7 prehypertension/stage system, WHO, ISH 2020, NICE NG136); this ontology models only the ACC/AHA 2017 four-band scheme as classes and records the alternative thresholds in comments rather than as parallel class trees."@en ;
+    rdfs:subClassOf ht:BloodPressureReading ;
+    skos:definition "One of the four 2017 ACC/AHA office blood pressure classification bands for adults aged 20 years and older."@en .
+
+ht:ModifiableRiskFactor a owl:Class ;
+    rdfs:label "Modifiable Risk Factor"@en ;
+    rdfs:subClassOf ht:RiskFactor ;
+    skos:definition "A risk factor for hypertension that can be changed through behaviour or intervention."@en .
+
+ht:hasDiastolicValue a owl:DatatypeProperty,
+        owl:FunctionalProperty ;
+    rdfs:label "has diastolic value"@en ;
+    rdfs:domain ht:BloodPressureReading ;
+    rdfs:range xsd:integer ;
+    skos:definition "The minimum arterial pressure between heartbeats, in mmHg."@en .
+
+ht:hasSystolicValue a owl:DatatypeProperty,
+        owl:FunctionalProperty ;
+    rdfs:label "has systolic value"@en ;
+    rdfs:domain ht:BloodPressureReading ;
+    rdfs:range xsd:integer ;
+    skos:definition "The maximum arterial pressure during one heartbeat, in mmHg."@en .
+
+ht:BloodPressureMeasurementMethod a owl:Class ;
+    rdfs:label "Blood Pressure Measurement Method"@en ;
+    skos:definition "A technique or protocol by which a blood pressure reading is obtained."@en .
+
+ht:EndocrineCause a owl:Class ;
+    rdfs:label "Endocrine Cause"@en ;
+    rdfs:subClassOf ht:SecondaryCause ;
+    skos:definition "A secondary cause of hypertension arising from a hormonal or glandular disorder."@en .
+
+ht:Antihypertensive a owl:Class ;
+    rdfs:label "Antihypertensive"@en ;
+    skos:definition "A class of medication used to lower blood pressure."@en .
+
+ht:RetinalFinding a owl:Class ;
+    rdfs:label "Retinal Finding"@en ;
+    skos:definition "A specific ophthalmoscopic sign of retinal vascular injury observed in hypertensive retinopathy."@en .
+
+ht:SecondaryCause a owl:Class ;
+    rdfs:label "Secondary Cause"@en ;
+    skos:definition "An identifiable underlying medical condition, substance, or medication responsible for elevating blood pressure in secondary hypertension."@en .
+
+ht:TargetOrganDamage a owl:Class ;
+    rdfs:label "Target Organ Damage"@en ;
+    skos:altLabel "Hypertension-Mediated Organ Damage"@en ;
+    skos:definition "Structural or functional injury to the heart, brain, kidneys, eyes or vasculature resulting from chronic or acute hypertension."@en .
+
+ht:Hypertension a owl:Class ;
+    rdfs:label "Hypertension"@en ;
+    rdfs:comment "The diagnostic systolic threshold is contested across guidelines: the 2017 ACC/AHA guideline diagnoses hypertension at a systolic pressure of 130 mmHg or more and/or a diastolic pressure of 80 mmHg or more, whereas ESC/ESH, JNC 7, WHO and ISH guidelines use a threshold of 140 mmHg systolic or more and/or 90 mmHg diastolic or more. Both values are documented here via hasDiagnosticSystolicThreshold rather than by creating per-guideline threshold subclasses."@en ;
+    owl:disjointUnionOf ( ht:PrimaryHypertension ht:SecondaryHypertension ) ;
+    skos:altLabel "High Blood Pressure"@en ;
+    skos:definition "A chronic medical condition characterised by sustained elevation of arterial blood pressure, diagnosed from repeated measurement rather than symptoms."@en .
+
+ht:BloodPressureReading a owl:Class ;
+    rdfs:label "Blood Pressure Reading"@en ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:onDataRange xsd:integer ;
+            owl:onProperty ht:hasSystolicValue ;
+            owl:qualifiedCardinality 1 ],
+        [ a owl:Restriction ;
+            owl:onDataRange xsd:integer ;
+            owl:onProperty ht:hasDiastolicValue ;
+            owl:qualifiedCardinality 1 ] ;
+    skos:definition "A measured pair of systolic and diastolic values, expressed in millimetres of mercury, obtained at a point in time."@en .
+
+[] a owl:AllDisjointClasses ;
+    owl:members ( ht:WhiteCoatHypertension ht:MaskedHypertension ) .
+
+[] a owl:AllDisjointClasses ;
+    owl:members ( ht:RenalCause ht:EndocrineCause ht:VascularCause ht:ObstructiveSleepApnea ht:DrugInducedCause ) .
+
+[] a owl:AllDisjointClasses ;
+    owl:members ( ht:RenalParenchymalDisease ht:RenovascularDisease ) .
+
+[] a owl:AllDisjointClasses ;
+    owl:members ( ht:PrimaryAldosteronism ht:Pheochromocytoma ht:CushingSyndrome ht:Hyperthyroidism ht:Hypothyroidism ht:PrimaryHyperparathyroidism ) .
+
+[] a owl:AllDisjointClasses ;
+    owl:members ( ht:HypertensiveHeartDisease ht:HypertensiveRetinopathy ht:HypertensiveNephropathy ht:HypertensiveEncephalopathy ht:Stroke ) .
+
+[] a owl:AllDisjointClasses ;
+    owl:members ( ht:ArteriolarNarrowing ht:ArteriovenousNicking ht:RetinalHemorrhage ht:CottonWoolSpot ht:HardExudate ht:Papilledema ) .
+
+[] a owl:AllDisjointClasses ;
+    owl:members ( ht:ExcessiveSaltIntake ht:Obesity ht:PhysicalInactivity ht:TobaccoUse ht:ExcessiveAlcoholConsumption ) .
+
+[] a owl:AllDisjointClasses ;
+    owl:members ( ht:AdvancedAge ht:FamilyHistoryOfHypertension ht:Race ht:GeneticPredisposition ) .
+
+[] a owl:AllDisjointClasses ;
+    owl:members ( ht:ThiazideDiuretic ht:AngiotensinConvertingEnzymeInhibitor ht:AngiotensinReceptorBlocker ht:CalciumChannelBlocker ht:BetaBlocker ) .
+
+[] a owl:AllDisjointClasses ;
+    owl:members ( ht:AuscultatoryMethod ht:OscillometricMethod ht:AmbulatoryBloodPressureMonitoring ht:HomeBloodPressureMonitoring ) .
+
+[] a owl:AllDisjointClasses ;
+    owl:members ( ht:BloodPressureReading ht:Hypertension ht:Antihypertensive ht:SecondaryCause ht:TargetOrganDamage ht:RiskFactor ht:RetinalFinding ht:BloodPressureMeasurementMethod ) .
+
+[] a owl:AllDisjointClasses ;
+    owl:members ( ht:NormalBloodPressure ht:ElevatedBloodPressure ht:Stage1Hypertension ht:Stage2Hypertension ) .
+
