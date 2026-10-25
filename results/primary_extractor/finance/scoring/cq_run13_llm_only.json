@@ -1,0 +1,271 @@
+{
+ "passed": 8,
+ "total": 21,
+ "failed": 13,
+ "by_category": {
+  "defined-class-realization": {
+   "passed": 1,
+   "total": 6
+  },
+  "chained-realization": {
+   "passed": 0,
+   "total": 2
+  },
+  "subsumption-transitive": {
+   "passed": 2,
+   "total": 4
+  },
+  "disjointness-violation": {
+   "passed": 2,
+   "total": 4
+  },
+  "cardinality-violation": {
+   "passed": 1,
+   "total": 1
+  },
+  "orthogonality-control": {
+   "passed": 2,
+   "total": 4
+  }
+ },
+ "results": [
+  {
+   "id": "CQ-V1",
+   "kind": "membership",
+   "category": "defined-class-realization",
+   "pass": false,
+   "observed": "unanswerable",
+   "missing": [
+    "class:Government",
+    "class:GovernmentBond"
+   ],
+   "err": null,
+   "nl": "A bond issued by a government is inferred to be a Government Bond (issuer-based sufficient condition)."
+  },
+  {
+   "id": "CQ-V2",
+   "kind": "membership",
+   "category": "defined-class-realization",
+   "pass": true,
+   "observed": "entailed",
+   "missing": [],
+   "err": null,
+   "nl": "A bond issued by a corporation is inferred to be a Corporate Bond."
+  },
+  {
+   "id": "CQ-V3",
+   "kind": "membership",
+   "category": "defined-class-realization",
+   "pass": false,
+   "observed": "unanswerable",
+   "missing": [
+    "class:Equity",
+    "class:EquityDerivative"
+   ],
+   "err": null,
+   "nl": "A derivative whose underlying is an equity is inferred to be an Equity Derivative."
+  },
+  {
+   "id": "CQ-V4",
+   "kind": "membership",
+   "category": "defined-class-realization",
+   "pass": false,
+   "observed": "unanswerable",
+   "missing": [
+    "class:CommodityDerivative"
+   ],
+   "err": null,
+   "nl": "A derivative whose underlying is a commodity is inferred to be a Commodity Derivative."
+  },
+  {
+   "id": "CQ-V5",
+   "kind": "membership",
+   "category": "defined-class-realization",
+   "pass": false,
+   "observed": "unanswerable",
+   "missing": [
+    "class:CurrencyDerivative"
+   ],
+   "err": null,
+   "nl": "A derivative whose underlying is a currency is inferred to be a Currency Derivative."
+  },
+  {
+   "id": "CQ-V6",
+   "kind": "membership",
+   "category": "chained-realization",
+   "pass": false,
+   "observed": "unanswerable",
+   "missing": [
+    "class:Equity"
+   ],
+   "err": null,
+   "nl": "A derivative on an equity underlying is inferred to be a Security via the chain EquityDerivative < Derivative < Security."
+  },
+  {
+   "id": "CQ-V7",
+   "kind": "membership",
+   "category": "chained-realization",
+   "pass": false,
+   "observed": "unanswerable",
+   "missing": [
+    "class:DebtInstrument",
+    "class:Municipality"
+   ],
+   "err": null,
+   "nl": "A bond issued by a municipality is inferred to be a Debt Instrument via MunicipalBond < Bond < DebtInstrument."
+  },
+  {
+   "id": "CQ-V8",
+   "kind": "subsumption",
+   "category": "subsumption-transitive",
+   "pass": true,
+   "observed": "entailed",
+   "missing": [],
+   "err": null,
+   "nl": "A Call Option is a Security (CallOption < Option < Derivative < Security)."
+  },
+  {
+   "id": "CQ-V9",
+   "kind": "subsumption",
+   "category": "subsumption-transitive",
+   "pass": false,
+   "observed": "entailed-vacuously",
+   "missing": [],
+   "err": null,
+   "nl": "A Treasury Bill is a Security (TreasuryBill < MoneyMarketInstrument < DebtInstrument < Security)."
+  },
+  {
+   "id": "CQ-V10",
+   "kind": "subsumption",
+   "category": "subsumption-transitive",
+   "pass": true,
+   "observed": "entailed",
+   "missing": [],
+   "err": null,
+   "nl": "A Mortgage-Backed Security is a Security (MortgageBackedSecurity < AssetBackedSecurity < DebtInstrument < Security)."
+  },
+  {
+   "id": "CQ-V11",
+   "kind": "subsumption",
+   "category": "subsumption-transitive",
+   "pass": false,
+   "observed": "unanswerable",
+   "missing": [
+    "class:CommonStock"
+   ],
+   "err": null,
+   "nl": "A Common Stock is an Asset (CommonStock < Equity < Security < Asset)."
+  },
+  {
+   "id": "CQ-V12",
+   "kind": "inconsistency",
+   "category": "disjointness-violation",
+   "pass": false,
+   "observed": "unanswerable",
+   "missing": [
+    "class:CommonStock",
+    "class:PreferredStock"
+   ],
+   "err": null,
+   "nl": "An instrument cannot be both a Common Stock and a Preferred Stock (equity kinds are disjoint)."
+  },
+  {
+   "id": "CQ-V13",
+   "kind": "inconsistency",
+   "category": "disjointness-violation",
+   "pass": false,
+   "observed": "unanswerable",
+   "missing": [
+    "class:Future"
+   ],
+   "err": null,
+   "nl": "A contract cannot be both an Option and a Future (derivative kinds are disjoint)."
+  },
+  {
+   "id": "CQ-V14",
+   "kind": "inconsistency",
+   "category": "disjointness-violation",
+   "pass": true,
+   "observed": "inconsistent",
+   "missing": [],
+   "err": null,
+   "nl": "An instrument cannot be both a Bond and a Money Market Instrument (debt kinds are disjoint)."
+  },
+  {
+   "id": "CQ-V15",
+   "kind": "inconsistency",
+   "category": "disjointness-violation",
+   "pass": true,
+   "observed": "inconsistent",
+   "missing": [],
+   "err": null,
+   "nl": "A fund cannot be both a Mutual Fund and a Hedge Fund (fund kinds are disjoint)."
+  },
+  {
+   "id": "CQ-V16",
+   "kind": "inconsistency",
+   "category": "cardinality-violation",
+   "pass": true,
+   "observed": "inconsistent",
+   "missing": [],
+   "err": null,
+   "nl": "A bond cannot have two different issuers (exactly-one-issuer constraint on debt instruments)."
+  },
+  {
+   "id": "CQ-V17",
+   "kind": "consistency",
+   "category": "orthogonality-control",
+   "pass": true,
+   "observed": "consistent",
+   "missing": [],
+   "err": null,
+   "nl": "A convertible bond is a legitimate instrument: an individual ConvertibleBond does not make the ontology inconsistent (bond-with-equity-feature must not be modelled as a disjointness clash)."
+  },
+  {
+   "id": "CQ-V18",
+   "kind": "consistency",
+   "category": "orthogonality-control",
+   "pass": false,
+   "observed": "unanswerable",
+   "missing": [
+    "class:PreferredStock"
+   ],
+   "err": null,
+   "nl": "A preferred stock is a legitimate instrument: an individual PreferredStock (equity with debt-like features) must be satisfiable."
+  },
+  {
+   "id": "CQ-V19",
+   "kind": "consistency",
+   "category": "orthogonality-control",
+   "pass": true,
+   "observed": "consistent",
+   "missing": [],
+   "err": null,
+   "nl": "A zero-coupon bond is a legitimate instrument: an individual ZeroCouponBond (bond without coupon payments) must be satisfiable."
+  },
+  {
+   "id": "CQ-V20",
+   "kind": "consistency",
+   "category": "orthogonality-control",
+   "pass": false,
+   "observed": "unanswerable",
+   "missing": [
+    "class:Future"
+   ],
+   "err": null,
+   "nl": "A future on a commodity underlying is a legitimate combination: Future + hasUnderlying Commodity must be satisfiable."
+  },
+  {
+   "id": "CQ-V21",
+   "kind": "membership",
+   "category": "defined-class-realization",
+   "pass": false,
+   "observed": "unanswerable",
+   "missing": [
+    "class:MarketIndex"
+   ],
+   "err": null,
+   "nl": "A fund that tracks a market index is inferred to be an Index Fund."
+  }
+ ]
+}

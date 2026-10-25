@@ -1,0 +1,122 @@
+{
+  "domain": "assessment",
+  "run": "run15",
+  "settings": {
+    "max_output_tokens": 64000,
+    "reasoning": "medium",
+    "prompt_cache": "extraction call (ttl 1h where configurable)",
+    "correct_mode": "rewrite",
+    "chunk_chars": 600000,
+    "max_refine_iters": 5,
+    "hard_error_types": [
+      "inconsistency",
+      "unsatisfiable_class"
+    ]
+  },
+  "telemetry": {
+    "llm": "gemini:gemini-3.8-flash",
+    "wall_seconds": 288.9,
+    "calls": 2,
+    "in_tokens": 80853,
+    "cache_read_tokens": 64242,
+    "cache_write_tokens": 0,
+    "out_tokens": 29146,
+    "thinking_tokens": 25044,
+    "api_seconds": 278.6,
+    "parse_attempts": 2,
+    "parse_failures": 0,
+    "truncated_replies": 0,
+    "served_model_ids": [
+      "gemini-3.8-flash"
+    ],
+    "refine_iterations": 1,
+    "refine_stop": "no_hard_errors"
+  },
+  "refine_history": [
+    {
+      "iter": 0,
+      "n_errors": 1,
+      "n_hard": 1,
+      "C": 0.9934,
+      "unsat": 1
+    },
+    {
+      "iter": 1,
+      "n_errors": 0,
+      "n_hard": 0,
+      "C": 1.0,
+      "unsat": 0
+    }
+  ],
+  "prune_info": {
+    "removed_classes": 1,
+    "removed_triples": 16,
+    "removed_axioms": 0
+  },
+  "scores": [
+    {
+      "domain": "assessment",
+      "run": "run15",
+      "config": "llm_only",
+      "llm": "gemini:gemini-3.8-flash",
+      "consistency_C": 0.9934,
+      "consistent": true,
+      "unsatisfiable": 1,
+      "n_errors": 1,
+      "gen_classes": 151,
+      "f1": 0.334,
+      "precision": 0.2407,
+      "recall": 0.5455,
+      "concept_f1": 0.4493,
+      "relation_f1": 0.225
+    },
+    {
+      "domain": "assessment",
+      "run": "run15",
+      "config": "prune",
+      "llm": "gemini:gemini-3.8-flash",
+      "consistency_C": 1.0,
+      "consistent": true,
+      "unsatisfiable": 0,
+      "n_errors": 0,
+      "gen_classes": 150,
+      "f1": 0.3319,
+      "precision": 0.2399,
+      "recall": 0.5385,
+      "concept_f1": 0.4425,
+      "relation_f1": 0.2269
+    },
+    {
+      "domain": "assessment",
+      "run": "run15",
+      "config": "single_pass",
+      "llm": "gemini:gemini-3.8-flash",
+      "consistency_C": 1.0,
+      "consistent": true,
+      "unsatisfiable": 0,
+      "n_errors": 0,
+      "gen_classes": 151,
+      "f1": 0.3348,
+      "precision": 0.2415,
+      "recall": 0.5455,
+      "concept_f1": 0.4493,
+      "relation_f1": 0.2259
+    },
+    {
+      "domain": "assessment",
+      "run": "run15",
+      "config": "hybrid",
+      "llm": "gemini:gemini-3.8-flash",
+      "consistency_C": 1.0,
+      "consistent": true,
+      "unsatisfiable": 0,
+      "n_errors": 0,
+      "gen_classes": 151,
+      "f1": 0.3348,
+      "precision": 0.2415,
+      "recall": 0.5455,
+      "concept_f1": 0.4493,
+      "relation_f1": 0.2259
+    }
+  ]
+}

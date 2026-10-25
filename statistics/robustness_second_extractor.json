@@ -1,0 +1,851 @@
+{
+  "root": "results/second_extractor",
+  "r1": {
+    "securities": {
+      "n": 30,
+      "C0_min": 0.9733,
+      "C0_max": 1.0,
+      "C0_mean": 0.9985,
+      "unsat0_total": 4,
+      "unsat0_max": 2,
+      "inconsistent0": 0,
+      "converged": 30,
+      "rows": [
+        {
+          "run": "run01",
+          "C0": 1.0,
+          "unsat0": 0,
+          "consistent0": true,
+          "C1": 1.0,
+          "unsat1": 0,
+          "coherent1": true
+        },
+        {
+          "run": "run02",
+          "C0": 1.0,
+          "unsat0": 0,
+          "consistent0": true,
+          "C1": 1.0,
+          "unsat1": 0,
+          "coherent1": true
+        },
+        {
+          "run": "run03",
+          "C0": 1.0,
+          "unsat0": 0,
+          "consistent0": true,
+          "C1": 1.0,
+          "unsat1": 0,
+          "coherent1": true
+        },
+        {
+          "run": "run04",
+          "C0": 1.0,
+          "unsat0": 0,
+          "consistent0": true,
+          "C1": 1.0,
+          "unsat1": 0,
+          "coherent1": true
+        },
+        {
+          "run": "run05",
+          "C0": 1.0,
+          "unsat0": 0,
+          "consistent0": true,
+          "C1": 1.0,
+          "unsat1": 0,
+          "coherent1": true
+        },
+        {
+          "run": "run06",
+          "C0": 1.0,
+          "unsat0": 0,
+          "consistent0": true,
+          "C1": 1.0,
+          "unsat1": 0,
+          "coherent1": true
+        },
+        {
+          "run": "run07",
+          "C0": 1.0,
+          "unsat0": 0,
+          "consistent0": true,
+          "C1": 1.0,
+          "unsat1": 0,
+          "coherent1": true
+        },
+        {
+          "run": "run08",
+          "C0": 1.0,
+          "unsat0": 0,
+          "consistent0": true,
+          "C1": 1.0,
+          "unsat1": 0,
+          "coherent1": true
+        },
+        {
+          "run": "run09",
+          "C0": 1.0,
+          "unsat0": 0,
+          "consistent0": true,
+          "C1": 1.0,
+          "unsat1": 0,
+          "coherent1": true
+        },
+        {
+          "run": "run10",
+          "C0": 0.9733,
+          "unsat0": 2,
+          "consistent0": true,
+          "C1": 1.0,
+          "unsat1": 0,
+          "coherent1": true
+        },
+        {
+          "run": "run11",
+          "C0": 1.0,
+          "unsat0": 0,
+          "consistent0": true,
+          "C1": 1.0,
+          "unsat1": 0,
+          "coherent1": true
+        },
+        {
+          "run": "run12",
+          "C0": 1.0,
+          "unsat0": 0,
+          "consistent0": true,
+          "C1": 1.0,
+          "unsat1": 0,
+          "coherent1": true
+        },
+        {
+          "run": "run13",
+          "C0": 1.0,
+          "unsat0": 0,
+          "consistent0": true,
+          "C1": 1.0,
+          "unsat1": 0,
+          "coherent1": true
+        },
+        {
+          "run": "run14",
+          "C0": 1.0,
+          "unsat0": 0,
+          "consistent0": true,
+          "C1": 1.0,
+          "unsat1": 0,
+          "coherent1": true
+        },
+        {
+          "run": "run15",
+          "C0": 1.0,
+          "unsat0": 0,
+          "consistent0": true,
+          "C1": 1.0,
+          "unsat1": 0,
+          "coherent1": true
+        },
+        {
+          "run": "run16",
+          "C0": 1.0,
+          "unsat0": 0,
+          "consistent0": true,
+          "C1": 1.0,
+          "unsat1": 0,
+          "coherent1": true
+        },
+        {
+          "run": "run17",
+          "C0": 1.0,
+          "unsat0": 0,
+          "consistent0": true,
+          "C1": 1.0,
+          "unsat1": 0,
+          "coherent1": true
+        },
+        {
+          "run": "run18",
+          "C0": 1.0,
+          "unsat0": 0,
+          "consistent0": true,
+          "C1": 1.0,
+          "unsat1": 0,
+          "coherent1": true
+        },
+        {
+          "run": "run19",
+          "C0": 1.0,
+          "unsat0": 0,
+          "consistent0": true,
+          "C1": 1.0,
+          "unsat1": 0,
+          "coherent1": true
+        },
+        {
+          "run": "run20",
+          "C0": 1.0,
+          "unsat0": 0,
+          "consistent0": true,
+          "C1": 1.0,
+          "unsat1": 0,
+          "coherent1": true
+        },
+        {
+          "run": "run21",
+          "C0": 1.0,
+          "unsat0": 0,
+          "consistent0": true,
+          "C1": 1.0,
+          "unsat1": 0,
+          "coherent1": true
+        },
+        {
+          "run": "run22",
+          "C0": 1.0,
+          "unsat0": 0,
+          "consistent0": true,
+          "C1": 1.0,
+          "unsat1": 0,
+          "coherent1": true
+        },
+        {
+          "run": "run23",
+          "C0": 1.0,
+          "unsat0": 0,
+          "consistent0": true,
+          "C1": 1.0,
+          "unsat1": 0,
+          "coherent1": true
+        },
+        {
+          "run": "run24",
+          "C0": 1.0,
+          "unsat0": 0,
+          "consistent0": true,
+          "C1": 1.0,
+          "unsat1": 0,
+          "coherent1": true
+        },
+        {
+          "run": "run25",
+          "C0": 1.0,
+          "unsat0": 0,
+          "consistent0": true,
+          "C1": 1.0,
+          "unsat1": 0,
+          "coherent1": true
+        },
+        {
+          "run": "run26",
+          "C0": 1.0,
+          "unsat0": 0,
+          "consistent0": true,
+          "C1": 1.0,
+          "unsat1": 0,
+          "coherent1": true
+        },
+        {
+          "run": "run27",
+          "C0": 1.0,
+          "unsat0": 0,
+          "consistent0": true,
+          "C1": 1.0,
+          "unsat1": 0,
+          "coherent1": true
+        },
+        {
+          "run": "run28",
+          "C0": 0.9808,
+          "unsat0": 2,
+          "consistent0": true,
+          "C1": 1.0,
+          "unsat1": 0,
+          "coherent1": true
+        },
+        {
+          "run": "run29",
+          "C0": 1.0,
+          "unsat0": 0,
+          "consistent0": true,
+          "C1": 1.0,
+          "unsat1": 0,
+          "coherent1": true
+        },
+        {
+          "run": "run30",
+          "C0": 1.0,
+          "unsat0": 0,
+          "consistent0": true,
+          "C1": 1.0,
+          "unsat1": 0,
+          "coherent1": true
+        }
+      ]
+    },
+    "hypertension": {
+      "n": 30,
+      "C0_min": 0.9877,
+      "C0_max": 1.0,
+      "C0_mean": 0.9992,
+      "unsat0_total": 2,
+      "unsat0_max": 1,
+      "inconsistent0": 0,
+      "converged": 29,
+      "rows": [
+        {
+          "run": "run01",
+          "C0": 1.0,
+          "unsat0": 0,
+          "consistent0": true,
+          "C1": 1.0,
+          "unsat1": 0,
+          "coherent1": true
+        },
+        {
+          "run": "run02",
+          "C0": 1.0,
+          "unsat0": 0,
+          "consistent0": true,
+          "C1": 1.0,
+          "unsat1": 0,
+          "coherent1": true
+        },
+        {
+          "run": "run03",
+          "C0": 0.9877,
+          "unsat0": 1,
+          "consistent0": true,
+          "C1": 1.0,
+          "unsat1": 0,
+          "coherent1": true
+        },
+        {
+          "run": "run04",
+          "C0": 1.0,
+          "unsat0": 0,
+          "consistent0": true,
+          "C1": 1.0,
+          "unsat1": 0,
+          "coherent1": true
+        },
+        {
+          "run": "run05",
+          "C0": 1.0,
+          "unsat0": 0,
+          "consistent0": true,
+          "C1": 1.0,
+          "unsat1": 0,
+          "coherent1": true
+        },
+        {
+          "run": "run06",
+          "C0": 1.0,
+          "unsat0": 0,
+          "consistent0": true,
+          "C1": 1.0,
+          "unsat1": 0,
+          "coherent1": true
+        },
+        {
+          "run": "run07",
+          "C0": 1.0,
+          "unsat0": 0,
+          "consistent0": true,
+          "C1": 1.0,
+          "unsat1": 0,
+          "coherent1": true
+        },
+        {
+          "run": "run08",
+          "C0": 1.0,
+          "unsat0": 0,
+          "consistent0": true,
+          "C1": 1.0,
+          "unsat1": 0,
+          "coherent1": true
+        },
+        {
+          "run": "run09",
+          "C0": 1.0,
+          "unsat0": 0,
+          "consistent0": true,
+          "C1": 1.0,
+          "unsat1": 0,
+          "coherent1": true
+        },
+        {
+          "run": "run10",
+          "C0": 1.0,
+          "unsat0": 0,
+          "consistent0": true,
+          "C1": 1.0,
+          "unsat1": 0,
+          "coherent1": true
+        },
+        {
+          "run": "run11",
+          "C0": 1.0,
+          "unsat0": 0,
+          "consistent0": true,
+          "C1": 1.0,
+          "unsat1": 0,
+          "coherent1": true
+        },
+        {
+          "run": "run12",
+          "C0": 1.0,
+          "unsat0": 0,
+          "consistent0": true,
+          "C1": 1.0,
+          "unsat1": 0,
+          "coherent1": true
+        },
+        {
+          "run": "run13",
+          "C0": 1.0,
+          "unsat0": 0,
+          "consistent0": true,
+          "C1": 1.0,
+          "unsat1": 0,
+          "coherent1": true
+        },
+        {
+          "run": "run14",
+          "C0": 1.0,
+          "unsat0": 0,
+          "consistent0": true,
+          "C1": 1.0,
+          "unsat1": 0,
+          "coherent1": true
+        },
+        {
+          "run": "run15",
+          "C0": 1.0,
+          "unsat0": 0,
+          "consistent0": true,
+          "C1": 1.0,
+          "unsat1": 0,
+          "coherent1": true
+        },
+        {
+          "run": "run16",
+          "C0": 1.0,
+          "unsat0": 0,
+          "consistent0": true,
+          "C1": 1.0,
+          "unsat1": 0,
+          "coherent1": true
+        },
+        {
+          "run": "run17",
+          "C0": 1.0,
+          "unsat0": 0,
+          "consistent0": true,
+          "C1": 1.0,
+          "unsat1": 0,
+          "coherent1": true
+        },
+        {
+          "run": "run18",
+          "C0": 1.0,
+          "unsat0": 0,
+          "consistent0": true,
+          "C1": 1.0,
+          "unsat1": 0,
+          "coherent1": true
+        },
+        {
+          "run": "run19",
+          "C0": 1.0,
+          "unsat0": 0,
+          "consistent0": true,
+          "C1": 1.0,
+          "unsat1": 0,
+          "coherent1": true
+        },
+        {
+          "run": "run20",
+          "C0": 1.0,
+          "unsat0": 0,
+          "consistent0": true,
+          "C1": 1.0,
+          "unsat1": 0,
+          "coherent1": true
+        },
+        {
+          "run": "run21",
+          "C0": 1.0,
+          "unsat0": 0,
+          "consistent0": true,
+          "C1": 1.0,
+          "unsat1": 0,
+          "coherent1": true
+        },
+        {
+          "run": "run22",
+          "C0": 0.989,
+          "unsat0": 1,
+          "consistent0": true,
+          "C1": 0.989,
+          "unsat1": 1,
+          "coherent1": false
+        },
+        {
+          "run": "run23",
+          "C0": 1.0,
+          "unsat0": 0,
+          "consistent0": true,
+          "C1": 1.0,
+          "unsat1": 0,
+          "coherent1": true
+        },
+        {
+          "run": "run24",
+          "C0": 1.0,
+          "unsat0": 0,
+          "consistent0": true,
+          "C1": 1.0,
+          "unsat1": 0,
+          "coherent1": true
+        },
+        {
+          "run": "run25",
+          "C0": 1.0,
+          "unsat0": 0,
+          "consistent0": true,
+          "C1": 1.0,
+          "unsat1": 0,
+          "coherent1": true
+        },
+        {
+          "run": "run26",
+          "C0": 1.0,
+          "unsat0": 0,
+          "consistent0": true,
+          "C1": 1.0,
+          "unsat1": 0,
+          "coherent1": true
+        },
+        {
+          "run": "run27",
+          "C0": 1.0,
+          "unsat0": 0,
+          "consistent0": true,
+          "C1": 1.0,
+          "unsat1": 0,
+          "coherent1": true
+        },
+        {
+          "run": "run28",
+          "C0": 1.0,
+          "unsat0": 0,
+          "consistent0": true,
+          "C1": 1.0,
+          "unsat1": 0,
+          "coherent1": true
+        },
+        {
+          "run": "run29",
+          "C0": 1.0,
+          "unsat0": 0,
+          "consistent0": true,
+          "C1": 1.0,
+          "unsat1": 0,
+          "coherent1": true
+        },
+        {
+          "run": "run30",
+          "C0": 1.0,
+          "unsat0": 0,
+          "consistent0": true,
+          "C1": 1.0,
+          "unsat1": 0,
+          "coherent1": true
+        }
+      ]
+    },
+    "assessment": {
+      "n": 30,
+      "C0_min": 0.9823,
+      "C0_max": 1.0,
+      "C0_mean": 0.992,
+      "unsat0_total": 33,
+      "unsat0_max": 2,
+      "inconsistent0": 0,
+      "converged": 30,
+      "rows": [
+        {
+          "run": "run01",
+          "C0": 1.0,
+          "unsat0": 0,
+          "consistent0": true,
+          "C1": 1.0,
+          "unsat1": 0,
+          "coherent1": true
+        },
+        {
+          "run": "run02",
+          "C0": 0.9926,
+          "unsat0": 1,
+          "consistent0": true,
+          "C1": 1.0,
+          "unsat1": 0,
+          "coherent1": true
+        },
+        {
+          "run": "run03",
+          "C0": 0.985,
+          "unsat0": 2,
+          "consistent0": true,
+          "C1": 1.0,
+          "unsat1": 0,
+          "coherent1": true
+        },
+        {
+          "run": "run04",
+          "C0": 0.9919,
+          "unsat0": 1,
+          "consistent0": true,
+          "C1": 1.0,
+          "unsat1": 0,
+          "coherent1": true
+        },
+        {
+          "run": "run05",
+          "C0": 0.9873,
+          "unsat0": 2,
+          "consistent0": true,
+          "C1": 1.0,
+          "unsat1": 0,
+          "coherent1": true
+        },
+        {
+          "run": "run06",
+          "C0": 0.9936,
+          "unsat0": 1,
+          "consistent0": true,
+          "C1": 1.0,
+          "unsat1": 0,
+          "coherent1": true
+        },
+        {
+          "run": "run07",
+          "C0": 1.0,
+          "unsat0": 0,
+          "consistent0": true,
+          "C1": 1.0,
+          "unsat1": 0,
+          "coherent1": true
+        },
+        {
+          "run": "run08",
+          "C0": 1.0,
+          "unsat0": 0,
+          "consistent0": true,
+          "C1": 1.0,
+          "unsat1": 0,
+          "coherent1": true
+        },
+        {
+          "run": "run09",
+          "C0": 1.0,
+          "unsat0": 0,
+          "consistent0": true,
+          "C1": 1.0,
+          "unsat1": 0,
+          "coherent1": true
+        },
+        {
+          "run": "run10",
+          "C0": 0.9935,
+          "unsat0": 1,
+          "consistent0": true,
+          "C1": 1.0,
+          "unsat1": 0,
+          "coherent1": true
+        },
+        {
+          "run": "run11",
+          "C0": 1.0,
+          "unsat0": 0,
+          "consistent0": true,
+          "C1": 1.0,
+          "unsat1": 0,
+          "coherent1": true
+        },
+        {
+          "run": "run12",
+          "C0": 0.988,
+          "unsat0": 2,
+          "consistent0": true,
+          "C1": 1.0,
+          "unsat1": 0,
+          "coherent1": true
+        },
+        {
+          "run": "run13",
+          "C0": 0.9857,
+          "unsat0": 2,
+          "consistent0": true,
+          "C1": 1.0,
+          "unsat1": 0,
+          "coherent1": true
+        },
+        {
+          "run": "run14",
+          "C0": 1.0,
+          "unsat0": 0,
+          "consistent0": true,
+          "C1": 1.0,
+          "unsat1": 0,
+          "coherent1": true
+        },
+        {
+          "run": "run15",
+          "C0": 0.9934,
+          "unsat0": 1,
+          "consistent0": true,
+          "C1": 1.0,
+          "unsat1": 0,
+          "coherent1": true
+        },
+        {
+          "run": "run16",
+          "C0": 0.9928,
+          "unsat0": 1,
+          "consistent0": true,
+          "C1": 1.0,
+          "unsat1": 0,
+          "coherent1": true
+        },
+        {
+          "run": "run17",
+          "C0": 0.9924,
+          "unsat0": 1,
+          "consistent0": true,
+          "C1": 1.0,
+          "unsat1": 0,
+          "coherent1": true
+        },
+        {
+          "run": "run18",
+          "C0": 0.9932,
+          "unsat0": 1,
+          "consistent0": true,
+          "C1": 1.0,
+          "unsat1": 0,
+          "coherent1": true
+        },
+        {
+          "run": "run19",
+          "C0": 0.985,
+          "unsat0": 2,
+          "consistent0": true,
+          "C1": 1.0,
+          "unsat1": 0,
+          "coherent1": true
+        },
+        {
+          "run": "run20",
+          "C0": 0.9932,
+          "unsat0": 1,
+          "consistent0": true,
+          "C1": 1.0,
+          "unsat1": 0,
+          "coherent1": true
+        },
+        {
+          "run": "run21",
+          "C0": 0.9823,
+          "unsat0": 2,
+          "consistent0": true,
+          "C1": 1.0,
+          "unsat1": 0,
+          "coherent1": true
+        },
+        {
+          "run": "run22",
+          "C0": 0.9854,
+          "unsat0": 2,
+          "consistent0": true,
+          "C1": 1.0,
+          "unsat1": 0,
+          "coherent1": true
+        },
+        {
+          "run": "run23",
+          "C0": 1.0,
+          "unsat0": 0,
+          "consistent0": true,
+          "C1": 1.0,
+          "unsat1": 0,
+          "coherent1": true
+        },
+        {
+          "run": "run24",
+          "C0": 1.0,
+          "unsat0": 0,
+          "consistent0": true,
+          "C1": 1.0,
+          "unsat1": 0,
+          "coherent1": true
+        },
+        {
+          "run": "run25",
+          "C0": 0.9837,
+          "unsat0": 2,
+          "consistent0": true,
+          "C1": 1.0,
+          "unsat1": 0,
+          "coherent1": true
+        },
+        {
+          "run": "run26",
+          "C0": 0.9939,
+          "unsat0": 1,
+          "consistent0": true,
+          "C1": 1.0,
+          "unsat1": 0,
+          "coherent1": true
+        },
+        {
+          "run": "run27",
+          "C0": 0.9835,
+          "unsat0": 2,
+          "consistent0": true,
+          "C1": 1.0,
+          "unsat1": 0,
+          "coherent1": true
+        },
+        {
+          "run": "run28",
+          "C0": 0.9889,
+          "unsat0": 2,
+          "consistent0": true,
+          "C1": 1.0,
+          "unsat1": 0,
+          "coherent1": true
+        },
+        {
+          "run": "run29",
+          "C0": 0.9921,
+          "unsat0": 1,
+          "consistent0": true,
+          "C1": 1.0,
+          "unsat1": 0,
+          "coherent1": true
+        },
+        {
+          "run": "run30",
+          "C0": 0.9837,
+          "unsat0": 2,
+          "consistent0": true,
+          "C1": 1.0,
+          "unsat1": 0,
+          "coherent1": true
+        }
+      ]
+    }
+  }
+}

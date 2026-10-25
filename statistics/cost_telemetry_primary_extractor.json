@@ -1,0 +1,71 @@
+{
+  "root": "results/primary_extractor",
+  "overall": {
+    "n": 90,
+    "calls_per_run": 2.1,
+    "in_tokens_per_run": 168965,
+    "out_tokens_per_run": 80949,
+    "thinking_tokens_per_run": 0,
+    "api_seconds_per_run": 669.1,
+    "wall_seconds_per_run": 679.0,
+    "refine_iterations": {
+      "0": 44,
+      "1": 38,
+      "2": 8
+    },
+    "median_iterations": 1.0,
+    "parse_failures_total": 0,
+    "parse_attempts_total": 192
+  },
+  "by_domain": {
+    "assessment": {
+      "n": 30,
+      "calls_per_run": 2.3,
+      "in_tokens_per_run": 150229,
+      "out_tokens_per_run": 82795,
+      "thinking_tokens_per_run": 0,
+      "api_seconds_per_run": 687.1,
+      "wall_seconds_per_run": 697.1,
+      "refine_iterations": {
+        "0": 2,
+        "1": 27,
+        "2": 1
+      },
+      "median_iterations": 1.0,
+      "parse_failures_total": 0,
+      "parse_attempts_total": 69
+    },
+    "hypertension": {
+      "n": 30,
+      "calls_per_run": 1.3,
+      "in_tokens_per_run": 65129,
+      "out_tokens_per_run": 47583,
+      "thinking_tokens_per_run": 0,
+      "api_seconds_per_run": 396.2,
+      "wall_seconds_per_run": 404.4,
+      "refine_iterations": {
+        "0": 30
+      },
+      "median_iterations": 0.0,
+      "parse_failures_total": 0,
+      "parse_attempts_total": 40
+    },
+    "securities": {
+      "n": 30,
+      "calls_per_run": 2.8,
+      "in_tokens_per_run": 291536,
+      "out_tokens_per_run": 112469,
+      "thinking_tokens_per_run": 0,
+      "api_seconds_per_run": 923.9,
+      "wall_seconds_per_run": 935.5,
+      "refine_iterations": {
+        "0": 12,
+        "1": 11,
+        "2": 7
+      },
+      "median_iterations": 1.0,
+      "parse_failures_total": 0,
+      "parse_attempts_total": 83
+    }
+  }
+}

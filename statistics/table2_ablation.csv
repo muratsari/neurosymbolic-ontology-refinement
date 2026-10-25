@@ -1,0 +1,5 @@
+configuration,coherence,cq_accuracy,delta_coherence_vs_llm_only
+LLM-only,0.2,0.4206,
+LLM + single-pass repair,0.5667,0.4349,0.3667
+Proposed (Hybrid),0.8,0.4381,0.6
+Reasoner-prune (control),0.9333,0.4175,0.7333

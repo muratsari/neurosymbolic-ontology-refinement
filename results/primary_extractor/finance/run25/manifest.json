@@ -1,0 +1,129 @@
+{
+  "domain": "securities",
+  "run": "run25",
+  "settings": {
+    "max_output_tokens": 64000,
+    "reasoning": "high",
+    "prompt_cache": "extraction call (ttl 1h where configurable)",
+    "correct_mode": "rewrite",
+    "chunk_chars": 600000,
+    "max_refine_iters": 5,
+    "hard_error_types": [
+      "inconsistency",
+      "unsatisfiable_class"
+    ]
+  },
+  "telemetry": {
+    "llm": "anthropic:claude-sonnet-5",
+    "wall_seconds": 875.5,
+    "calls": 3,
+    "in_tokens": 193782,
+    "cache_read_tokens": 155504,
+    "cache_write_tokens": 0,
+    "out_tokens": 107721,
+    "thinking_tokens": 0,
+    "api_seconds": 861.9,
+    "parse_attempts": 3,
+    "parse_failures": 0,
+    "truncated_replies": 0,
+    "served_model_ids": [
+      "claude-sonnet-5"
+    ],
+    "refine_iterations": 2,
+    "refine_stop": "no_hard_errors"
+  },
+  "refine_history": [
+    {
+      "iter": 0,
+      "n_errors": 14,
+      "n_hard": 14,
+      "C": 0.9067,
+      "unsat": 14
+    },
+    {
+      "iter": 1,
+      "n_errors": 4,
+      "n_hard": 4,
+      "C": 0.9733,
+      "unsat": 4
+    },
+    {
+      "iter": 2,
+      "n_errors": 0,
+      "n_hard": 0,
+      "C": 1.0,
+      "unsat": 0
+    }
+  ],
+  "prune_info": {
+    "removed_classes": 14,
+    "removed_triples": 165,
+    "removed_axioms": 3
+  },
+  "scores": [
+    {
+      "domain": "securities",
+      "run": "run25",
+      "config": "llm_only",
+      "llm": "anthropic:claude-sonnet-5",
+      "consistency_C": 0.9067,
+      "consistent": true,
+      "unsatisfiable": 14,
+      "n_errors": 14,
+      "gen_classes": 150,
+      "f1": 0.2669,
+      "precision": 0.2218,
+      "recall": 0.3351,
+      "concept_f1": 0.36,
+      "relation_f1": 0.1688
+    },
+    {
+      "domain": "securities",
+      "run": "run25",
+      "config": "prune",
+      "llm": "anthropic:claude-sonnet-5",
+      "consistency_C": 1.0,
+      "consistent": true,
+      "unsatisfiable": 0,
+      "n_errors": 0,
+      "gen_classes": 136,
+      "f1": 0.2565,
+      "precision": 0.2218,
+      "recall": 0.3041,
+      "concept_f1": 0.339,
+      "relation_f1": 0.1696
+    },
+    {
+      "domain": "securities",
+      "run": "run25",
+      "config": "single_pass",
+      "llm": "anthropic:claude-sonnet-5",
+      "consistency_C": 0.9733,
+      "consistent": true,
+      "unsatisfiable": 4,
+      "n_errors": 4,
+      "gen_classes": 150,
+      "f1": 0.2656,
+      "precision": 0.2222,
+      "recall": 0.3299,
+      "concept_f1": 0.36,
+      "relation_f1": 0.1638
+    },
+    {
+      "domain": "securities",
+      "run": "run25",
+      "config": "hybrid",
+      "llm": "anthropic:claude-sonnet-5",
+      "consistency_C": 1.0,
+      "consistent": true,
+      "unsatisfiable": 0,
+      "n_errors": 0,
+      "gen_classes": 150,
+      "f1": 0.2656,
+      "precision": 0.2222,
+      "recall": 0.3299,
+      "concept_f1": 0.36,
+      "relation_f1": 0.1638
+    }
+  ]
+}

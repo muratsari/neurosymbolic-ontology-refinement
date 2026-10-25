@@ -1,0 +1,634 @@
+{
+  "domain": "education",
+  "sub_domain": "Educational Assessment & Evaluation",
+  "concept_ttl": "../../reference_ontologies/assessment.ttl",
+  "boundary": {
+    "in_scope": "Educational assessment and evaluation classified along four orthogonal axes: purpose (formative / summative / diagnostic), score interpretation (norm-referenced / criterion-referenced / ipsative), formality (formal / informal), and format (written / oral / performance-based); the measurement-quality properties validity (and its types: content, criterion, concurrent, predictive, construct, face) and reliability (and its types: test-retest, internal consistency, inter-rater, parallel-forms); the relations of an assessment to the learning outcomes it measures and is aligned with (measures, isAlignedWith / constructive alignment); and the assessment components rubric, item, and feedback together with their participants (learner) and outputs (assessment result).",
+    "out_of_scope": "Curriculum structure (except the alignment link to learning outcomes); branded or named standardized exams (e.g. PISA, SAT, NAEP); education policy and administration; and statistical theory beyond validity and reliability."
+  },
+  "wikipedia_seeds": [
+    "Educational assessment",
+    "Reliability (statistics)",
+    "Validity (statistics)",
+    "Standardized test",
+    "Holistic grading",
+    "Multiple choice",
+    "Rubric (academic)",
+    "Formative assessment",
+    "Educational measurement",
+    "Summative assessment",
+    "Norm-referenced test",
+    "Criterion-referenced test",
+    "Ipsative",
+    "Exam",
+    "Free response",
+    "Oral exam",
+    "Authentic assessment",
+    "Continuous assessment",
+    "Educational evaluation",
+    "Educational aims and objectives",
+    "Constructive alignment",
+    "Corrective feedback",
+    "Content validity",
+    "Construct validity",
+    "Criterion validity",
+    "Concurrent validity",
+    "Predictive validity",
+    "Face validity",
+    "Inter-rater reliability",
+    "Internal consistency"
+  ],
+  "drop_sections": [
+    "criticism",
+    "criticisms",
+    "controversy",
+    "controversies",
+    "by country",
+    "united states",
+    "in the united states",
+    "legislation",
+    "policy",
+    "test preparation",
+    "standardized testing in the united states",
+    "accommodations",
+    "examples"
+  ],
+  "expansion": {
+    "enabled": true,
+    "concept_matched_only": true
+  },
+  "max_units_per_source": 200,
+  "concept_synonyms": {
+    "Assessment Category": [
+      "assessment type",
+      "assessment types",
+      "types of assessment",
+      "kinds of assessment",
+      "assessment classification",
+      "classification of assessment"
+    ],
+    "Purpose Category": [
+      "assessment purpose",
+      "assessment purposes",
+      "purpose of assessment",
+      "purpose of the assessment",
+      "purposes of assessment"
+    ],
+    "Score Interpretation Category": [
+      "score interpretation",
+      "interpretation of scores",
+      "interpreting scores",
+      "interpreting test scores",
+      "frame of reference",
+      "reference frame"
+    ],
+    "Formality Category": [
+      "formality of assessment",
+      "degree of formality",
+      "level of formality"
+    ],
+    "Format Category": [
+      "assessment format",
+      "test format",
+      "format of assessment",
+      "response format",
+      "item format"
+    ],
+    "Measurement Property": [
+      "psychometric property",
+      "psychometric properties",
+      "measurement quality",
+      "psychometric quality",
+      "technical quality"
+    ],
+    "Formative Purpose": [
+      "formative purpose",
+      "formative purposes"
+    ],
+    "Summative Purpose": [
+      "summative purpose",
+      "summative purposes"
+    ],
+    "Diagnostic Purpose": [
+      "diagnostic purpose",
+      "diagnostic purposes"
+    ],
+    "Norm-Referenced Interpretation": [
+      "norm-referenced",
+      "norm-referencing",
+      "norm referencing",
+      "norm-referenced interpretation",
+      "norm-referenced scoring"
+    ],
+    "Criterion-Referenced Interpretation": [
+      "criterion-referenced",
+      "criterion-referencing",
+      "criterion referencing",
+      "criterion-referenced interpretation",
+      "criterion-referenced scoring"
+    ],
+    "Ipsative Interpretation": [
+      "ipsative",
+      "ipsative interpretation",
+      "ipsative referencing",
+      "ipsative-referenced"
+    ],
+    "Formal Administration": [
+      "formal administration",
+      "standardized administration",
+      "standardized conditions",
+      "formally administered",
+      "standardized testing",
+      "standardized test",
+      "standardized tests",
+      "standardized assessment",
+      "under standardized conditions"
+    ],
+    "Informal Administration": [
+      "informal administration",
+      "non-standardized",
+      "unstandardized",
+      "informally administered",
+      "without standardized procedures"
+    ],
+    "Written Format": [
+      "written form",
+      "written response",
+      "written responses",
+      "in written form",
+      "paper-and-pencil",
+      "paper-based"
+    ],
+    "Oral Format": [
+      "oral format",
+      "oral question",
+      "oral questions",
+      "orally",
+      "oral response",
+      "spoken response",
+      "spoken responses",
+      "respond orally",
+      "verbal response"
+    ],
+    "Performance-Based Format": [
+      "performance-based",
+      "performance task",
+      "performance tasks",
+      "hands-on",
+      "authentic task",
+      "authentic tasks"
+    ],
+    "Diagnostic Assessment": [
+      "diagnostic assessment",
+      "diagnostic test",
+      "diagnostic testing",
+      "pre-assessment",
+      "placement test"
+    ],
+    "Norm-Referenced Test": [
+      "norm-referenced testing",
+      "norm-referenced assessment"
+    ],
+    "Criterion-Referenced Test": [
+      "criterion-referenced testing",
+      "criterion-referenced assessment",
+      "mastery test"
+    ],
+    "Ipsative Assessment": [
+      "self-referenced assessment",
+      "self-referencing"
+    ],
+    "Formal Assessment": [
+      "formal test"
+    ],
+    "Informal Assessment": [
+      "informal test"
+    ],
+    "Written Assessment": [
+      "written test",
+      "written exam",
+      "written examination",
+      "essay test",
+      "paper exam"
+    ],
+    "Oral Assessment": [
+      "oral examination",
+      "oral exam",
+      "viva",
+      "viva voce",
+      "oral test"
+    ],
+    "Performance-Based Assessment": [
+      "performance assessment",
+      "performance-based testing"
+    ],
+    "Criterion Validity": [
+      "criterion-related validity",
+      "criterion related validity"
+    ],
+    "Test-Retest Reliability": [
+      "test-retest",
+      "test–retest",
+      "test retest",
+      "retest reliability",
+      "test-retest method"
+    ],
+    "Internal Consistency Reliability": [
+      "internal consistency",
+      "internal-consistency reliability",
+      "cronbach's alpha",
+      "coefficient alpha",
+      "kuder-richardson",
+      "split-half reliability",
+      "kr-20"
+    ],
+    "Inter-Rater Reliability": [
+      "interrater reliability",
+      "inter-rater agreement",
+      "interrater agreement",
+      "inter-observer reliability",
+      "interobserver reliability",
+      "scorer reliability"
+    ],
+    "Parallel-Forms Reliability": [
+      "parallel forms",
+      "parallel-forms",
+      "alternate forms",
+      "alternate-forms reliability",
+      "alternate form reliability",
+      "equivalent forms",
+      "parallel form reliability"
+    ],
+    "Learning Outcome": [
+      "learning outcomes",
+      "intended learning outcome",
+      "intended learning outcomes",
+      "learning objective",
+      "learning objectives",
+      "educational objective",
+      "educational objectives"
+    ],
+    "Rubric": [
+      "scoring rubric",
+      "scoring guide"
+    ],
+    "Analytic Rubric": [
+      "analytic scoring",
+      "analytical rubric",
+      "analytic scoring rubric",
+      "analytic grading",
+      "analytic rubrics"
+    ],
+    "Holistic Rubric": [
+      "holistic scoring",
+      "holistic grading",
+      "holistic scoring rubric",
+      "holistic rubrics"
+    ],
+    "Assessment Item": [
+      "test item",
+      "test items",
+      "exam item",
+      "question item"
+    ],
+    "Selected-Response Item": [
+      "selected response",
+      "selected-response",
+      "multiple choice",
+      "multiple-choice",
+      "true/false item",
+      "matching item",
+      "objective item",
+      "selected-response question"
+    ],
+    "Constructed-Response Item": [
+      "constructed response",
+      "constructed-response",
+      "free response",
+      "free-response",
+      "open-ended question",
+      "open-ended response",
+      "essay question",
+      "short-answer question",
+      "short answer",
+      "supply-type item"
+    ],
+    "Feedback": [
+      "corrective feedback",
+      "formative feedback",
+      "descriptive feedback"
+    ],
+    "Learner": [
+      "learners",
+      "student",
+      "students",
+      "pupil",
+      "pupils",
+      "test-taker",
+      "test taker",
+      "test-takers",
+      "examinee",
+      "examinees"
+    ],
+    "Assessment Result": [
+      "test score",
+      "test scores",
+      "assessment results",
+      "test result",
+      "test results",
+      "assessment score",
+      "score report"
+    ],
+    "provides feedback to": [
+      "provide feedback to",
+      "provides feedback to",
+      "providing feedback to",
+      "feedback to the learner",
+      "feedback to learners",
+      "feedback to students",
+      "feedback to the student"
+    ]
+  },
+  "other_layers": [
+    {
+      "source_type": "terminological",
+      "title": "The Glossary of Education Reform (EdGlossary) - benchmark assessment",
+      "url": "https://www.edglossary.org/benchmark-assessment/",
+      "language": "English",
+      "license": "CC BY-NC-SA 4.0 (Great Schools Partnership)",
+      "access_note": "Static HTML term page; non-commercial research use with attribution.",
+      "fetch": true
+    },
+    {
+      "source_type": "terminological",
+      "title": "The Glossary of Education Reform (EdGlossary) - proficiency",
+      "url": "https://www.edglossary.org/proficiency/",
+      "language": "English",
+      "license": "CC BY-NC-SA 4.0 (Great Schools Partnership)",
+      "access_note": "Static HTML term page; non-commercial research use with attribution.",
+      "fetch": true
+    },
+    {
+      "source_type": "terminological",
+      "title": "The Glossary of Education Reform (EdGlossary) - growth model",
+      "url": "https://www.edglossary.org/growth-model/",
+      "language": "English",
+      "license": "CC BY-NC-SA 4.0 (Great Schools Partnership)",
+      "access_note": "Static HTML term page; non-commercial research use with attribution.",
+      "fetch": true
+    },
+    {
+      "source_type": "terminological",
+      "title": "The Glossary of Education Reform (EdGlossary) - value added measures",
+      "url": "https://www.edglossary.org/value-added-measures/",
+      "language": "English",
+      "license": "CC BY-NC-SA 4.0 (Great Schools Partnership)",
+      "access_note": "Static HTML term page; non-commercial research use with attribution.",
+      "fetch": true
+    },
+    {
+      "source_type": "terminological",
+      "title": "The Glossary of Education Reform (EdGlossary) - exit exam",
+      "url": "https://www.edglossary.org/exit-exam/",
+      "language": "English",
+      "license": "CC BY-NC-SA 4.0 (Great Schools Partnership)",
+      "access_note": "Static HTML term page; non-commercial research use with attribution.",
+      "fetch": true
+    },
+    {
+      "source_type": "terminological",
+      "title": "The Glossary of Education Reform (EdGlossary) - competency based learning",
+      "url": "https://www.edglossary.org/competency-based-learning/",
+      "language": "English",
+      "license": "CC BY-NC-SA 4.0 (Great Schools Partnership)",
+      "access_note": "Static HTML term page; non-commercial research use with attribution.",
+      "fetch": true
+    },
+    {
+      "source_type": "terminological",
+      "title": "The Glossary of Education Reform (EdGlossary) - portfolio",
+      "url": "https://www.edglossary.org/portfolio/",
+      "language": "English",
+      "license": "CC BY-NC-SA 4.0 (Great Schools Partnership)",
+      "access_note": "Static HTML term page; non-commercial research use with attribution.",
+      "fetch": true
+    },
+    {
+      "source_type": "terminological",
+      "title": "The Glossary of Education Reform (EdGlossary) - score",
+      "url": "https://www.edglossary.org/score/",
+      "language": "English",
+      "license": "CC BY-NC-SA 4.0 (Great Schools Partnership)",
+      "access_note": "Static HTML term page; non-commercial research use with attribution.",
+      "fetch": true
+    },
+    {
+      "source_type": "terminological",
+      "title": "The Glossary of Education Reform (EdGlossary) - scoring",
+      "url": "https://www.edglossary.org/scoring/",
+      "language": "English",
+      "license": "CC BY-NC-SA 4.0 (Great Schools Partnership)",
+      "access_note": "Static HTML definitional term page; non-commercial research use with attribution; retrieved 2026-06-29.",
+      "fetch": true
+    },
+    {
+      "source_type": "terminological",
+      "title": "The Glossary of Education Reform (EdGlossary) - grade point average",
+      "url": "https://www.edglossary.org/grade-point-average/",
+      "language": "English",
+      "license": "CC BY-NC-SA 4.0 (Great Schools Partnership)",
+      "access_note": "Static HTML definitional term page; non-commercial research use with attribution; retrieved 2026-06-29.",
+      "fetch": true
+    },
+    {
+      "source_type": "terminological",
+      "title": "The Glossary of Education Reform (EdGlossary) - reliability",
+      "url": "https://www.edglossary.org/reliability/",
+      "language": "English",
+      "license": "CC BY-NC-SA 4.0 (Great Schools Partnership)",
+      "access_note": "Static HTML definitional term page; non-commercial research use with attribution; retrieved 2026-06-29.",
+      "fetch": true
+    },
+    {
+      "source_type": "terminological",
+      "title": "The Glossary of Education Reform (EdGlossary) - validity",
+      "url": "https://www.edglossary.org/validity/",
+      "language": "English",
+      "license": "CC BY-NC-SA 4.0 (Great Schools Partnership)",
+      "access_note": "Static HTML definitional term page; non-commercial research use with attribution; retrieved 2026-06-29.",
+      "fetch": true
+    },
+    {
+      "source_type": "terminological",
+      "title": "The Glossary of Education Reform (EdGlossary) - measurement error",
+      "url": "https://www.edglossary.org/measurement-error/",
+      "language": "English",
+      "license": "CC BY-NC-SA 4.0 (Great Schools Partnership)",
+      "access_note": "Static HTML definitional term page; non-commercial research use with attribution; retrieved 2026-06-29.",
+      "fetch": true
+    },
+    {
+      "source_type": "terminological",
+      "title": "The Glossary of Education Reform (EdGlossary) - rubric",
+      "url": "https://www.edglossary.org/rubric/",
+      "language": "English",
+      "license": "CC BY-NC-SA 4.0 (Great Schools Partnership)",
+      "access_note": "Static HTML definitional term page; non-commercial research use with attribution; retrieved 2026-06-29.",
+      "fetch": true
+    },
+    {
+      "source_type": "terminological",
+      "title": "The Glossary of Education Reform (EdGlossary) - performance based learning",
+      "url": "https://www.edglossary.org/performance-based-learning/",
+      "language": "English",
+      "license": "CC BY-NC-SA 4.0 (Great Schools Partnership)",
+      "access_note": "Static HTML definitional term page; non-commercial research use with attribution; retrieved 2026-06-29.",
+      "fetch": true
+    },
+    {
+      "source_type": "terminological",
+      "title": "The Glossary of Education Reform (EdGlossary) - authentic assessment",
+      "url": "https://www.edglossary.org/authentic-assessment/",
+      "language": "English",
+      "license": "CC BY-NC-SA 4.0 (Great Schools Partnership)",
+      "access_note": "Static HTML definitional term page; non-commercial research use with attribution; retrieved 2026-06-29.",
+      "fetch": true
+    },
+    {
+      "source_type": "terminological",
+      "title": "The Glossary of Education Reform (EdGlossary) - high stakes test",
+      "url": "https://www.edglossary.org/high-stakes-test/",
+      "language": "English",
+      "license": "CC BY-NC-SA 4.0 (Great Schools Partnership)",
+      "access_note": "Static HTML definitional term page; non-commercial research use with attribution; retrieved 2026-06-29.",
+      "fetch": true
+    },
+    {
+      "source_type": "terminological",
+      "title": "The Glossary of Education Reform (EdGlossary) - ipsative",
+      "url": "https://www.edglossary.org/ipsative/",
+      "language": "English",
+      "license": "CC BY-NC-SA 4.0 (Great Schools Partnership)",
+      "access_note": "Static HTML definitional term page; non-commercial research use with attribution; retrieved 2026-06-29.",
+      "fetch": true
+    },
+    {
+      "source_type": "terminological",
+      "title": "The Glossary of Education Reform (EdGlossary) - criterion referenced test",
+      "url": "https://www.edglossary.org/criterion-referenced-test/",
+      "language": "English",
+      "license": "CC BY-NC-SA 4.0 (Great Schools Partnership)",
+      "access_note": "Static HTML definitional term page; non-commercial research use with attribution; retrieved 2026-06-29.",
+      "fetch": true
+    },
+    {
+      "source_type": "terminological",
+      "title": "The Glossary of Education Reform (EdGlossary) - norm referenced test",
+      "url": "https://www.edglossary.org/norm-referenced-test/",
+      "language": "English",
+      "license": "CC BY-NC-SA 4.0 (Great Schools Partnership)",
+      "access_note": "Static HTML definitional term page; non-commercial research use with attribution; retrieved 2026-06-29.",
+      "fetch": true
+    },
+    {
+      "source_type": "terminological",
+      "title": "The Glossary of Education Reform (EdGlossary) - standardized test",
+      "url": "https://www.edglossary.org/standardized-test/",
+      "language": "English",
+      "license": "CC BY-NC-SA 4.0 (Great Schools Partnership)",
+      "access_note": "Static HTML definitional term page; non-commercial research use with attribution; retrieved 2026-06-29.",
+      "fetch": true
+    },
+    {
+      "source_type": "terminological",
+      "title": "The Glossary of Education Reform (EdGlossary) - diagnostic assessment",
+      "url": "https://www.edglossary.org/diagnostic-assessment/",
+      "language": "English",
+      "license": "CC BY-NC-SA 4.0 (Great Schools Partnership)",
+      "access_note": "Static HTML definitional term page; non-commercial research use with attribution; retrieved 2026-06-29.",
+      "fetch": true
+    },
+    {
+      "source_type": "terminological",
+      "title": "The Glossary of Education Reform (EdGlossary) - summative assessment",
+      "url": "https://www.edglossary.org/summative-assessment/",
+      "language": "English",
+      "license": "CC BY-NC-SA 4.0 (Great Schools Partnership)",
+      "access_note": "Static HTML definitional term page; non-commercial research use with attribution; retrieved 2026-06-29.",
+      "fetch": true
+    },
+    {
+      "source_type": "terminological",
+      "title": "The Glossary of Education Reform (EdGlossary) - formative assessment",
+      "url": "https://www.edglossary.org/formative-assessment/",
+      "language": "English",
+      "license": "CC BY-NC-SA 4.0 (Great Schools Partnership)",
+      "access_note": "Static HTML definitional term page; non-commercial research use with attribution; retrieved 2026-06-29.",
+      "fetch": true
+    },
+    {
+      "source_type": "terminological",
+      "title": "The Glossary of Education Reform (EdGlossary) - assessment",
+      "url": "https://www.edglossary.org/assessment/",
+      "language": "English",
+      "license": "CC BY-NC-SA 4.0 (Great Schools Partnership)",
+      "access_note": "Static HTML definitional term page; non-commercial research use with attribution; retrieved 2026-06-29.",
+      "fetch": true
+    },
+    {
+      "source_type": "reference",
+      "title": "Linn, R. L. & Gronlund, N. E. - Measurement and Assessment in Teaching (foundational-concepts chapters: nature of assessment, validity, reliability, item types, performance assessment, rubrics)",
+      "url": "https://search.worldcat.org/title/measurement-and-assessment-in-teaching/oclc/318877158",
+      "language": "English",
+      "license": "Copyrighted textbook (Pearson); all rights reserved",
+      "access_note": "Copyrighted; library/purchase access only, not scrapable. Structured-reference anchor for formal/informal, written/oral, item and rubric concepts. fetch:false.",
+      "fetch": false
+    },
+    {
+      "source_type": "reference",
+      "title": "Seifert, K. & Sutton, R. - Educational Psychology (Open Textbook), Ch. 11 'Teacher-made assessment strategies' & Ch. 12 'Standardized and other formal assessments'",
+      "url": "https://open.umn.edu/opentextbooks/textbooks/153",
+      "language": "English",
+      "license": "CC BY 3.0 (open educational resource)",
+      "access_note": "Openly licensed OER chapter on classroom assessment; distributed as PDF / Pressbooks (not a single clean fetchable HTML article), so extracted manually. Relation-dense alternative to the copyrighted anchor. fetch:false.",
+      "fetch": false
+    },
+    {
+      "source_type": "normative",
+      "title": "AERA, APA & NCME - Standards for Educational and Psychological Testing (2014), Chapter 1 'Validity' and Chapter 2 'Reliability/Precision'",
+      "url": "https://www.testingstandards.net/",
+      "language": "English",
+      "license": "Copyright AERA/APA/NCME; all rights reserved",
+      "access_note": "Authoritative normative source of the mandatory relations/constraints among validity and reliability concepts. Copyrighted book / ToS-restricted, no scraping; consult manually. fetch:false.",
+      "fetch": false
+    }
+  ],
+  "wiki_sources": [
+    {
+      "name": "Wikiversity",
+      "api": "https://en.wikiversity.org/w/api.php",
+      "mode": "extracts",
+      "license": "CC BY-SA 4.0",
+      "source_type": "reference",
+      "titles": [
+        "Educational Assessment",
+        "Educational Assessment/Principles of Good Practice for Assessing Student Learning"
+      ]
+    },
+    {
+      "name": "Simple English Wikipedia",
+      "api": "https://simple.wikipedia.org/w/api.php",
+      "mode": "extracts",
+      "license": "CC BY-SA 4.0",
+      "source_type": "encyclopedic",
+      "titles": [
+        "Educational assessment",
+        "Test (student assessment)",
+        "Exam",
+        "Grading in education",
+        "Validity (statistics)",
+        "Reliability (statistics)"
+      ]
+    }
+  ]
+}

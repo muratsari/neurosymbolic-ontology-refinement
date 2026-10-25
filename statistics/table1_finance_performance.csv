@@ -1,0 +1,4 @@
+model,coherent_runs,n,coherence,coherence_ci95_low,coherence_ci95_high,cq_accuracy,cq_passed_mean,cq_passed_sd,cq_total,precision_mean,precision_sd,f1_mean,f1_sd,recall_mean,recall_sd
+LLM-only,6,30,0.2,0.095,0.3731,0.4206,8.8333,4.0606,21,0.3001,0.0801,0.343,0.0752,0.4108,0.0814
+LLM + single-pass repair,17,30,0.5667,0.392,0.7262,0.4349,9.1333,3.963,21,0.3007,0.0802,0.3434,0.0755,0.4108,0.0819
+Proposed (Hybrid),24,30,0.8,0.6269,0.905,0.4381,9.2,4.0292,21,0.3007,0.0802,0.3434,0.0755,0.4108,0.0819

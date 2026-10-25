@@ -1,0 +1,122 @@
+{
+  "domain": "securities",
+  "run": "run03",
+  "settings": {
+    "max_output_tokens": 64000,
+    "reasoning": "high",
+    "prompt_cache": "extraction call (ttl 1h where configurable)",
+    "correct_mode": "rewrite",
+    "chunk_chars": 600000,
+    "max_refine_iters": 5,
+    "hard_error_types": [
+      "inconsistency",
+      "unsatisfiable_class"
+    ]
+  },
+  "telemetry": {
+    "llm": "anthropic:claude-sonnet-5",
+    "wall_seconds": 1170.2,
+    "calls": 3,
+    "in_tokens": 332381,
+    "cache_read_tokens": 155504,
+    "cache_write_tokens": 155504,
+    "out_tokens": 138100,
+    "thinking_tokens": 0,
+    "api_seconds": 1156.7,
+    "parse_attempts": 3,
+    "parse_failures": 0,
+    "truncated_replies": 0,
+    "served_model_ids": [
+      "claude-sonnet-5"
+    ],
+    "refine_iterations": 1,
+    "refine_stop": "no_hard_errors"
+  },
+  "refine_history": [
+    {
+      "iter": 0,
+      "n_errors": 5,
+      "n_hard": 5,
+      "C": 0.9615,
+      "unsat": 5
+    },
+    {
+      "iter": 1,
+      "n_errors": 0,
+      "n_hard": 0,
+      "C": 1.0,
+      "unsat": 0
+    }
+  ],
+  "prune_info": {
+    "removed_classes": 5,
+    "removed_triples": 45,
+    "removed_axioms": 0
+  },
+  "scores": [
+    {
+      "domain": "securities",
+      "run": "run03",
+      "config": "llm_only",
+      "llm": "anthropic:claude-sonnet-5",
+      "consistency_C": 0.9615,
+      "consistent": true,
+      "unsatisfiable": 5,
+      "n_errors": 5,
+      "gen_classes": 130,
+      "f1": 0.424,
+      "precision": 0.3626,
+      "recall": 0.5103,
+      "concept_f1": 0.5304,
+      "relation_f1": 0.3207
+    },
+    {
+      "domain": "securities",
+      "run": "run03",
+      "config": "prune",
+      "llm": "anthropic:claude-sonnet-5",
+      "consistency_C": 1.0,
+      "consistent": true,
+      "unsatisfiable": 0,
+      "n_errors": 0,
+      "gen_classes": 125,
+      "f1": 0.4289,
+      "precision": 0.3726,
+      "recall": 0.5052,
+      "concept_f1": 0.5333,
+      "relation_f1": 0.3276
+    },
+    {
+      "domain": "securities",
+      "run": "run03",
+      "config": "single_pass",
+      "llm": "anthropic:claude-sonnet-5",
+      "consistency_C": 1.0,
+      "consistent": true,
+      "unsatisfiable": 0,
+      "n_errors": 0,
+      "gen_classes": 130,
+      "f1": 0.424,
+      "precision": 0.3626,
+      "recall": 0.5103,
+      "concept_f1": 0.5304,
+      "relation_f1": 0.3207
+    },
+    {
+      "domain": "securities",
+      "run": "run03",
+      "config": "hybrid",
+      "llm": "anthropic:claude-sonnet-5",
+      "consistency_C": 1.0,
+      "consistent": true,
+      "unsatisfiable": 0,
+      "n_errors": 0,
+      "gen_classes": 130,
+      "f1": 0.424,
+      "precision": 0.3626,
+      "recall": 0.5103,
+      "concept_f1": 0.5304,
+      "relation_f1": 0.3207
+    }
+  ]
+}

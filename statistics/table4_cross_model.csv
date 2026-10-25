@@ -1,0 +1,7 @@
+domain,domain_key,arm,coherent_runs_A,coherent_runs_C,n,coherence_A<C_p,cq_passed_delta_A<C,cq_A<C_p,cq_A<C_dz,deltaF1_C_minus_Br,f1_noninferiority_p
+Finance,securities,primary_extractor,6,24,30,3.814697265625e-06,0.3667,0.00390625,0.5104,0.0,4.9999750001249995e-06
+Finance,securities,second_extractor,28,30,30,0.25,0.0333,0.5,0.1826,0.0,4.9999750001249995e-06
+Healthcare,hypertension,primary_extractor,30,30,30,1.0,0,1.0,0.0,0.0,4.9999750001249995e-06
+Healthcare,hypertension,second_extractor,28,29,30,0.5,0.0333,0.5,0.1826,0.0,4.9999750001249995e-06
+Education,assessment,primary_extractor,2,30,30,4.9999750001249995e-06,2.4,4.9999750001249995e-06,1.7396,0.0,4.9999750001249995e-06
+Education,assessment,second_extractor,8,30,30,9.999950000249999e-06,1.2667,9.999950000249999e-06,1.2922,0.0,4.9999750001249995e-06

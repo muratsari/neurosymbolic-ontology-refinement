@@ -1,0 +1,37 @@
+{
+ "consistency_C": 1.0,
+ "consistent": true,
+ "unsatisfiable": 0,
+ "gen_classes": 174,
+ "f1": 0.3747,
+ "precision": 0.2722,
+ "recall": 0.6014,
+ "concept_f1": 0.464,
+ "relation_f1": 0.2679,
+ "metrics": {
+  "overall": {
+   "precision": 0.2722,
+   "recall": 0.6014,
+   "f1": 0.3747,
+   "tp": 86,
+   "gen": 316,
+   "gold": 143
+  },
+  "concept": {
+   "precision": 0.3333,
+   "recall": 0.7632,
+   "f1": 0.464,
+   "tp": 58,
+   "gen": 174,
+   "gold": 76
+  },
+  "relation": {
+   "precision": 0.1972,
+   "recall": 0.4179,
+   "f1": 0.2679,
+   "tp": 28,
+   "gen": 142,
+   "gold": 67
+  }
+ }
+}

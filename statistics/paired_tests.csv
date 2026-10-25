@@ -1,0 +1,55 @@
+arm,domain,domain_key,axis,contrast,n_pairs,mean_delta,p_one_sided_signflip,ci95_low,ci95_high,cohen_dz,pairs_positive,pairs_negative
+primary_extractor,Finance,securities,coherence,A<Br,30,0.3667,0.00048828125,,,,11,0
+primary_extractor,Finance,securities,coherence,Br<C,30,0.2333,0.0078125,,,,7,0
+primary_extractor,Finance,securities,coherence,A<C,30,0.6,3.814697265625e-06,,,,18,0
+primary_extractor,Finance,securities,cq_passed,A<Br,30,0.3,0.015625,0.1,0.5667,0.4272,6,0
+primary_extractor,Finance,securities,cq_passed,Br<C,30,0.0667,0.25,0.0,0.1667,0.2628,2,0
+primary_extractor,Finance,securities,cq_passed,A<C,30,0.3667,0.00390625,0.1333,0.6333,0.5104,8,0
+primary_extractor,Finance,securities,cq_passed,Bp<C,30,0.4333,0.00390625,0.1333,0.8333,0.4306,8,0
+primary_extractor,Finance,securities,f1,non-inferiority C vs Br (margin 0.02),30,0.0,4.9999750001249995e-06,0.0,0.0,0.0,,
+primary_extractor,Finance,securities,f1,Bp<C,30,0.0052,0.00043999780001099996,,,,,
+primary_extractor,Healthcare,hypertension,coherence,A<Br,30,0,1.0,,,,0,0
+primary_extractor,Healthcare,hypertension,coherence,Br<C,30,0,1.0,,,,0,0
+primary_extractor,Healthcare,hypertension,coherence,A<C,30,0,1.0,,,,0,0
+primary_extractor,Healthcare,hypertension,cq_passed,A<Br,30,0,1.0,0.0,0.0,0.0,0,0
+primary_extractor,Healthcare,hypertension,cq_passed,Br<C,30,0,1.0,0.0,0.0,0.0,0,0
+primary_extractor,Healthcare,hypertension,cq_passed,A<C,30,0,1.0,0.0,0.0,0.0,0,0
+primary_extractor,Healthcare,hypertension,cq_passed,Bp<C,30,0,1.0,0.0,0.0,0.0,0,0
+primary_extractor,Healthcare,hypertension,f1,non-inferiority C vs Br (margin 0.02),30,0.0,4.9999750001249995e-06,0.0,0.0,0.0,,
+primary_extractor,Healthcare,hypertension,f1,Bp<C,30,0.0,1.0,,,,,
+primary_extractor,Education,assessment,coherence,A<Br,30,0.9,4.9999750001249995e-06,,,,27,0
+primary_extractor,Education,assessment,coherence,Br<C,30,0.0333,0.5,,,,1,0
+primary_extractor,Education,assessment,coherence,A<C,30,0.9333,4.9999750001249995e-06,,,,28,0
+primary_extractor,Education,assessment,cq_passed,A<Br,30,2.3667,4.9999750001249995e-06,1.9,2.8333,1.6886,26,0
+primary_extractor,Education,assessment,cq_passed,Br<C,30,0.0333,0.5,0.0,0.1,0.1826,1,0
+primary_extractor,Education,assessment,cq_passed,A<C,30,2.4,4.9999750001249995e-06,1.9667,2.8667,1.7396,26,0
+primary_extractor,Education,assessment,cq_passed,Bp<C,30,2.5333,4.9999750001249995e-06,2.0333,3.0333,1.7125,27,0
+primary_extractor,Education,assessment,f1,non-inferiority C vs Br (margin 0.02),30,0.0,4.9999750001249995e-06,0.0,0.0,0.0,,
+primary_extractor,Education,assessment,f1,Bp<C,30,0.0345,4.9999750001249995e-06,,,,,
+second_extractor,Finance,securities,coherence,A<Br,30,0.0667,0.25,,,,2,0
+second_extractor,Finance,securities,coherence,Br<C,30,0,1.0,,,,0,0
+second_extractor,Finance,securities,coherence,A<C,30,0.0667,0.25,,,,2,0
+second_extractor,Finance,securities,cq_passed,A<Br,30,0.0333,0.5,0.0,0.1,0.1826,1,0
+second_extractor,Finance,securities,cq_passed,Br<C,30,0,1.0,0.0,0.0,0.0,0,0
+second_extractor,Finance,securities,cq_passed,A<C,30,0.0333,0.5,0.0,0.1,0.1826,1,0
+second_extractor,Finance,securities,cq_passed,Bp<C,30,0.0333,0.5,0.0,0.1,0.1826,1,0
+second_extractor,Finance,securities,f1,non-inferiority C vs Br (margin 0.02),30,0.0,4.9999750001249995e-06,0.0,0.0,0.0,,
+second_extractor,Finance,securities,f1,Bp<C,30,0.0005,0.25,,,,,
+second_extractor,Healthcare,hypertension,coherence,A<Br,30,0.0333,0.5,,,,1,0
+second_extractor,Healthcare,hypertension,coherence,Br<C,30,0,1.0,,,,0,0
+second_extractor,Healthcare,hypertension,coherence,A<C,30,0.0333,0.5,,,,1,0
+second_extractor,Healthcare,hypertension,cq_passed,A<Br,30,0.0333,0.5,0.0,0.1,0.1826,1,0
+second_extractor,Healthcare,hypertension,cq_passed,Br<C,30,0,1.0,0.0,0.0,0.0,0,0
+second_extractor,Healthcare,hypertension,cq_passed,A<C,30,0.0333,0.5,0.0,0.1,0.1826,1,0
+second_extractor,Healthcare,hypertension,cq_passed,Bp<C,30,0.1,0.25,0.0,0.2667,0.2484,2,0
+second_extractor,Healthcare,hypertension,f1,non-inferiority C vs Br (margin 0.02),30,0.0,4.9999750001249995e-06,0.0,0.0,0.0,,
+second_extractor,Healthcare,hypertension,f1,Bp<C,30,0.0001,0.25,,,,,
+second_extractor,Education,assessment,coherence,A<Br,30,0.7333,9.999950000249999e-06,,,,22,0
+second_extractor,Education,assessment,coherence,Br<C,30,0,1.0,,,,0,0
+second_extractor,Education,assessment,coherence,A<C,30,0.7333,9.999950000249999e-06,,,,22,0
+second_extractor,Education,assessment,cq_passed,A<Br,30,1.2667,9.999950000249999e-06,0.9333,1.6,1.2922,22,0
+second_extractor,Education,assessment,cq_passed,Br<C,30,0,1.0,0.0,0.0,0.0,0,0
+second_extractor,Education,assessment,cq_passed,A<C,30,1.2667,9.999950000249999e-06,0.9333,1.6,1.2922,22,0
+second_extractor,Education,assessment,cq_passed,Bp<C,30,1.3,9.999950000249999e-06,0.9333,1.6667,1.2318,22,0
+second_extractor,Education,assessment,f1,non-inferiority C vs Br (margin 0.02),30,0.0,4.9999750001249995e-06,0.0,0.0,0.0,,
+second_extractor,Education,assessment,f1,Bp<C,30,0.0044,9.999950000249999e-06,,,,,

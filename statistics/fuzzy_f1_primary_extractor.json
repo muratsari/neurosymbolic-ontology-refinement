@@ -1,0 +1,80 @@
+{
+  "securities": {
+    "llm_only": {
+      "n": 30,
+      "strict_f1": 0.343,
+      "fuzzy_f1": 0.4015,
+      "delta": 0.0585
+    },
+    "prune": {
+      "n": 30,
+      "strict_f1": 0.3382,
+      "fuzzy_f1": 0.3978,
+      "delta": 0.0596
+    },
+    "single_pass": {
+      "n": 30,
+      "strict_f1": 0.3434,
+      "fuzzy_f1": 0.402,
+      "delta": 0.0586
+    },
+    "hybrid": {
+      "n": 30,
+      "strict_f1": 0.3434,
+      "fuzzy_f1": 0.402,
+      "delta": 0.0586
+    }
+  },
+  "hypertension": {
+    "llm_only": {
+      "n": 30,
+      "strict_f1": 0.6849,
+      "fuzzy_f1": 0.7185,
+      "delta": 0.0337
+    },
+    "prune": {
+      "n": 30,
+      "strict_f1": 0.6849,
+      "fuzzy_f1": 0.7185,
+      "delta": 0.0337
+    },
+    "single_pass": {
+      "n": 30,
+      "strict_f1": 0.6849,
+      "fuzzy_f1": 0.7185,
+      "delta": 0.0337
+    },
+    "hybrid": {
+      "n": 30,
+      "strict_f1": 0.6849,
+      "fuzzy_f1": 0.7185,
+      "delta": 0.0337
+    }
+  },
+  "assessment": {
+    "llm_only": {
+      "n": 30,
+      "strict_f1": 0.3259,
+      "fuzzy_f1": 0.3724,
+      "delta": 0.0465
+    },
+    "prune": {
+      "n": 30,
+      "strict_f1": 0.2942,
+      "fuzzy_f1": 0.3416,
+      "delta": 0.0474
+    },
+    "single_pass": {
+      "n": 30,
+      "strict_f1": 0.3287,
+      "fuzzy_f1": 0.3755,
+      "delta": 0.0468
+    },
+    "hybrid": {
+      "n": 30,
+      "strict_f1": 0.3287,
+      "fuzzy_f1": 0.3755,
+      "delta": 0.0468
+    }
+  }
+}

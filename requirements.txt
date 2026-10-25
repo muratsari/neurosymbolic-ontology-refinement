@@ -1,0 +1,12 @@
+# Python 3.12 or newer. HermiT (bundled with owlready2) needs a Java 8+ runtime on PATH.
+owlready2==0.51
+rdflib==7.6.0
+# figures only
+numpy==2.5.0
+matplotlib==3.11.0
+CairoSVG==2.9.0
+pillow==12.3.0
+# only to generate new ontologies (not for scoring or statistics)
+anthropic==1.15.0
+google-genai==2.31.0
+openai==3.6.0
