@@ -95,7 +95,7 @@ def analyse(root, domain):
                      ("cons_A<C", "A", "C")):
         d = [cons[b][r] - cons[a][r] for r in RUNS if r in cons[a] and r in cons[b]]
         out[nm] = {"delta": round(st.mean(d), 4) if d else None,
-                   "p": round(signflip(d), 5)}
+                   "p": signflip(d)}
     print(f"  CONS  A<Br p={out['cons_A<Br']['p']}  Br<C p={out['cons_Br<C']['p']}  "
           f"A<C p={out['cons_A<C']['p']} (Δ={out['cons_A<C']['delta']})")
 
@@ -105,7 +105,7 @@ def analyse(root, domain):
         if not d:
             continue
         lo, hi = boot_ci(d)
-        out[nm] = {"delta": round(st.mean(d), 3), "p": round(signflip(d), 5),
+        out[nm] = {"delta": round(st.mean(d), 3), "p": signflip(d),
                    "ci95": [round(lo, 3), round(hi, 3)], "dz": round(cohen_dz(d), 3)}
     if "cq_A<C" in out:
         o = out["cq_A<C"]
@@ -120,13 +120,13 @@ def analyse(root, domain):
         out["f1_noninf_C_Br"] = {
             "deltaF1": round(st.mean(draw), 4), "ci95": [round(lo, 4), round(hi, 4)],
             "dz": round(cohen_dz(draw), 3),
-            "p_noninf_delta0.02": round(signflip([x + 0.02 for x in draw]), 5)}
+            "p_noninf_delta0.02": signflip([x + 0.02 for x in draw])}
         o = out["f1_noninf_C_Br"]
         print(f"  F1    non-inf C-Br ΔF1={o['deltaF1']}  CI95={o['ci95']}  "
               f"p(δ=.02)={o['p_noninf_delta0.02']}")
     dbp = paired(f1, "Bp", "C")
     if dbp:
-        out["f1_Bp<C"] = {"delta": round(st.mean(dbp), 4), "p": round(signflip(dbp), 5)}
+        out["f1_Bp<C"] = {"delta": round(st.mean(dbp), 4), "p": signflip(dbp)}
     print()
     return out
 

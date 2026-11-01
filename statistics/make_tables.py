@@ -315,7 +315,7 @@ def main():
             for js, axis, contrast in (("cons_A<C", "coherence", "A<C"), ("cq_A<C", "cq_passed", "A<C"),
                                        ("cq_Bp<C", "cq_passed", "Bp<C")):
                 if d in ref and js in ref[d] and \
-                        abs(ref[d][js]["p"] - round(find(t, axis, contrast)["p"], 5)) > 1e-9:
+                        abs(ref[d][js]["p"] - find(t, axis, contrast)["p"]) > 1e-12:
                     bad += 1
                     print(f"  MISMATCH {fn} {d} {js}")
         print(f"cross-check with {fn}: {'ok' if not bad else 'MISMATCH'}")
